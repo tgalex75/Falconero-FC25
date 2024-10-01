@@ -26,6 +26,28 @@ const SaldoPunti = () => {
     fetchSaldo();
   }, [data]);
 
+  const bonusCompetizioni = [
+    {
+      id: "cmp01",
+      nome: "Promozione +10",
+      valore: 10,
+    },
+    {
+      id: "cmp02",
+      nome: "Coppa Nazionale +10",
+      valore: 10,
+    },
+    {
+      id: "cmp03",
+      nome: "Scudetto +15",
+      valore: 15,
+    },
+    {
+      id: "cmp04",
+      nome: "Coppa Europea +20",
+      valore: 20,
+    },
+  ];
   const bonusCessioni = [
     {
       id: "c01",
@@ -43,6 +65,7 @@ const SaldoPunti = () => {
       valore: 5,
     },
   ];
+
   const malusAcquisti = [
     {
       id: "a03",
@@ -75,9 +98,17 @@ const SaldoPunti = () => {
       key={el.id}
       onClick={() => updateSaldoPunti(el.valore)}
       className="flex cursor-pointer items-center justify-center rounded-lg border"
-    >
+      >
       {el.nome}
     </div>
+  ));
+  const mappedCompetizioni = bonusCompetizioni.map((el) => (
+    <div
+    key={el.id}
+    onClick={() => updateSaldoPunti(el.valore)}
+    className="flex items-center justify-center rounded-lg border">
+              {el.name}
+            </div>
   ));
 
   return (
@@ -100,18 +131,7 @@ const SaldoPunti = () => {
         >
           <h2 className="text-3xl">Competizioni</h2>
           <div className="grid h-auto w-full grid-cols-4 justify-center gap-2 border p-2">
-            <div className="flex items-center justify-center rounded-lg border">
-              PROMOZIONE: +10
-            </div>
-            <div className="flex items-center justify-center rounded-lg border">
-              COPPA NAZIONALE: +10
-            </div>
-            <div className="flex items-center justify-center rounded-lg border">
-              SCUDETTO: +15
-            </div>
-            <div className="flex items-center justify-center rounded-lg border">
-              COPPA EUROPEA: +20
-            </div>
+            {mappedCompetizioni}
           </div>
         </section>
         <section
