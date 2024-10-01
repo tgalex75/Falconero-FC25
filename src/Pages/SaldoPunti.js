@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import { GrPowerReset } from "react-icons/gr";
+import { LiaTrophySolid } from "react-icons/lia";
+import { GiLaurelsTrophy, GiTrophyCup } from "react-icons/gi";
+import { IoMdTrendingUp } from "react-icons/io";
+import { LuArrowUpWideNarrow, LuArrowDownWideNarrow } from "react-icons/lu";
 
 const SaldoPunti = () => {
   const [data, setData] = useState([]);
@@ -11,41 +16,54 @@ const SaldoPunti = () => {
     setData(saldo_punti ? saldo_punti[0] : console.log(error));
   };
 
-  const {id, punti} = data ? data : {}
+  const { id, punti } = data ? data : {};
 
   const updateSaldoPunti = async (val) => {
     const { data, error } = await supabase
       .from("saldo-punti")
-      .update({ punti: punti + val })
+      .update({ punti: punti + val > 0 ? punti + val : 0 })
       .eq("id", id)
       .select();
-      data ? console.log("data: ", data) : console.log("error: ", error);
+    data ? console.log("data: ", data) : console.log("error: ", error);
   };
 
   useEffect(() => {
     fetchSaldo();
   }, [data]);
 
+  const resetPunti = async () => {
+    const { data, error } = await supabase
+      .from("saldo-punti")
+      .update({ punti: 10 })
+      .eq("id", id)
+      .select();
+    data ? console.log("data: ", data) : console.log("error: ", error);
+  };
+
   const bonusCompetizioni = [
     {
       id: "cmp01",
       nome: "Promozione +10",
       valore: 10,
+      icon: <IoMdTrendingUp size={36} className="mb-1" />,
     },
     {
       id: "cmp02",
       nome: "Coppa Nazionale +10",
       valore: 10,
+      icon: <GiTrophyCup size={32} className="mb-1" />,
     },
     {
       id: "cmp03",
       nome: "Scudetto +15",
       valore: 15,
+      icon: <LiaTrophySolid size={36} className="mb-1" />,
     },
     {
       id: "cmp04",
       nome: "Coppa Europea +20",
       valore: 20,
+      icon: <GiLaurelsTrophy size={36} className="mb-1" />,
     },
   ];
   const bonusCessioni = [
@@ -84,12 +102,16 @@ const SaldoPunti = () => {
     },
   ];
 
+  const bonusMalusStyle =
+    "flex flex-col cursor-pointer py-4 border-none hover:border items-center justify-center rounded-xl hover:bg-purple-700/60";
+
   const mappedCessioni = bonusCessioni.map((el) => (
     <div
       key={el.id}
       onClick={() => updateSaldoPunti(el.valore)}
-      className="flex cursor-pointer items-center justify-center rounded-lg border"
+      className={bonusMalusStyle}
     >
+      {el.icon}
       {el.nome}
     </div>
   ));
@@ -97,54 +119,79 @@ const SaldoPunti = () => {
     <div
       key={el.id}
       onClick={() => updateSaldoPunti(el.valore)}
-      className="flex cursor-pointer items-center justify-center rounded-lg border"
-      >
+      className={bonusMalusStyle}
+    >
       {el.nome}
     </div>
   ));
   const mappedCompetizioni = bonusCompetizioni.map((el) => (
     <div
-    key={el.id}
-    onClick={() => updateSaldoPunti(el.valore)}
-    className="flex items-center justify-center rounded-lg border">
-              {el.name}
-            </div>
+      key={el.id}
+      onClick={() => updateSaldoPunti(el.valore)}
+      className={bonusMalusStyle}
+    >
+      {el.icon}
+      {el.nome}
+    </div>
   ));
 
   return (
     <>
       <main
         id="saldo-punti"
-        className="flex h-full w-full flex-col items-center justify-between gap-4 bg-black/30 py-4"
+        className="flex h-full w-full flex-col items-center justify-between gap-4 bg-black/30 px-4 py-6"
       >
         <h1 className="relative pb-4">Saldo Punti </h1>
         <section
           id="saldoPunti"
-          className="flex h-1/4 w-full flex-col items-center gap-2 p-2 font-bold"
+          className="hover:bg-700/80 flex h-1/3 w-full flex-col items-center justify-around font-bold"
         >
-          <h2 className="text-3xl">Punti Attuali</h2>
+          <h2 className="text-2xl">Attuale</h2>
+
           <h3 className="text-8xl font-black">{punti}</h3>
+          <div className="absolute right-2 flex flex-col items-center p-2">
+            <GrPowerReset
+              size={36}
+              className="peer cursor-pointer hover:animate-spin hover:stroke-purple-700 active:scale-150"
+              onClick={resetPunti}
+            />
+            <span className="invisible text-purple-700 transition-all duration-500 ease-in-out peer-hover:visible">
+              Reset{" "}
+            </span>
+          </div>
         </section>
+
+        {/* COMPETIZIONI */}
+
         <section
           id="bonusCompetizioni"
-          className="flex h-full w-full flex-col items-center gap-2 border-t border-pink-500 p-2 font-bold"
+          className="flex h-1/3 w-full flex-col items-center justify-around gap-2 rounded-xl border-2 hover:border-gray-200  border-purple-700/60 p-2 font-bold transition-all duration-300 ease-in-out hover:bg-black/40"
         >
           <h2 className="text-3xl">Competizioni</h2>
-          <div className="grid h-auto w-full grid-cols-4 justify-center gap-2 border p-2">
+          <div className="grid h-auto w-full grid-cols-4 justify-center gap-2 p-2">
             {mappedCompetizioni}
           </div>
         </section>
+
+        {/* CESSIONI */}
+
         <section
           id="acquistiCessioni"
-          className="flex h-full w-full flex-col items-center gap-2 border-t border-pink-500 p-2 font-bold"
+          className="flex h-1/3 w-full items-center gap-4 font-bold"
         >
-          <h2 className="text-3xl">Cessioni</h2>
-          <div className="grid h-auto w-full grid-cols-3 justify-center gap-2 border p-2">
-            {mappedCessioni}
+          <div className="flex h-full w-1/2 flex-col items-center justify-around gap-2 rounded-xl border-2 hover:border-gray-200   border-purple-700/60 transition-all duration-300 ease-in-out hover:bg-black/40">
+            <h2 className="text-3xl">Cessioni</h2>
+            <LuArrowUpWideNarrow size={36} />
+            <div className="grid h-auto w-full grid-cols-3 justify-center gap-2 p-2">
+              {mappedCessioni}
+            </div>
           </div>
-          <h2 className="text-3xl">Acquisti</h2>
-          <div className="grid h-auto w-full grid-cols-3 justify-center gap-2 border p-2">
-            {mappedAcquisti}
+          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 hover:border-gray-200   border-purple-700/60 transition-all duration-300 ease-in-out hover:bg-black/40">
+            <h2 className="text-3xl">Acquisti</h2>
+            <LuArrowDownWideNarrow size={36} />
+            <div className="grid h-auto w-full grid-cols-3 justify-center gap-2 p-2">
+              {mappedAcquisti}
+            </div>
           </div>
         </section>
       </main>
