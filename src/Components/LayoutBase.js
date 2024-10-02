@@ -27,7 +27,7 @@ const LayoutBase = ({ titoloH1, id, isImprev, casuale, children }) => {
             style={{ fontFamily: "'Handlee', cursive" }}
             className="flex h-full items-center justify-center text-5xl italic"
           >
-            Lancia il dado...
+            Buzzzz it!...
           </h2>
         )}
         {children}

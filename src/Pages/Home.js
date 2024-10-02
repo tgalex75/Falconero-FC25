@@ -37,38 +37,24 @@ const Home = () => {
     },
     {
       id: 4,
-      impr: "Imprevisti Rinnovi",
-      img: <FaBolt size="80%" />,
-      link: "/rinnovi",
+      impr: "Imprevisti Ingaggi",
+      img: <FaFileInvoiceDollar size="80%" />,
+      link: "/ingaggio",
       bg: "--clr-ter",
     },
     {
       id: 5,
-      impr: "Imprevisti Ingaggi",
-      img: <FaFileInvoiceDollar size="80%" />,
-      link: "/ingaggi",
-      bg: "--clr-ter",
-    },
-    {
-      id: 6,
       impr: "Imprevisti Mercato",
       img: <FaMoneyBill1Wave size="80%" />,
-      link: "/mercato",
+      link: "/offerte-mercato",
       bg: "--clr-sec",
     },
     {
-      id: 7,
+      id: 6,
       impr: "Saldo Punti",
       img: <FaArrowRightArrowLeft className="rotate-90" size="80%" />,
       link: "/saldo-punti",
       bg: "--clr-ter",
-    },
-    {
-      id: 8,
-      impr: "Registro Giocatori",
-      img: <FaAddressBook size="80%" />,
-      link: "/registro-giocatori",
-      bg: "--clr-sec",
     },
   ];
 
@@ -84,7 +70,7 @@ const Home = () => {
             style={{
               zIndex: el.id,
             }}
-            className="ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group h-1/2 grow basis-1/2 cursor-pointer items-center justify-start overflow-hidden transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:basis-1/4"
+            className="ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group h-1/2 grow basis-1/2 cursor-pointer items-center justify-start overflow-hidden transition-all duration-500 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:basis-1/3"
           >
             <Link to={el.link} className="flex h-full bg-transparent">
               <h2

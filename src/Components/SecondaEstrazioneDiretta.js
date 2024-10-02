@@ -1,14 +1,14 @@
 import firstkit from "../assets/imgs/firstKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
 import pickRandom from "pick-random";
-import { data } from "../Funzioni/schemi";
+import { extrTitolari } from "../Funzioni/schemi";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 import { isMobile } from "react-device-detect";
 
 const SecondaEstrazioneDiretta = (props) => {
   const { numbExtrPlayer } = props;
 
-  const numbers = data.map((player) => player.id);
+  const numbers = extrTitolari.map((player) => player.id);
   const extractedPlayer = pickRandom(numbers, { count: numbExtrPlayer });
 
   return (
@@ -17,7 +17,9 @@ const SecondaEstrazioneDiretta = (props) => {
       className="flex h-fit w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:px-6"
     >
       <h4 className="my-1 text-xs font-bold uppercase text-gray-300 md:my-0 md:mb-1 md:text-lg">
-        I giocatori estratti sono i numeri:
+        {numbExtrPlayer === 1
+          ? "Ecco il giocatore estratto"
+          : "Ecco i giocatori estratti"}
       </h4>
       <main
         id="mainSecEstrDiretta"
@@ -25,7 +27,7 @@ const SecondaEstrazioneDiretta = (props) => {
       >
         <div
           id="extractedPlayers"
-          className="flex h-full md:w-3/4 flex-wrap items-center justify-around md:self-start rounded-lg md:flex-nowrap md:gap-4"
+          className="flex h-full flex-wrap items-center justify-around rounded-lg md:w-3/4 md:flex-nowrap md:gap-4 md:self-start"
         >
           {extractedPlayer.map((player, i) => {
             return (

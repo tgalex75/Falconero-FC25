@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { mySelect, tattiche, listaTattiche, data, arrayRange } from "../Funzioni/schemi";
+import { mySelect, tattiche, listaTattiche, extrTitolari, arrayRange } from "../Funzioni/schemi";
 import { v4 as uuidv4 } from "uuid";
 
 const IndicatoreGiocatoriImpr = (props) => {
@@ -58,7 +58,7 @@ const IndicatoreGiocatoriImpr = (props) => {
       <h5>{schema}</h5>
       <div className="flex w-full flex-col-reverse justify-center">
         {filteredTactics[0].formazione.map((el, i, array) =>
-          tactics(data, el === 1 ? 0 : array[i - 1], el),
+          tactics(extrTitolari, el === 1 ? 0 : array[i - 1], el),
         )}
       </div>
       {/* PANCHINA */}    

@@ -1,29 +1,45 @@
 import React, { useState } from "react";
-import { randomNumber } from "../Funzioni/RandomNumber";
 import datiPrepartita from "../Data/datiPrepartita";
-import SecondaEstrazione from "../Components/SecondaEstrazione";
+import datiMenoFrequenti from "../Data/datiMenoFrequenti";
+import datiRari from "../Data/datiRari";
+//import SecondaEstrazione from "../Components/SecondaEstrazione";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
-import { motion } from "framer-motion";
+//import { motion } from "framer-motion";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
+import random from "random";
 
 const Prepartita = () => {
-  const [casuale, setCasuale] = useState(21);
+  const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
 
+  const scegliLista = random.int(1, 9);
+  const listaEstrazione =
+    scegliLista < 4
+      ? scegliLista === 1
+        ? [...datiRari]
+        : [...datiMenoFrequenti]
+      : datiPrepartita;
+
+
   const estraiNumeroCasuale = () => {
-    setCasuale(randomNumber(datiPrepartita));
+    setCasuale(random.choice(listaEstrazione));
   };
 
-  const { id, title, description, isImprev, ultEstrazione } = casuale
-    ? datiPrepartita[casuale - 1]
-    : {};
+  const {
+    id,
+    title,
+    description,
+    isImprev,
+    ultEstrazione,
+    numbExtrPlayer,
+    notaBene,
+  } = casuale ? casuale : {};
 
   const titoloH1 = "Imprevisto Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
-  const numbExtrPlayer = id === 21 ? 5 : 3;
 
   return (
     <>
@@ -62,14 +78,11 @@ const Prepartita = () => {
                   style={{ fontFamily: "'Handlee', cursive" }}
                   className="mt-4 px-4 text-xl md:flex-1 md:text-3xl"
                 >
-                  {description}
+                  {description && description}
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
                 <p className="text-sm italic md:text-lg">
-                  {id === 26 &&
-                    "Attenzione! Imprevisto applicabile una sola volta per stagione"}
-                  {id === 28 &&
-                    "Attenzione! Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"}
+                  {notaBene && notaBene}
                 </p>
               </>
             ) : (
@@ -77,15 +90,8 @@ const Prepartita = () => {
                 <FetchImprevisto />
               </>
             )}
-            {ultEstrazione && id !== 21 && id !== 28 ? (
-              <SecondaEstrazione />
-            ) : (
-              ""
-            )}
-            {ultEstrazione && (id === 21 || id === 28) ? (
+            {ultEstrazione && (
               <SecondaEstrazioneDiretta numbExtrPlayer={numbExtrPlayer} />
-            ) : (
-              ""
             )}
           </>
         )}

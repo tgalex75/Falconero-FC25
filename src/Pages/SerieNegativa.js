@@ -44,7 +44,7 @@ const SerieNegativa = () => {
             style={{ fontFamily: "'Handlee', cursive" }}
             className="text-5xl italic"
           >
-            Lancia il dado...
+            Buzzzz it!...
           </h2>
         ) : (
           <>

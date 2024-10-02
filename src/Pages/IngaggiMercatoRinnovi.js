@@ -26,15 +26,6 @@ const IngaggiMercatoRinnovi = (props) => {
 
   const listaMsgImprevisto = [
     {
-      tipo: "Rinnovi",
-      msgIsImpr: "Mercenario",
-      msgNoImpr: "Trattativa Libera",
-      descrIsImpr: "Raddoppia l'ingaggio o cessione obbligatoria",
-      descrNoImpr: "Gestisci la trattativa liberamente",
-      linkTo: "/rinnovi",
-      linkDesc: "Imprevisti Rinnovi",
-    },
-    {
       tipo: "Mercato",
       msgIsImpr: "Mercenario",
       msgNoImpr: "Bilancio in Ordine",
@@ -123,7 +114,7 @@ const IngaggiMercatoRinnovi = (props) => {
             style={{ fontFamily: "'Handlee', cursive" }}
             className="text-5xl italic"
           >
-            Lancia il dado...
+            Buzzzz it!...
           </h2>
         )}
         {casuale && (

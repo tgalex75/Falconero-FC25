@@ -49,8 +49,18 @@ export const arrayRange = (start, stop, step) =>
     (value, index) => start + index * step,
   );
 
-let arrDataPlayers = arrayRange(1, 11, 1);
+let titolari = arrayRange(1, 11, 1);
+let anchePanchina = arrayRange(1, 18, 1);
+let interaRosa = arrayRange(1, 30, 1);
 
-export const data = arrDataPlayers.map((el) => {
+export const extrTitolari = titolari.map((el) => {
+  return { id: el, nome: el };
+});
+
+export const extrAnchePanchina = anchePanchina.map((el) => {
+  return { id: el, nome: el };
+});
+
+export const extrInteraRosa = interaRosa.map((el) => {
   return { id: el, nome: el };
 });
