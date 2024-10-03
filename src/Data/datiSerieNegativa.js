@@ -15,6 +15,7 @@ const datiSerieNegativa = [
       "I due giocatori estratti iniziano una lite e finiscono fuori squadra. Da ora l’imprevisto si rifarà a loro fino a fine stagione. Se viene risorteggiato dovrai scegliere chi tenere cedendo l’altro alla prima finestra utile.",
     isImprev: true,
     ultEstrazione: true,
+    baseEstrazione: "rosa",
     numbExtrPlayer: 2,
   },
   {
@@ -24,6 +25,7 @@ const datiSerieNegativa = [
       "Il giocatore sorteggiato entra in competizione con il suo miglior pari ruolo fino a fine stagione. Quello che a fine stagione avrà un voto medio migliore sarà confermato con stipendio aumentato, l’altro sarà ceduto.",
     isImprev: true,
     ultEstrazione: true,
+    baseEstrazione: "rosa",
     numbExtrPlayer: 1,
   },
   {
@@ -34,6 +36,13 @@ const datiSerieNegativa = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
+  },
+  {
+    id: 405,
+    title: "Nessuna conseguenza",
+    description:
+      "",
+    isImprev: false,
   },
 ];
 

@@ -1,15 +1,11 @@
 import { Link } from "react-router-dom";
-import WelcomeModal from "../Components/WelcomeModal";
-//import { MdEdit } from "react-icons/md";
 import {
   FaCalendarDays,
   FaPersonFalling,
   FaArrowTrendDown,
-  FaBolt,
   FaFileInvoiceDollar,
   FaMoneyBill1Wave,
   FaArrowRightArrowLeft,
-  FaAddressBook,
 } from "react-icons/fa6";
 
 const Home = () => {
@@ -60,7 +56,6 @@ const Home = () => {
 
   return (
     <>
-      <WelcomeModal />
       <section
         className={`flex h-full w-full flex-wrap bg-stone-950 font-bold text-gray-800`}
       >

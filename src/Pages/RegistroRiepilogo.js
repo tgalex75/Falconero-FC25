@@ -14,7 +14,7 @@ const Regolamento = () => {
     setFiltro(selectRef.current.value);
   };
 
-  const listaFiltri = ["Elenco completo", "Rinnovi", "Mercato", "Ingaggio"];
+  const listaFiltri = ["Elenco completo", "Mercato", "Ingaggio"];
 
   const filteredRegistry =
     filtro !== "Elenco completo"

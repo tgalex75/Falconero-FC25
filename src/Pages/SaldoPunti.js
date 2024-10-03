@@ -55,14 +55,14 @@ const SaldoPunti = () => {
     },
     {
       id: "cmp03",
-      nome: "Scudetto +15",
-      valore: 15,
+      nome: "Scudetto +18",
+      valore: 18,
       icon: <LiaTrophySolid size={36} className="mb-1" />,
     },
     {
       id: "cmp04",
-      nome: "Coppa Europea +20",
-      valore: 20,
+      nome: "Coppa Europea +30",
+      valore: 30,
       icon: <GiLaurelsTrophy size={36} className="mb-1" />,
     },
   ];

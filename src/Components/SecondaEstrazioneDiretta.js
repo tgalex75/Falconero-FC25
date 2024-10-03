@@ -16,10 +16,10 @@ const SecondaEstrazioneDiretta = (props) => {
       id="secEstrDiretta"
       className="flex h-fit w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:px-6"
     >
-      <h4 className="my-1 text-xs font-bold uppercase text-gray-300 md:my-0 md:mb-1 md:text-lg">
+      <h4 className="my-1 text-xs self-start font-bold uppercase text-gray-300 md:my-0 md:mb-1 md:text-lg">
         {numbExtrPlayer === 1
-          ? "Ecco il giocatore estratto"
-          : "Ecco i giocatori estratti"}
+          ? "Giocatore estratto"
+          : "Giocatori estratti"}
       </h4>
       <main
         id="mainSecEstrDiretta"
