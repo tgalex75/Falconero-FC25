@@ -1,6 +1,6 @@
-const settimana = [
+const datiSettimana = [
   {
-    id: 1,
+    id: 101,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -14,7 +14,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 3,
+    id: 103,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -22,13 +22,13 @@ const settimana = [
   },
   {
     id: 4,
-    title: "HIGHLANDER",
+    title: "Imprevisto della Community",
     description:
       "Il giocatore confessa al presidente il suo odio per il miglior pariruolo in rosa scatenando così una faida: il giocatore con il voto complessivo più basso a fine stagione sarà ceduto.",
     isImprev: true,
   },
   {
-    id: 5,
+    id: 105,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -42,7 +42,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 7,
+    id: 107,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -56,7 +56,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 9,
+    id: 109,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -70,7 +70,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 11,
+    id: 111,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -83,7 +83,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 13,
+    id: 113,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -97,7 +97,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 15,
+    id: 115,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -111,7 +111,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 17,
+    id: 117,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -125,7 +125,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 19,
+    id: 119,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -138,7 +138,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 21,
+    id: 121,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -152,7 +152,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 23,
+    id: 123,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -166,7 +166,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 25,
+    id: 125,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -180,7 +180,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 27,
+    id: 127,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -194,7 +194,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 29,
+    id: 129,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -208,13 +208,14 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 31,
+    id: 131,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
     isImprev: false,
   },
   {
+    id: 32,
     title: "HIGHLANDER",
     description:
       "Il giocatore confessa al presidente il suo odio per il miglior pariruolo in rosa scatenando così una faida: il giocatore con il voto complessivo più basso a fine stagione sarà ceduto.",
@@ -222,4 +223,4 @@ const settimana = [
   },
 ];
 
-export default settimana;
+export default datiSettimana;

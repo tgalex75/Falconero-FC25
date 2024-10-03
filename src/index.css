@@ -69,3 +69,8 @@ h1 {
     height: 70vh;
   }
 }
+
+.temporary-bounce {
+  -webkit-animation-iteration-count: 3;
+  animation-iteration-count: 3;
+}

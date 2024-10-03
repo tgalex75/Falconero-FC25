@@ -1,13 +1,12 @@
 import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
-import { randomNumber } from "../Funzioni/RandomNumber";
+import random from "random";
 import { CartContext } from "../context/regContext";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
-import SecondaEstrazione from "../Components/SecondaEstrazione";
+import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
-import { isMobile } from "react-device-detect";
-
+import { uploadRegistro } from "../Funzioni/uploadRegistro";
 const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
 
@@ -18,16 +17,22 @@ const SerieNegativa = () => {
   // Prima Estrazione
 
   const estraiNumeroCasuale = () => {
-    setCasuale(randomNumber(datiSerieNegativa));
+    setCasuale(random.choice(datiSerieNegativa));
   };
 
-  const { id, title, description, isImprev, ultEstrazione } = casuale
-    ? datiSerieNegativa[casuale - 1]
-    : {};
+  const {
+    id,
+    title,
+    description,
+    isImprev,
+    ultEstrazione,
+    baseEstrazione,
+    numbExtrPlayer,
+  } = casuale ? casuale : {};
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
-      <h1>{isMobile ? "Serie Negativa" : "Imprevisto Serie Negativa"}</h1>
+      <h1>"Serie Negativa"</h1>
 
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -48,7 +53,7 @@ const SerieNegativa = () => {
           </h2>
         ) : (
           <>
-            <div className="flex h-full w-full md:w-3/4 flex-col items-center justify-around py-4 md:self-end md:py-2">
+            <div className="flex h-full w-full flex-col items-center justify-around py-4 md:w-3/4 md:self-end md:py-2">
               <h2
                 style={{
                   fontFamily: "'Boogaloo', sans-serif",
@@ -64,7 +69,7 @@ const SerieNegativa = () => {
               </h2>
               <h3
                 style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                className="flex items-center justify-center text-3xl font-extrabold uppercase md:flex-1 md:text-6xl"
+                className="flex items-center justify-center text-3xl font-extrabold uppercase md:flex-1 md:text-5xl"
               >
                 {title}
               </h3>
@@ -74,48 +79,21 @@ const SerieNegativa = () => {
                     fontFamily: "'Handlee', cursive",
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="text-md px-4 md:flex-1 md:text-2xl md:w-3/4"
+                  className="text-md px-2 md:w-5/6 md:flex-1 md:text-2xl"
                 >
                   {description}
                 </p>
               )}
-            
 
-            {ultEstrazione && <SecondaEstrazione />}
-            {id > 3 && (
-              <div className="w-full md:w-3/4 flex flex-col items-center">
-                <label
-                  htmlFor="nome-giocatore"
-                  className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
-                >
-                  Giocatore da iscrivere sul registro
-                </label>
-                <div className="flex w-1/2 h-1/2 items-center justify-between gap-1">
-                  <input
-                    ref={inputRef}
-                    type="text"
-                    id="nome-giocatore"
-                    className="h-full w-full appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-1 py-2 text-xs text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 md:px-4 md:text-sm"
-                    name="nomeGiocatore"
-                    placeholder={isMobile ? "Nome..." : "Fuori il nome..."}
-                  />
-                  <button
-                    type="button"
-                    className="flex h-full w-full items-center justify-center rounded-lg bg-sky-700 px-4 py-2 text-center text-xs font-semibold text-white shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 md:text-sm "
-                    onClick={() =>
-                      addToCart({
-                        title: `${inputRef.current.value} - ${title}`.toUpperCase(),
-                        quantity: 1,
-                      })
-                    }
-                  >
-                    Invia
-                  </button>
-                </div>
-              </div>
-            )}
-            <RegistroSerieNegativa />
-        </div>
+              {ultEstrazione && (
+                <SecondaEstrazioneDiretta
+                  numbExtrPlayer={numbExtrPlayer}
+                  baseEstrazione={baseEstrazione}
+                />
+              )}
+              {isImprev && uploadRegistro(inputRef, addToCart, title)}
+              <RegistroSerieNegativa />
+            </div>
           </>
         )}
       </motion.div>

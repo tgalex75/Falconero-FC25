@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext,useRef } from "react";
 import datiPrepartita from "../Data/datiPrepartita";
+import { uploadRegistro } from "../Funzioni/uploadRegistro";
 import datiMenoFrequenti from "../Data/datiMenoFrequenti";
 import datiRari from "../Data/datiRari";
-//import SecondaEstrazione from "../Components/SecondaEstrazione";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
-//import { motion } from "framer-motion";
+import { CartContext } from "../context/regContext";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
@@ -12,6 +12,10 @@ import random from "random";
 
 const Prepartita = () => {
   const [casuale, setCasuale] = useState(null);
+
+  const inputRef = useRef(null);
+
+  const { addToCart } = useContext(CartContext);
 
   // Prima Estrazione
 
@@ -50,6 +54,7 @@ const Prepartita = () => {
     description,
     isImprev,
     ultEstrazione,
+    baseEstrazione,
     numbExtrPlayer,
     notaBene,
   } = casuale ? casuale : {};
@@ -88,7 +93,7 @@ const Prepartita = () => {
                     title === "PAROLA ALLA COMMUNITY!" && "invisible"
                   }, ${
                     id === 999 &&
-                    "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                    "md:absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                   }`}
                 >
                   {title}
@@ -100,7 +105,7 @@ const Prepartita = () => {
                   {description && description}
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
-                <p className="text-sm italic md:text-lg">
+                <p className="text-sm italic md:text-lg animate-bounce">
                   {notaBene && notaBene}
                 </p>
               </>
@@ -110,9 +115,13 @@ const Prepartita = () => {
               </>
             )}
             {ultEstrazione && (
-              <SecondaEstrazioneDiretta numbExtrPlayer={numbExtrPlayer} />
+              <SecondaEstrazioneDiretta
+                numbExtrPlayer={numbExtrPlayer}
+                baseEstrazione={baseEstrazione}
+              />
             )}
-            {(title === "Notte brava" || title === "Lite nello spogliatoio") && console.log("Campo di input della SerieNegativa")}
+            {(title === "Notte brava" || title === "Lite nello spogliatoio") &&
+              uploadRegistro(inputRef, addToCart, title)}
           </>
         )}
       </LayoutBase>

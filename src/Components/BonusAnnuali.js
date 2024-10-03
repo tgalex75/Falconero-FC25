@@ -12,13 +12,13 @@ const BonusAnnuali = () => {
   }, [vociBonus]);
 
   const fetchLista = async () => {
-    const { data } = await supabase.from("bonus-imprevisti").select("*");
+    const { data } = await supabase.from("bonus-annuali").select("*");
     setVociBonus(data ? data : []);
   };
 
   const uploadListDB = async (list) => {
     const { data, error } = await supabase
-      .from("bonus-imprevisti")
+      .from("bonus-annuali")
       .insert([{ id: list.id }])
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
@@ -26,7 +26,7 @@ const BonusAnnuali = () => {
 
   const deleteListDB = async () => {
     const { error } = await supabase
-      .from("bonus-imprevisti")
+      .from("bonus-annuali")
       .delete("id")
       .lt("id", 4);
     console.log(error);

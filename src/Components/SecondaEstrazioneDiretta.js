@@ -1,14 +1,14 @@
 import firstkit from "../assets/imgs/firstKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
 import pickRandom from "pick-random";
-import { extrTitolari } from "../Funzioni/schemi";
+import { extrTitolari, extrRosa } from "../Funzioni/schemi";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 import { isMobile } from "react-device-detect";
 
 const SecondaEstrazioneDiretta = (props) => {
-  const { numbExtrPlayer } = props;
+  const { numbExtrPlayer, baseEstrazione } = props;
 
-  const numbers = extrTitolari.map((player) => player.id);
+  const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map((player) => player.id);
   const extractedPlayer = pickRandom(numbers, { count: numbExtrPlayer });
 
   return (

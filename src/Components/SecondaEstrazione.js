@@ -45,7 +45,7 @@ const SecondaEstrazione = () => {
             id="input-estrazione-giocatore"
             className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem]"
             name="randomPlayerNum"
-            placeholder="Quanti giocatori?"
+            placeholder="Titolari o intera Rosa?"
           />
         </div>
         <button

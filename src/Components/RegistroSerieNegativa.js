@@ -12,7 +12,7 @@ const RegistroSerieNegativa = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.7, duration: 0.7 }}
-      className="absolute bottom-1 left-1 top-1 hidden h-[98%] w-[28vw] items-center gap-2 overflow-hidden rounded-lg bg-black/50 text-gray-300 md:flex md:flex-col"
+      className="absolute bottom-1 left-1 top-1 hidden h-[98%] w-[24vw] items-center gap-2 overflow-hidden rounded-lg bg-black/50 text-gray-300 md:flex md:flex-col"
     >
       <h6 className="uppercase text-[--clr-prim]">Registro Serie Negativa</h6>
       <AnimatePresence initial={false} mode="popLayout">
@@ -59,7 +59,7 @@ const RegistroSerieNegativa = () => {
           ))}
         </ul>
       </AnimatePresence>
-      <button className="block h-8 w-full bg-[--clr-prim]" onClick={clearCart}>
+      <button className="block h-8 w-full bg-purple-700/60" onClick={clearCart}>
         Resetta lista
       </button>
     </motion.div>

@@ -50,14 +50,9 @@ export const arrayRange = (start, stop, step) =>
   );
 
 let titolari = arrayRange(1, 11, 1);
-let anchePanchina = arrayRange(1, 18, 1);
 let interaRosa = arrayRange(1, 30, 1);
 
 export const extrTitolari = titolari.map((el) => {
-  return { id: el, nome: el };
-});
-
-export const extrPanchina = anchePanchina.map((el) => {
   return { id: el, nome: el };
 });
 

@@ -5,8 +5,8 @@ const datiSerieNegativa = [
     description:
       "4 Top player, i più forti, si ribellano al mister. Mettili fuori squadra. Se vinci riconquisti la loro fiducia fino a fine stagione. Se perdi o pareggi, la prossima partita se ne aggiunge un altro.",
     isImprev: true,
-    ultEstrazione: true,
-    numbExtrPlayer: 4,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
   },
   {
     id: 402,
@@ -15,7 +15,7 @@ const datiSerieNegativa = [
       "I due giocatori estratti iniziano una lite e finiscono fuori squadra. Da ora l’imprevisto si rifarà a loro fino a fine stagione. Se viene risorteggiato dovrai scegliere chi tenere cedendo l’altro alla prima finestra utile.",
     isImprev: true,
     ultEstrazione: true,
-    baseEstrazione: "rosa",
+    baseEstrazione: 30,
     numbExtrPlayer: 2,
   },
   {
@@ -25,7 +25,7 @@ const datiSerieNegativa = [
       "Il giocatore sorteggiato entra in competizione con il suo miglior pari ruolo fino a fine stagione. Quello che a fine stagione avrà un voto medio migliore sarà confermato con stipendio aumentato, l’altro sarà ceduto.",
     isImprev: true,
     ultEstrazione: true,
-    baseEstrazione: "rosa",
+    baseEstrazione: 30,
     numbExtrPlayer: 1,
   },
   {

@@ -5,7 +5,7 @@ const datiMenoFrequenti = [
     description: "I due giocatori vengono puniti con la tribuna per la partita in corso",
     isImprev: true,
     ultEstrazione: true,
-    baseEstrazione: "rosa",
+    baseEstrazione: 30,
     numbExtrPlayer: 2,
   },
   {
@@ -14,7 +14,7 @@ const datiMenoFrequenti = [
     description: "Il giocatore è arrivato tardi agli allenamenti. Tribuna per una partita. Se capita una seconda volta in stagione fuori un mese. Se capita una terza, cessione obbligatoria.",
     isImprev: true,
     ultEstrazione: true,
-    baseEstrazione: "rosa",
+    baseEstrazione: 30,
     numbExtrPlayer: 1,
   },
   {
@@ -31,7 +31,7 @@ const datiMenoFrequenti = [
     description: "La squadra è stanca. Sorteggia 3 giocatori tra i titolari. Saranno gli unici a giocare questa partita.",
     isImprev: true,
     ultEstrazione: true,
-    baseEstrazione: "titolari",
+    baseEstrazione: 11,
     numbExtrPlayer: 3,
     notaBene: "Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
   },

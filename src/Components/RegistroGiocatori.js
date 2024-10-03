@@ -34,7 +34,7 @@ const RegistroMercato = (props) => {
         ))}
       </ul>
       <button
-        className="block h-8 w-full bg-[--clr-prim]"
+        className="block h-8 w-full bg-purple-700"
         onClick={deleteListDB}
       >
         Resetta lista
