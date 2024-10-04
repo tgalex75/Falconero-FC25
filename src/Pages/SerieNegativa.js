@@ -21,7 +21,6 @@ const SerieNegativa = () => {
   };
 
   const {
-    id,
     title,
     description,
     isImprev,
