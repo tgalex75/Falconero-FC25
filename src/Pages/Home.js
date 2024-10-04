@@ -1,50 +1,46 @@
 import { Link } from "react-router-dom";
-import WelcomeModal from "../Components/WelcomeModal";
-//import { MdEdit } from "react-icons/md";
 import {
   FaCalendarDays,
   FaPersonFalling,
   FaArrowTrendDown,
-  FaBolt,
   FaFileInvoiceDollar,
   FaMoneyBill1Wave,
   FaArrowRightArrowLeft,
-  FaAddressBook,
 } from "react-icons/fa6";
 
 const Home = () => {
   const dettagliImprevisti = [
     {
       id: 1,
-      impr: "Imprevisti prepartita",
+      impr: "prepartita",
       img: <FaPersonFalling size="80%" />,
       link: "/prepartita",
       bg: "--clr-sec",
     },
     {
       id: 2,
-      impr: "Imprevisti Settimanali",
+      impr: "Settimanali",
       img: <FaCalendarDays size="80%" />,
       link: "/settimana",
       bg: "--clr-ter",
     },
     {
       id: 3,
-      impr: "Imprevisti serie negativa",
+      impr: "serie negativa",
       img: <FaArrowTrendDown size="80%" />,
       link: "/serie-negativa",
       bg: "--clr-sec",
     },
     {
       id: 4,
-      impr: "Imprevisti Ingaggi",
+      impr: "Ingaggi",
       img: <FaFileInvoiceDollar size="80%" />,
       link: "/ingaggio",
       bg: "--clr-ter",
     },
     {
       id: 5,
-      impr: "Imprevisti Mercato",
+      impr: "Mercato",
       img: <FaMoneyBill1Wave size="80%" />,
       link: "/offerte-mercato",
       bg: "--clr-sec",
@@ -60,7 +56,6 @@ const Home = () => {
 
   return (
     <>
-      <WelcomeModal />
       <section
         className={`flex h-full w-full flex-wrap bg-stone-950 font-bold text-gray-800`}
       >

@@ -57,10 +57,10 @@ export const extrTitolari = titolari.map((el) => {
   return { id: el, nome: el };
 });
 
-export const extrAnchePanchina = anchePanchina.map((el) => {
+export const extrPanchina = anchePanchina.map((el) => {
   return { id: el, nome: el };
 });
 
-export const extrInteraRosa = interaRosa.map((el) => {
+export const extrRosa = interaRosa.map((el) => {
   return { id: el, nome: el };
 });

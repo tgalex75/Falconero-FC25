@@ -1,4 +1,4 @@
-        @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -15,9 +15,12 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif;*/
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #1d1c2f;
@@ -30,24 +33,38 @@ code {
     monospace;
 }
 
-/* Tshirt estrazione */
-@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap");
+/* Font descrizione */
 
-/* IMPREVISTO TIMBRO */
-@import url('https://fonts.googleapis.com/css2?family=Boogaloo&display=swap');
+.andika-regular {
+  font-family: "Andika", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
 
-/* Imprevisti della Community - Testo */
-@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+.andika-regular-italic {
+  font-family: "Andika", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
 
-/* Titoli H1 */
-@import url("https://fonts.googleapis.com/css2?family=Handlee&family=Paytone+One&display=swap");
+.anton-regular {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.montserrat {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
 
 h1 {
-  font-family: "Paytone One", sans-serif;
+  font-family: "Anton", sans-serif;
   font-size: clamp(1.2rem, 2.5vw, 3rem);
 }
 
-.t-dOnDMp {
+.t-deGdmh {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -63,8 +80,19 @@ h1 {
   justify-items: center;
 }
 
+.t-deGdmh button {
+  background-color: transparent;
+  border-color: var(--clr-ter);
+  color: var(--clr-ter);
+}
+
+.c-bOcPnF-cmFMMs-color-primary:hover {
+  background-color: var(--clr-ter) !important;
+  color: black;
+}
+
 @media screen and (max-width: 767px) {
-  .t-dOnDMp {
+  .t-deGdmh {
     width: 75vw;
     height: 70vh;
   }

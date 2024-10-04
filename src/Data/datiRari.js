@@ -13,6 +13,7 @@ const datiPrepartita = [
     description: "La cena di squadra è stata una tragedia. Fuori cinque titolari.",
     isImprev: true,
     ultEstrazione: true,
+    baseEstrazione: "titolari",
     numbExtrPlayer: 5,
   },
   {
@@ -29,6 +30,7 @@ const datiPrepartita = [
     description: "Il giocatore chiede il rinnovo al 50% in più del suo attuale stipendio: rinnova o cedi.",
     isImprev: true,
     ultEstrazione: true,
+    baseEstrazione: "rosa",
     numbExtrPlayer: 3,
     notaBene: "Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
   },

@@ -71,8 +71,7 @@ export default function FetchData(props) {
       </motion.div>
       <h3
         style={{
-          fontFamily: "'Handlee', cursive",
-          filter: "drop-shadow(.05rem .05rem 0.2rem #000)",
+          filter: " drop-shadow(.05rem .05rem 0.2rem #000)",
         }}
         className="text-md my-8 flex flex-1 items-center text-center uppercase italic text-gray-200 md:ps-[30%] md:text-2xl"
       >

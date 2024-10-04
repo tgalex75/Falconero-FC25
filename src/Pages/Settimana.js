@@ -47,7 +47,7 @@ const Settimana = () => {
 
             <h2
               style={{
-                fontFamily: "'Boogaloo', sans-serif",
+                fontFamily: "'Anton', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
@@ -69,10 +69,9 @@ const Settimana = () => {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'Handlee', cursive",
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="mt-4 md:flex-1 text-2xl md:text-4xl"
+                  className="andika-regular mt-4 md:flex-1 text-2xl md:text-4xl"
                 >
                   {description}
                 </p>

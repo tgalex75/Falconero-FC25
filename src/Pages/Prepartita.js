@@ -15,17 +15,33 @@ const Prepartita = () => {
 
   // Prima Estrazione
 
-  const scegliLista = random.int(1, 9);
+  const scegliLista = random.int(1, 6);
   const listaEstrazione =
     scegliLista < 4
       ? scegliLista === 1
-        ? [...datiRari]
-        : [...datiMenoFrequenti]
-      : datiPrepartita;
+        ? { data: [...datiRari], listaLength: datiRari.length * 5 }
+        : {
+            data: [...datiMenoFrequenti],
+            listaLength: datiMenoFrequenti.length * 3,
+          }
+      : { data: [...datiPrepartita], listaLength: datiPrepartita.length * 2 };
 
+  const { data, listaLength } = listaEstrazione;
+
+  const noImprevisto = {
+    id: 999,
+    title: "Nessun Imprevisto",
+    description: "",
+    isImprev: false,
+  };
 
   const estraiNumeroCasuale = () => {
-    setCasuale(random.choice(listaEstrazione));
+    const numeroPool = random.int(1, listaLength);
+    setCasuale(
+      numeroPool > data.length
+        ? noImprevisto
+        : listaEstrazione.data[numeroPool - 1],
+    );
   };
 
   const {
@@ -53,13 +69,13 @@ const Prepartita = () => {
           <>
             <h2
               style={{
-                fontFamily: "'Boogaloo', sans-serif",
+                fontFamily: "'Anton', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImprev
                   ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-6xl"
-                  : "hidden"
+                  : "invisible"
               }
             >
               {isImpCommunity ? "Imprevisto della Community" : "IMPREVISTO!"}
@@ -69,19 +85,19 @@ const Prepartita = () => {
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
                   className={`text-4xl font-extrabold uppercase md:flex-1 md:text-5xl ${
-                    title === "PAROLA ALLA COMMUNITY!" && "hidden"
+                    title === "PAROLA ALLA COMMUNITY!" && "invisible"
+                  }, ${
+                    id === 999 &&
+                    "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                   }`}
                 >
                   {title}
                 </h3>
-                <p
-                  style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 px-4 text-xl md:flex-1 md:text-3xl"
-                >
+                <p className="andika-regular mt-4 px-4 text-xl md:flex-1 md:text-3xl">
                   {description && description}
                 </p>
-                {/* Eccezione imprevisto n. 28 */}
-                <p className="text-sm italic md:text-lg">
+                {/* Eccezioni */}
+                <p className="andika-regular-italic animate-bounce text-sm font-normal md:text-lg">
                   {notaBene && notaBene}
                 </p>
               </>
@@ -93,6 +109,8 @@ const Prepartita = () => {
             {ultEstrazione && (
               <SecondaEstrazioneDiretta numbExtrPlayer={numbExtrPlayer} />
             )}
+            {(title === "Notte brava" || title === "Lite nello spogliatoio") &&
+              console.log("Campo di input della SerieNegativa")}
           </>
         )}
       </LayoutBase>

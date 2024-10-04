@@ -16,10 +16,10 @@ const SecondaEstrazioneDiretta = (props) => {
       id="secEstrDiretta"
       className="flex h-fit w-full flex-col items-center justify-around rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:px-6"
     >
-      <h4 className="my-1 text-xs font-bold uppercase text-gray-300 md:my-0 md:mb-1 md:text-lg">
+      <h4 className="my-1 text-xs self-start font-bold uppercase text-gray-300 md:my-0 md:mb-1 md:text-lg">
         {numbExtrPlayer === 1
-          ? "Ecco il giocatore estratto"
-          : "Ecco i giocatori estratti"}
+          ? "Giocatore estratto"
+          : "Giocatori estratti"}
       </h4>
       <main
         id="mainSecEstrDiretta"
@@ -39,7 +39,7 @@ const SecondaEstrazioneDiretta = (props) => {
                     player === 1 ? `url(${gkKit})` : `url(${firstkit})`,
                 }}
               >
-                <span className="block pb-5 font-['Oswald'] text-4xl font-bold text-gray-300 md:text-7xl">
+                <span className="block pb-5 font-['Anton'] text-4xl font-bold text-gray-300 md:text-7xl">
                   {player}
                 </span>
               </div>

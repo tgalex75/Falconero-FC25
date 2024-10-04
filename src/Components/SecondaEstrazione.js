@@ -68,7 +68,7 @@ const SecondaEstrazione = () => {
             }}
           >
             <span
-              className="mb-12 block font-['Oswald'] text-4xl font-bold text-gray-300 md:text-8xl"
+              className="mb-12 block font-['Anton'] text-4xl font-bold text-gray-300 md:text-8xl"
             >
               {secondExtractedNumber}
             </span>
