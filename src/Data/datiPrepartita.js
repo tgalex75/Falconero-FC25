@@ -5,7 +5,7 @@ const datiPrepartita = [
     description: "Il giocatore estratto salterà la partita per infortunio.",
     isImprev: true,
     ultEstrazione: true,
-    baseEstrazione: "titolari",
+    baseEstrazione: 11,
     numbExtrPlayer: 1,
   },
   {

@@ -1,34 +1,34 @@
-const settimana = [
+const datiSettimana = [
   {
-    id: 1,
+    id: 101,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
     isImprev: false,
   },
   {
-    id: 3,
+    id: 103,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
     isImprev: false,
   },
   {
-    id: 4,
-    title: "HIGHLANDER",
+    id: 104,
+    title: "Imprevisto della Community",
     description:
       "Il giocatore confessa al presidente il suo odio per il miglior pari ruolo in rosa scatenando così una faida: il giocatore con il voto complessivo più basso a fine stagione sarà ceduto.",
     isImprev: true,
   },
   {
-    id: 5,
+    id: 105,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
     isImprev: false,
   },
   {
-    id: 7,
+    id: 107,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -42,7 +42,7 @@ const settimana = [
     isImprev: true,
   },
   {
-    id: 9,
+    id: 109,
     title: "nessun imprevisto",
     description:
       "Il giocatore passerà in tribuna le partite giocate questa settimana.",
@@ -61,7 +61,6 @@ const settimana = [
     description: "Il giocatore resterà fuori rosa per tutto il mese.",
     isImprev: true,
   },
-  
   {
     id: 14,
     title: "SEMPRE PRESENTE",
@@ -98,4 +97,4 @@ const settimana = [
   },
 ];
 
-export default settimana;
+export default datiSettimana;

@@ -9,10 +9,6 @@ import RiepilogoImprevisti from "../Pages/RiepilogoImprevisti";
 import IngaggiMercatoRinnovi from "../Pages/IngaggiMercatoRinnovi";
 import SaldoPunti from "../Pages/SaldoPunti";
 import SerieNegativa from "../Pages/SerieNegativa";
-import EditorImprevisti from "../Pages/EditorImprevisti"
-// import Dashboard from "../Pages/Auth/Dashboard";
-// import Login from "../Pages/Auth/Login";
-// import Signup from "../Pages/Auth/Signup";
 import ErrorPage from "../Pages/ErrorPage";
 
 const AnimatedRoutes = () => {
@@ -27,7 +23,6 @@ const AnimatedRoutes = () => {
                 <Route path="/registro-giocatori" element={<RegistroRiepilogo />} />
                 <Route path="/riepilogo-imprevisti" element={<RiepilogoImprevisti />} />
                 <Route path="/saldo-punti" element={<SaldoPunti />} />
-                <Route path="/editor-imprevisti" element={<EditorImprevisti />} />
                 <Route path="/ingaggio" element={<IngaggiMercatoRinnovi tipoImprevisto="Ingaggio" />} />
                 <Route path="/serie-negativa" element={<SerieNegativa />} />
                 <Route path="/offerte-mercato" element={<IngaggiMercatoRinnovi tipoImprevisto="Mercato" />} />

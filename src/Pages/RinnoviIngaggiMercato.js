@@ -1,6 +1,6 @@
 import React, { useState, useContext, useRef } from "react";
 import Dado from "../Components/Dado";
-import { db } from "../Data/db";
+import { supabase } from "../supabaseClient";
 import RegistroGiocatori from "../Components/RegistroGiocatori";
 import { initialMessage } from "../Components/InitialMessage";
 import { CartContext } from "../context/regContext";
@@ -8,7 +8,6 @@ import LayoutBase from "../Components/LayoutBase";
 import { MdArrowForward } from "react-icons/md";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { isMobile } from "react-device-detect";
 import random from "random";
 import BonusAnnuali from "../Components/BonusAnnuali";
 
@@ -34,12 +33,6 @@ const RinnoviIngaggiMercato = (props) => {
 
   const listaMsgImprevisto = [
     {
-      tipo: "rinnovi",
-      linkTo: "/rinnovi",
-      linkDesc: "Imprevisti Rinnovi",
-      isVisible: isVisibleArray[3],
-    },
-    {
       tipo: "ingaggi",
       linkTo: "/ingaggi",
       linkDesc: "Imprevisti di Ingaggio",
@@ -59,31 +52,39 @@ const RinnoviIngaggiMercato = (props) => {
 
   const { titolo, descrizione, isImprev } = casuale ? casuale : {};
 
-  const titoloH1 = isMobile
-    ? tipoImprevisto
-    : "Imprevisto " + tipoImprevisto.toUpperCase();
+  const titoloH1 =    tipoImprevisto.toUpperCase();
 
   const inputRef = useRef(null);
 
   const uploadListDB = async (list) => {
-    try {
-      const id = await db.registroGiocatori.add({
-        name: list.name,
-        description: list.description,
-        tipo: list.tipo,
-      });
-      console.log(id);
-    } catch (error) {
-      console.log(error);
-    }
+    const { data, error } = await supabase
+      .from("registroo")
+      .insert([
+        {
+          id: list.id,
+          name: list.name,
+          description: list.description,
+          tipo: list.tipo,
+        },
+      ])
+      .select();
+    data ? console.log() : console.log("error: ", error);
   };
 
-  const removeVociRegistro = (id) => {
-    db.registroGiocatori.delete(id);
+  const removeVociRegistro = async (element) => {
+    const { error } = await supabase
+      .from("registroo")
+      .delete()
+      .eq("id", element);
+    error && console.log(error);
   };
 
-  const deleteListDB = () => {
-    db.registroGiocatori.clear();
+  const deleteListDB = async () => {
+    const { error } = await supabase
+      .from("registroo")
+      .delete("name")
+      .neq("name", null);
+    error && console.log(error);
   };
 
   const [isHidden, setIsHidden] = useState(true);
@@ -96,13 +97,13 @@ const RinnoviIngaggiMercato = (props) => {
             initial={{ opacity: 0, x: "-10vw" }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.3, type: "spring" }}
-            key={Math.random()}
+            key={random.float()}
             className="relative flex h-full w-full flex-col items-center justify-around"
           >
             <h2
               className={
                 isImprev > 0
-                  ? "relative top-2 h-1/4 items-center font-H2  text-5xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:flex md:h-full md:text-6xl"
+                  ? "font-H2 relative top-2 h-1/4 items-center text-5xl font-extrabold uppercase [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:flex md:h-full md:text-6xl"
                   : "invisible md:h-full"
               }
             >
@@ -112,7 +113,7 @@ const RinnoviIngaggiMercato = (props) => {
               {titolo}
             </h3>
             <p
-              className={`mt-4 h-2/4 px-4 font-Descr text-xl [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:h-full md:w-1/2 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
+              className={`font-Descr mt-4 h-2/4 px-4 text-xl [filter:drop-shadow(.05rem_.05rem_0.1rem_#000)] md:h-full md:w-1/2 ${descrizione.length > 40 ? "h-3/4 md:text-2xl" : "md:text-3xl"}`}
             >
               {descrizione}
             </p>
@@ -136,7 +137,7 @@ const RinnoviIngaggiMercato = (props) => {
                 />
                 <button
                   type="button"
-                  className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-bold text-gray-300 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
+                  className="h-10 w-1/2 rounded-lg bg-sky-700 px-2 py-2 text-center text-sm font-bold text-gray-300 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200"
                   onClick={() =>
                     uploadListDB({
                       name: inputRef.current.value,
@@ -169,7 +170,7 @@ const RinnoviIngaggiMercato = (props) => {
                       ease: "easeIn",
                     }}
                     key={i}
-                    className="flex text-left w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
+                    className="flex w-full items-center justify-start gap-4 text-left hover:text-[--clr-sec]"
                   >
                     <MdArrowForward />
                     <Link to={el.linkTo}>{el.linkDesc}</Link>
@@ -184,7 +185,7 @@ const RinnoviIngaggiMercato = (props) => {
                   ease: "easeIn",
                 }}
                 key="prepartita"
-                className="flex text-left w-full items-center justify-start gap-4 hover:text-[--clr-sec]"
+                className="flex w-full items-center justify-start gap-4 text-left hover:text-[--clr-sec]"
               >
                 <MdArrowForward />
                 <Link to="/prepartita">Prepartita</Link>

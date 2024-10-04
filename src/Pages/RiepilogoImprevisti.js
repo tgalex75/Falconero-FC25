@@ -3,6 +3,8 @@ import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
 import datiPrepartita from "../Data/datiPrepartita";
+import datiRari from "../Data/datiRari";
+import datiMenoFrequenti from "../Data/datiMenoFrequenti";
 import datiSettimana from "../Data/datiSettimana";
 
 const RiepilogoImprevisti = () => {
@@ -25,6 +27,8 @@ const RiepilogoImprevisti = () => {
     error && console.log(error);
   };
 
+  const datiPrepartitaGlobali = [...datiPrepartita, ...datiMenoFrequenti, ...datiRari]
+
   return (
     <section className="flex h-full w-full flex-col items-center justify-center gap-12 p-4 font-bold">
       <h1>Riepilogo Imprevisti</h1>
@@ -39,7 +43,7 @@ const RiepilogoImprevisti = () => {
             Imprevisti Prepartita
           </h3>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
-            {datiPrepartita.map(
+            {datiPrepartitaGlobali.map(
               (el) =>
                 el.title.toUpperCase() !== "NESSUN IMPREVISTO" && (
                   <li

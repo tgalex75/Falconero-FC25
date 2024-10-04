@@ -165,7 +165,7 @@ const SaldoPunti = () => {
 
         <section
           id="bonusCompetizioni"
-          className="flex h-1/3 w-full flex-col items-center justify-around gap-2 rounded-xl border-2 hover:border-gray-200  border-purple-700/60 p-2 font-bold transition-all duration-300 ease-in-out hover:bg-black/40"
+          className="flex h-1/3 w-full flex-col items-center justify-around gap-2 rounded-xl border-2 border-purple-700/60 p-2 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30"
         >
           <h2 className="text-3xl">Competizioni</h2>
           <div className="grid h-auto w-full grid-cols-4 justify-center gap-2 p-2">
@@ -177,16 +177,16 @@ const SaldoPunti = () => {
 
         <section
           id="acquistiCessioni"
-          className="flex h-1/3 w-full items-center gap-4 font-bold"
+          className="flex h-1/3 w-full items-center gap-4 text-lg font-bold"
         >
-          <div className="flex h-full w-1/2 flex-col items-center justify-around gap-2 rounded-xl border-2 hover:border-gray-200   border-purple-700/60 transition-all duration-300 ease-in-out hover:bg-black/40">
+          <div className="flex h-full w-1/2 flex-col items-center justify-around gap-2 rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30">
             <h2 className="text-3xl">Cessioni</h2>
             <LuArrowUpWideNarrow size={36} />
             <div className="grid h-auto w-full grid-cols-3 justify-center gap-2 p-2">
               {mappedCessioni}
             </div>
           </div>
-          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 hover:border-gray-200   border-purple-700/60 transition-all duration-300 ease-in-out hover:bg-black/40">
+          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30">
             <h2 className="text-3xl">Acquisti</h2>
             <LuArrowDownWideNarrow size={36} />
             <div className="grid h-auto w-full grid-cols-3 justify-center gap-2 p-2">
