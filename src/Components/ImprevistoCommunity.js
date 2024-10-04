@@ -27,7 +27,7 @@ const ImprevistoCommunity = (props) => {
       >
         <h3
           style={{
-            fontFamily: "'Boogaloo', sans-serif",
+            fontFamily: "'Anton', sans-serif",
             filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
           }}
           className="text-2xl md:text-5xl"

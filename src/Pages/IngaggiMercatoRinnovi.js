@@ -111,8 +111,7 @@ const IngaggiMercatoRinnovi = (props) => {
       >
         {!casuale && (
           <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
-            className="text-5xl italic"
+            className=" andika-regular-italic text-5xl italic"
           >
             Buzzzz it!...
           </h2>
@@ -121,7 +120,7 @@ const IngaggiMercatoRinnovi = (props) => {
           <>
             <h2
               style={{
-                fontFamily: "'Boogaloo', sans-serif",
+                fontFamily: "'Anton', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
@@ -140,8 +139,7 @@ const IngaggiMercatoRinnovi = (props) => {
             </h3>
             <p
               style={{
-                fontFamily: "'Handlee', cursive",
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
+                filter: "andika-regular drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
             >

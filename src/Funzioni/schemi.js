@@ -55,7 +55,6 @@ let interaRosa = arrayRange(1, 30, 1);
 export const extrTitolari = titolari.map((el) => {
   return { id: el, nome: el };
 });
-
 export const extrRosa = interaRosa.map((el) => {
   return { id: el, nome: el };
 });

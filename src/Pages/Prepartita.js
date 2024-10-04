@@ -74,7 +74,7 @@ const Prepartita = () => {
           <>
             <h2
               style={{
-                fontFamily: "'Boogaloo', sans-serif",
+                fontFamily: "'Anton', sans-serif",
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
@@ -98,14 +98,12 @@ const Prepartita = () => {
                 >
                   {title}
                 </h3>
-                <p
-                  style={{ fontFamily: "'Handlee', cursive" }}
-                  className="mt-4 px-4 text-xl md:flex-1 md:text-3xl"
-                >
+                <p className="andika-regular mt-4 px-4 text-xl md:flex-1 md:text-3xl">
                   {description && description}
                 </p>
-                {/* Eccezione imprevisto n. 28 */}
-                <p className="text-sm italic md:text-lg animate-bounce">
+
+                {/* Eccezioni */}
+                <p className="andika-regular-italic animate-bounce text-sm font-normal md:text-lg">
                   {notaBene && notaBene}
                 </p>
               </>

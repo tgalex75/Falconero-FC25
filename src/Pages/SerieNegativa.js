@@ -45,8 +45,7 @@ const SerieNegativa = () => {
       >
         {!casuale ? (
           <h2
-            style={{ fontFamily: "'Handlee', cursive" }}
-            className="text-5xl italic"
+            className="text-5xl italic andika-regular-italic"
           >
             Buzzzz it!...
           </h2>
@@ -55,7 +54,7 @@ const SerieNegativa = () => {
             <div className="flex h-full w-full flex-col items-center justify-around py-4 md:w-3/4 md:self-end md:py-2">
               <h2
                 style={{
-                  fontFamily: "'Boogaloo', sans-serif",
+                  fontFamily: "'Anton', sans-serif",
                   filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                 }}
                 className={
@@ -75,10 +74,9 @@ const SerieNegativa = () => {
               {isImprev && (
                 <p
                   style={{
-                    fontFamily: "'Handlee', cursive",
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="text-md px-2 md:w-5/6 md:flex-1 md:text-2xl"
+                  className="text-md px-2 md:w-5/6 md:flex-1 md:text-2xl andika-regula"
                 >
                   {description}
                 </p>
