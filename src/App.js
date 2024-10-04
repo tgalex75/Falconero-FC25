@@ -31,7 +31,7 @@ function App(props) {
     return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} theme="dark" providers={[]} className="w-1/2"/>;
   } else {
     return (
-      <main className="h-screen w-screen overflow-hidden">
+      <main className="h-dvh w-screen overflow-hidden">
         <Router>
           <Navbar />
           <AnimatedRoutes />

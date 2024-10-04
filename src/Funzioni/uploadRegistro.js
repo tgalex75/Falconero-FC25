@@ -1,6 +1,6 @@
 export const uploadRegistro = (inputRef, addFunct, title) => {
   return (
-    <div className="flex w-full flex-col items-center md:w-3/4">
+    <div className="flex w-full flex-col mb-6 items-center md:w-3/4">
       <label
         htmlFor="nome-giocatore"
         className="mb-1 inline-block text-xs text-gray-300 md:text-sm"

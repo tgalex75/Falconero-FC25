@@ -19,7 +19,7 @@ const Settimana = () => {
 
   const { id, title, description, isImprev } = casuale ? casuale : {};
 
-  const titoloH1 = "Imprevisto Settimanale";
+  const titoloH1 = "Settimanale";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
 
   return (
@@ -39,7 +39,7 @@ const Settimana = () => {
               }}
               className={
                 isImprev
-                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-7xl"
+                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-5xl"
                   : "hidden"
               }
             >
@@ -50,7 +50,7 @@ const Settimana = () => {
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`text-4xl font-extrabold uppercase md:flex-1 md:text-5xl ${
+                  className={`text-4xl font-extrabold uppercase md:flex-1 ${
                     title === "PAROLA ALLA COMMUNITY!" && "hidden"
                   }, ${
                     id > 100 &&
@@ -63,7 +63,7 @@ const Settimana = () => {
                   style={{
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className={`andika-regular mt-4 text-2xl md:flex-1 md:text-4xl ${
+                  className={`andika-regular mt-4 text-2xl md:flex-1 ${
                     id > 100 &&
                     "left-1/2 top-2/3 -translate-x-1/2 -translate-y-1/2 md:absolute"
                   }`}
@@ -71,7 +71,7 @@ const Settimana = () => {
                   {description}
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
-                <p className="text-xl italic animate-bounce">
+                <p className="text-xl italic animate-bounce mb-8">
                   {id === 8 || id === 16
                     ? "Non applicabile se il giocatore estratto è in prestito. In tal caso si ripete l’estrazione."
                     : ""}
