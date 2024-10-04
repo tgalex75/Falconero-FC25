@@ -139,9 +139,9 @@ const IngaggiMercatoRinnovi = (props) => {
             </h3>
             <p
               style={{
-                filter: "andika-regular drop-shadow(.05rem .05rem 0.1rem #000)",
+                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
-              className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
+              className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl andika-regular"
             >
               {isImpr ? descrIsImpr : descrNoImpr}
             </p>
