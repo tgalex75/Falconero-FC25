@@ -99,7 +99,7 @@ const Prepartita = () => {
                                   >
                                     {title}
                                   </h3>
-                <p className="w-3/4 andika-regular mt-4 px-4 text-xl md:flex-1 md:text-2xl">
+                <p className="w-3/4                   andika-regular mt-4 px-4 text-xl md:flex-1 md:text-2xl">
                   {description && description}
                 </p>
 

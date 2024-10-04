@@ -3,7 +3,6 @@ import gkKit from "../assets/imgs/gkKit.png";
 import pickRandom from "pick-random";
 import { extrTitolari, extrRosa } from "../Funzioni/schemi";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
-import { isMobile } from "react-device-detect";
 
 const SecondaEstrazioneDiretta = (props) => {
   const { numbExtrPlayer, baseEstrazione } = props;
