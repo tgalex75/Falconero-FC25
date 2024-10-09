@@ -42,7 +42,7 @@ export default function FetchData() {
         {titolo && titolo}
       </h3>
       <p
-        className={`andika-regular flex h-fit items-center justify-center overflow-y-auto px-4 ${
+        className={`andika-regular flex h-fit items-center justify-center overflow-y-auto scrollbar px-4 ${
           descrizione && descrizione.length > 200
             ? "text-xl"
             : "text-3xl"
