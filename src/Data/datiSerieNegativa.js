@@ -40,8 +40,7 @@ const datiSerieNegativa = [
   {
     id: 405,
     title: "Nessuna conseguenza",
-    description:
-      "",
+    description: "",
     isImprev: false,
   },
 ];

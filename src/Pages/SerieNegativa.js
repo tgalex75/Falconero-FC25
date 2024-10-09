@@ -31,7 +31,7 @@ const SerieNegativa = () => {
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
-      <h1>"Serie Negativa"</h1>
+      <h1>Serie Negativa</h1>
 
       {/* BOX PRIMA ESTRAZIONE */}
       <motion.div
@@ -76,7 +76,7 @@ const SerieNegativa = () => {
                   style={{
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="text-md px-2 md:w-5/6 md:flex-1 md:text-2xl andika-regula"
+                  className="text-md px-2 md:w-5/6 md:flex-1 md:text-2xl andika-regular"
                 >
                   {description}
                 </p>

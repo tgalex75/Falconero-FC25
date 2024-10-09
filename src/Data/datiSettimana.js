@@ -15,7 +15,7 @@ const datiSettimana = [
   },
   {
     id: 4,
-    title: "Imprevisto della Community",
+    title: "HIGHLANDER",
     description:
       "Il giocatore confessa al presidente il suo odio per il miglior pari ruolo in rosa scatenando così una faida: il giocatore con il voto complessivo più basso a fine stagione sarà ceduto.",
     isImprev: true,

@@ -45,6 +45,7 @@ const Prepartita = () => {
       numeroPool > data.length
         ? noImprevisto
         : listaEstrazione.data[numeroPool - 1],
+        // datiPrepartita[4]     TEST IMPREVISTI COMMUNITY
     );
   };
 
@@ -59,7 +60,7 @@ const Prepartita = () => {
     notaBene,
   } = casuale ? casuale : {};
 
-  const titoloH1 = "Imprevisto Prepartita";
+  const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
 
   return (
@@ -79,7 +80,7 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-6xl"
+                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-5xl"
                   : "invisible"
               }
             >
@@ -87,18 +88,18 @@ const Prepartita = () => {
             </h2>
             {!isImpCommunity ? (
               <>
-                <h3
-                  style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`text-4xl font-extrabold uppercase md:flex-1 md:text-5xl ${
-                    title === "PAROLA ALLA COMMUNITY!" && "invisible"
-                  }, ${
-                    id === 999 &&
-                    "md:absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
-                  }`}
-                >
-                  {title}
-                </h3>
-                <p className="andika-regular mt-4 px-4 text-xl md:flex-1 md:text-3xl">
+                                  <h3
+                                    style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+                                    className={`text-4xl font-extrabold uppercase md:flex-1 ${
+                                      title === "PAROLA ALLA COMMUNITY!" && "invisible"
+                                    }, ${
+                                      id === 999 &&
+                                      "md:absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                                    }`}
+                                  >
+                                    {title}
+                                  </h3>
+                <p className="w-3/4                   andika-regular mt-4 px-4 text-xl md:flex-1 md:text-2xl">
                   {description && description}
                 </p>
 

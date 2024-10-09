@@ -31,7 +31,7 @@ const datiPrepartita = [
     isImprev: true,
     ultEstrazione: true,
     baseEstrazione: 30,
-    numbExtrPlayer: 3,
+    numbExtrPlayer: 1,
   },
 ];
 

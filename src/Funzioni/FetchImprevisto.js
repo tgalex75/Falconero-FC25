@@ -27,18 +27,29 @@ export default function FetchData() {
     const { error } = await supabase
       .from("imprevisti")
       .delete("id")
-      .eq("id", imprevisto.id);
+      .eq("id", id);
     error && console.log(error);
   };
 
-  return (
-    <p
-      className={`andika-regular h-fit flex items-center justify-center flex-1 overflow-y-auto px-4 ${
-        imprevisto.descrizione && imprevisto.descrizione.length > 200 ? "text-sm md:text-xl" : "text-xl md:text-3xl"
-      }`}
-    >
-      {imprevisto.descrizione}
+  const {id, titolo, descrizione } = imprevisto
 
-    </p>
+  return (
+    <section id="fetchImprevisto" className="h-2/3 w-4/5 gap-4 flex flex-col items-center justify-start">
+      <h3
+        style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
+        className="text-4xl font-extrabold uppercase"
+      >
+        {titolo && titolo}
+      </h3>
+      <p
+        className={`andika-regular flex h-fit items-center justify-center overflow-y-auto px-4 ${
+          descrizione && descrizione.length > 200
+            ? "text-xl"
+            : "text-3xl"
+        }`}
+      >
+        {descrizione}
+      </p>
+    </section>
   );
 }

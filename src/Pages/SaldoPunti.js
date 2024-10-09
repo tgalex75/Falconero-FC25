@@ -148,7 +148,7 @@ const SaldoPunti = () => {
         >
           <h2 className="text-2xl">Attuale</h2>
 
-          <h3 className="text-8xl font-black">{punti}</h3>
+          <h3 className="text-9xl italic font-black">{punti}</h3>
           <div className="absolute right-2 flex flex-col items-center p-2">
             <GrPowerReset
               size={36}

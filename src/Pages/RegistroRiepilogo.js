@@ -39,13 +39,13 @@ const Regolamento = () => {
   };
 
   return (
-    <section className="flex h-full w-full flex-col items-center justify-center gap-12 p-24 font-bold">
+    <section className="flex h-full w-full flex-col items-center justify-center gap-12 p-4 font-bold">
       <h1>Registro Giocatori</h1>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.7 }}
-        className="h-full w-full items-center gap-2 overflow-hidden rounded-lg bg-black/50 p-2 text-gray-300 md:flex md:flex-col"
+        className="h-full w-full items-center gap-2 overflow-hidden rounded-lg bg-black/50 p-4 text-gray-300 md:flex md:flex-col"
       >
         {mySelect("Filtra elenco", selectRef, getFiltro, listaFiltri)}
         <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
