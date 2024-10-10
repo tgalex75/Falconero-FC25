@@ -34,8 +34,9 @@ const Navbar = () => {
       linkTo: "/offerte-mercato",
     },
     { id: 6, voceLi: "Imprevisti di Ingaggio", linkTo: "/ingaggio" },
-    { id: 8, voceLi: "Saldo Punti", linkTo: "/saldo-punti" },
-    { id: 9, voceLi: "Registro Giocatori", linkTo: "/registro-giocatori" },
+    { id: 7, voceLi: "Saldo Punti", linkTo: "/saldo-punti" },
+    { id: 8, voceLi: "Registro Giocatori", linkTo: "/registro-giocatori" },
+    { id: 9, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
     { id: 10, voceLi: "Riepilogo Imprevisti", linkTo: "/riepilogo-imprevisti" },
   ];
 
