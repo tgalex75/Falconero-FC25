@@ -83,7 +83,7 @@ const EditorImprevisti = () => {
       >
         {/* Lista Imprevisti Attuale */}
 
-        <div className="relative flex h-2/3 w-full flex-col items-center justify-center gap-2 p-1">
+        <div className="relative flex min-h-[50dvh] w-full flex-col items-center justify-center gap-2 p-1">
           <header className="flex w-full items-center justify-between p-1">
             <strong className="w-full text-end text-sm font-semibold text-[--clr-ter]">
               Numero imprevisti: {vociRegistro.length}
@@ -96,7 +96,7 @@ const EditorImprevisti = () => {
                 className="flex select-all items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left text-sm font-normal hover:bg-gray-600/50"
               >
                 <input
-                  className="w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
+                  className="w-1/6 rounded select-all border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
                   defaultValue={el.titolo}
                   ref={(element) =>
                     (aggiornaTitoloImprRef.current[el.id] = element)
@@ -112,7 +112,7 @@ const EditorImprevisti = () => {
 
                 <MdSend
                   size={24}
-                  className="cursor-pointer fill-gray-300 transition-all hover:scale-125 hover:fill-gray-300"
+                  className="cursor-pointer fill-gray-300 transition-all hover:scale-125 hover:fill-[--clr-ter]"
                   onClick={() =>
                     updateVociRegistro(
                       el.id,
@@ -123,7 +123,7 @@ const EditorImprevisti = () => {
                 />
                 <MdClear
                   size={24}
-                  className="mx-2 cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-[--clr-sec]"
+                  className="mx-2 cursor-pointer fill-red-600 transition-all hover:scale-125 hover:fill-[--clr-ter]"
                   onClick={() => removeVociRegistro(el.id)}
                 />
               </li>
@@ -170,45 +170,6 @@ const EditorImprevisti = () => {
                 className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
               />
             </label>
-            {/* <div className="ms-6 flex w-full flex-col gap-8 px-4">
-              <label className="my-1 flex w-full items-center gap-4 self-start text-sm font-semibold">
-                Numero di giocatori da estrarre (da 0 a 10)
-                {errors.extractedPl && (
-                  <span className="text-[--clr-ter]">
-                    Inserire un valore minimo di 0 ed uno massimo di 10
-                  </span>
-                )}
-              <input
-                {...register("extractedPl", {
-                  min: 0,
-                  max: 10,
-                  required: true,
-                })}
-                name="extractedPl"
-                value={1}
-                id="extractedPl"
-                type="number"
-                placeholder="Quanti giocatori?"
-                className="block w-1/6 text-center rounded p-1 self-end text-sm font-semibold text-black placeholder:italic"
-              />
-              </label>
-              <div className="flex items-center py-2">
-                <label
-                  htmlFor="ultEstrazione"
-                  className="me-4 text-sm font-semibold text-gray-300"
-                >
-                  Ulteriore estrazione necessaria dopo la prima?
-                </label>
-                <input
-                  {...register("ultEstrazione")}
-                  id="ultEstrazione"
-                  name="ultEstrazione"
-                  type="checkbox"
-                  value=""
-                  className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-                />
-              </div>
-            </div> */}
           </div>
           <button
             type="submit"
