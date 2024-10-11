@@ -5,6 +5,7 @@ import { LiaTrophySolid } from "react-icons/lia";
 import { GiLaurelsTrophy, GiTrophyCup } from "react-icons/gi";
 import { IoMdTrendingUp } from "react-icons/io";
 import { LuArrowUpWideNarrow, LuArrowDownWideNarrow } from "react-icons/lu";
+import { PiRanking } from "react-icons/pi";
 
 const SaldoPunti = () => {
   const [data, setData] = useState([]);
@@ -42,10 +43,16 @@ const SaldoPunti = () => {
 
   const bonusCompetizioni = [
     {
+      id: "srp01",
+      nome: "Serie Positiva +1",
+      valore: 1,
+      icon: <IoMdTrendingUp size={36} className="mb-1" />,
+    },
+    {
       id: "cmp01",
       nome: "Promozione +10",
       valore: 10,
-      icon: <IoMdTrendingUp size={36} className="mb-1" />,
+      icon: <PiRanking size={36} className="mb-1" />,
     },
     {
       id: "cmp02",
@@ -144,10 +151,9 @@ const SaldoPunti = () => {
         <h1 className="relative pb-4">Saldo Punti </h1>
         <section
           id="saldoPunti"
-          className="hover:bg-700/80 flex h-1/3 w-full flex-col items-center justify-around font-bold"
+          className="hover:bg-700/80 flex h-1/4 w-full flex-col items-center justify-around font-bold"
         >
-          <h2 className="text-2xl">Attuale</h2>
-
+          <h2 className="text-xl">Attuale</h2>
           <h3 className="text-9xl italic font-black">{punti}</h3>
           <div className="absolute right-2 flex flex-col items-center p-2">
             <GrPowerReset
@@ -168,7 +174,7 @@ const SaldoPunti = () => {
           className="flex h-1/3 w-full flex-col items-center justify-around gap-2 rounded-xl border-2 border-purple-700/60 p-2 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30"
         >
           <h2 className="text-3xl">Competizioni</h2>
-          <div className="grid h-auto w-full grid-cols-4 justify-center gap-2 p-2">
+          <div className="grid h-auto w-full grid-cols-5 justify-center gap-2 p-2">
             {mappedCompetizioni}
           </div>
         </section>

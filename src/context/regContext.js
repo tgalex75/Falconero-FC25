@@ -74,6 +74,7 @@ export const CartProvider = ({ children }) => {
       .delete()
       .eq("title", element.title);
     error && console.log(error);
+    fetchDataDB()
   };
 
   const deleteListDB = async () => {
