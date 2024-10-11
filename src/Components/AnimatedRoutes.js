@@ -10,6 +10,7 @@ import IngaggiMercatoRinnovi from "../Pages/IngaggiMercatoRinnovi";
 import SaldoPunti from "../Pages/SaldoPunti";
 import SerieNegativa from "../Pages/SerieNegativa";
 import ErrorPage from "../Pages/ErrorPage";
+import EditorImprevisti from "../Pages/EditorImprevisti";
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -21,6 +22,7 @@ const AnimatedRoutes = () => {
                 <Route path="/prepartita" element={<Prepartita />} />
                 <Route path="/settimana" element={<Settimana />} />
                 <Route path="/registro-giocatori" element={<RegistroRiepilogo />} />
+                <Route path="/editor-imprevisti" element={<EditorImprevisti />} />
                 <Route path="/riepilogo-imprevisti" element={<RiepilogoImprevisti />} />
                 <Route path="/saldo-punti" element={<SaldoPunti />} />
                 <Route path="/ingaggio" element={<IngaggiMercatoRinnovi tipoImprevisto="Ingaggio" />} />

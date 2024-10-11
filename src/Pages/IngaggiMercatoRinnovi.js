@@ -58,7 +58,7 @@ const IngaggiMercatoRinnovi = (props) => {
 
   useEffect(() => {
     fetchRegistryList();
-  }, [vociRegistro]);
+  }, []);
 
   const fetchRegistryList = async () => {
     const { data } = await supabase.from("registroo").select("*");
@@ -78,6 +78,7 @@ const IngaggiMercatoRinnovi = (props) => {
       ])
       .select();
     data ? console.log() : console.log("error: ", error);
+    fetchRegistryList();
   };
 
   const deleteListDB = async () => {
@@ -86,6 +87,7 @@ const IngaggiMercatoRinnovi = (props) => {
       .delete("name")
       .neq("name", null);
     error && console.log(error);
+    fetchRegistryList();
   };
 
   const removeVociRegistro = async (element) => {
@@ -94,6 +96,7 @@ const IngaggiMercatoRinnovi = (props) => {
       .delete()
       .eq("id", element);
     error && console.log(error);
+    fetchRegistryList();
   };
 
   return (

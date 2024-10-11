@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import capitalize from "lodash.capitalize";
 
-export default function FetchData() {
+export default function FetchImprevisto() {
   const [imprevisto, setImprevisto] = useState([]);
 
   useEffect(() => {
@@ -48,7 +49,7 @@ export default function FetchData() {
             : "text-3xl"
         }`}
       >
-        {descrizione}
+        {capitalize(descrizione)}
       </p>
     </section>
   );
