@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
-import { mySelect } from "../Funzioni/schemi";
+//import { mySelect } from "../Funzioni/schemi";
 import { CartContext } from "../context/regContext";
 
 const RegistroRiepilogo = () => {
@@ -10,8 +10,8 @@ const RegistroRiepilogo = () => {
 
   const { cartItems, removeItem } = useContext(CartContext);
 
-  const selectRef = useRef(null);
-  /* const [filtro, setFiltro] = useState("Elenco completo");
+  /*const selectRef = useRef(null);
+  const [filtro, setFiltro] = useState("Elenco completo");
 
   const getFiltro = () => {
     setFiltro(selectRef.current.value);
