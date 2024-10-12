@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const uploadRegistro = (inputRef, addFunct, title) => {
   return (
     <div className="flex w-full flex-col mb-6 items-center md:w-3/4">
@@ -5,7 +7,7 @@ export const uploadRegistro = (inputRef, addFunct, title) => {
         htmlFor="nome-giocatore"
         className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
       >
-        Giocatore da iscrivere sul registro
+        Giocatore da iscrivere sul <Link to="/registro-giocatori" className="hover:text-purple-700">registro</Link>
       </label>
       <div className="flex h-1/2 w-1/2 items-center justify-between gap-1">
         <input

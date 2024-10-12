@@ -26,11 +26,12 @@ const SaldoPunti = () => {
       .eq("id", id)
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
+    fetchSaldo();
   };
 
   useEffect(() => {
     fetchSaldo();
-  }, [data]);
+  }, []);
 
   const resetPunti = async () => {
     const { data, error } = await supabase
@@ -39,6 +40,7 @@ const SaldoPunti = () => {
       .eq("id", id)
       .select();
     data ? console.log("data: ", data) : console.log("error: ", error);
+    fetchSaldo();
   };
 
   const bonusCompetizioni = [
