@@ -19,16 +19,16 @@ const Prepartita = () => {
 
   // Prima Estrazione
 
-  const scegliLista = random.int(1, 6);
+  const scegliLista = random.int(1, 5);
   const listaEstrazione =
     scegliLista < 4
       ? scegliLista === 1
-        ? { data: [...datiRari], listaLength: datiRari.length * 5 }
+        ? { data: [...datiRari], listaLength: datiRari.length * 3 }
         : {
             data: [...datiMenoFrequenti],
-            listaLength: datiMenoFrequenti.length * 3,
+            listaLength: datiMenoFrequenti.length * 2,
           }
-      : { data: [...datiPrepartita], listaLength: (datiPrepartita.length -1) * 2 }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
+      : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 4 }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
 
   const { data, listaLength } = listaEstrazione;
 
