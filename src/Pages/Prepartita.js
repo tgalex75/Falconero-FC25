@@ -28,7 +28,7 @@ const Prepartita = () => {
             data: [...datiMenoFrequenti],
             listaLength: datiMenoFrequenti.length * 2,
           }
-      : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 4 }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
+      : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 4) }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
 
   const { data, listaLength } = listaEstrazione;
 
