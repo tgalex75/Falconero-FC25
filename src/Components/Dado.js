@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 //import { isMobile } from "react-device-detect";
 import pulsante from "../assets/imgs/mascotte.png";
 
-const Dado = (clickFunc) => {
+const Dado = (props) => {
+
+  const {clickFunc} = props
+  
   return (
     <motion.div
       whileHover={{

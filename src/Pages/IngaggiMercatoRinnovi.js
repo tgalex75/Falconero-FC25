@@ -224,7 +224,7 @@ const IngaggiMercatoRinnovi = (props) => {
         />
       </motion.div>
 
-      {Dado(estraiNumeroCasuale)}
+      {<Dado clickFunc={estraiNumeroCasuale} />}
     </section>
   );
 };

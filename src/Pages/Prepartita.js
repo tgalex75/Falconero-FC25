@@ -1,10 +1,9 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef } from "react";
 import datiPrepartita from "../Data/datiPrepartita";
-import { uploadRegistro } from "../Funzioni/uploadRegistro";
+import UploadRegistro from "../Funzioni/UploadRegistro";
 import datiMenoFrequenti from "../Data/datiMenoFrequenti";
 import datiRari from "../Data/datiRari";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
-import { CartContext } from "../context/regContext";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
@@ -15,40 +14,43 @@ const Prepartita = () => {
 
   const inputRef = useRef(null);
 
-  const { addToCart } = useContext(CartContext);
 
   // Prima Estrazione
 
-  const scegliLista = random.int(1, 5);
-  const listaEstrazione =
-    scegliLista < 4
-      ? scegliLista === 1
-        ? { data: [...datiRari], listaLength: datiRari.length * 3 }
-        : {
-            data: [...datiMenoFrequenti],
-            listaLength: datiMenoFrequenti.length * 2,
-          }
-      : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 4) }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
-
-  const { data, listaLength } = listaEstrazione;
-
+  
   const noImprevisto = {
     id: 999,
     title: "Nessun Imprevisto",
     description: "",
     isImprev: false,
   };
-
+  
   const estraiNumeroCasuale = () => {
+    const scegliLista = random.int(1, 5);
+    const listaEstrazione =
+      scegliLista < 4
+        ? scegliLista === 1
+          ? { data: [...datiRari], listaLength: datiRari.length * 3 }
+          : {
+              data: [...datiMenoFrequenti],
+              listaLength: datiMenoFrequenti.length * 2,
+            }
+        : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 4) }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
+  
+    const { data, listaLength } = listaEstrazione;
     const numeroPool = random.int(1, listaLength);
     setCasuale(
       numeroPool > data.length
         ? noImprevisto
-        : listaEstrazione.data[numeroPool - 1],
+        : random.choice(data),
       // datiPrepartita[4]     //TEST IMPREVISTI COMMUNITY
     );
+    //console.log("numero lista estratta: ", scegliLista);
+    //console.log("Lista estratta nel dettaglio: ", data);
+    //console.log("Numero estratto: ", numeroPool);
+    //console.log("Lunghezza Lista: ", listaLength);
   };
-
+  
   const {
     id,
     title,
@@ -59,9 +61,12 @@ const Prepartita = () => {
     numbExtrPlayer,
     notaBene,
   } = casuale ? casuale : {};
-
+  
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
+  
+  
+  //console.log("Casuale: ", id, title);
 
   return (
     <>
@@ -120,11 +125,11 @@ const Prepartita = () => {
               />
             )}
             {(title === "Notte brava" || title === "Lite nello spogliatoio") &&
-              uploadRegistro(inputRef, addToCart, title)}
+              <UploadRegistro inputRef={inputRef} title={title} />}
           </>
         )}
       </LayoutBase>
-      {Dado(estraiNumeroCasuale)}
+      {<Dado clickFunc={estraiNumeroCasuale} />}
     </>
   );
 };
