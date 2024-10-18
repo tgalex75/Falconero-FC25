@@ -30,12 +30,12 @@ const Prepartita = () => {
     const listaEstrazione =
       scegliLista < 4
         ? scegliLista === 1
-          ? { data: [...datiRari], listaLength: datiRari.length * 3 }
+          ? { data: [...datiRari], listaLength: datiRari.length +5 }
           : {
               data: [...datiMenoFrequenti],
-              listaLength: datiMenoFrequenti.length * 2,
+              listaLength: datiMenoFrequenti.length +4,
             }
-        : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 4) }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
+        : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 3) }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
   
     const { data, listaLength } = listaEstrazione;
     const numeroPool = random.int(1, listaLength);

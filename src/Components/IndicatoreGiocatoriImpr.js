@@ -60,7 +60,7 @@ const IndicatoreGiocatoriImpr = (props) => {
         )}
       </div>
       <div className="">
-        {mySelect("Schema", selectRef, getSchema, tattiche)}
+        {mySelect("Schema", selectRef, getSchema, tattiche, schema)}
       </div>
     </div>
   );

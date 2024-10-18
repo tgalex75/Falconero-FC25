@@ -1,5 +1,4 @@
 export const listaTattiche = [
-  { nome: "", formazione: [] },
   { nome: "4-2-1-3", formazione: [1, 5, 7, 8, 11] },
   { nome: "4-2-3-1", formazione: [1, 5, 7, 10, 11] },
   { nome: "4-3-1-2", formazione: [1, 5, 8, 9, 11] },
@@ -16,7 +15,7 @@ export const listaTattiche = [
 
 export const tattiche = listaTattiche.map((el) => el.nome);
 
-export const mySelect = (labelText, ref, func, arr) => {
+export const mySelect = (labelText, ref, func, arr, defaultVal) => {
   return (
     <div className="flex gap-1 flex-col">
       <label
@@ -30,6 +29,7 @@ export const mySelect = (labelText, ref, func, arr) => {
         name="tattica"
         ref={ref}
         onChange={func}
+        defaultValue={defaultVal}
       >
         {arr.map((el, i) => {
           return (
