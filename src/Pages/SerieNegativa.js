@@ -1,18 +1,15 @@
-import React, { useState, useContext, useRef } from "react";
+import React, { useState, useRef } from "react";
 import Dado from "../Components/Dado";
 import random from "random";
-import { CartContext } from "../context/regContext";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
-import { uploadRegistro } from "../Funzioni/uploadRegistro";
+import UploadRegistro from "../Funzioni/UploadRegistro";
 const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
 
   const inputRef = useRef(null);
-
-  const { addToCart } = useContext(CartContext);
 
   // Prima Estrazione
 
@@ -44,9 +41,7 @@ const SerieNegativa = () => {
         className="flex h-full w-full select-none flex-col items-center justify-evenly gap-2 rounded-xl bg-black/50 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:px-10"
       >
         {!casuale ? (
-          <h2
-            className="text-5xl italic andika-regular-italic"
-          >
+          <h2 className="andika-regular-italic text-5xl italic">
             Buzzzz it!...
           </h2>
         ) : (
@@ -76,7 +71,7 @@ const SerieNegativa = () => {
                   style={{
                     filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
                   }}
-                  className="text-md px-2 md:w-5/6 md:flex-1 md:text-2xl andika-regular"
+                  className="text-md andika-regular px-2 md:w-5/6 md:flex-1 md:text-2xl"
                 >
                   {description}
                 </p>
@@ -88,14 +83,14 @@ const SerieNegativa = () => {
                   baseEstrazione={baseEstrazione}
                 />
               )}
-              {isImprev && uploadRegistro(inputRef, addToCart, title)}
+              {isImprev && <UploadRegistro inputRef={inputRef} title={title} />}
               <RegistroSerieNegativa />
             </div>
           </>
         )}
       </motion.div>
 
-      {Dado(estraiNumeroCasuale)}
+      {<Dado clickFunc={estraiNumeroCasuale} />}
     </section>
   );
 };

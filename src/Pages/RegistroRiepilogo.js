@@ -1,12 +1,14 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
 //import { mySelect } from "../Funzioni/schemi";
 import { CartContext } from "../context/regContext";
+import useFetchData from "../Hooks/useFetchData";
 
 const RegistroRiepilogo = () => {
-  const [vociRegistro, setVociRegistro] = useState([]);
+
+  const {data: vociRegistro, fetchRegistryList} = useFetchData("registroo")
 
   const { cartItems, removeItem } = useContext(CartContext);
 
@@ -24,14 +26,6 @@ const RegistroRiepilogo = () => {
       ? vociRegistro.filter((el) => el.tipo === filtro)
       : vociRegistro; */
 
-  useEffect(() => {
-    fetchRegistryList();
-  }, []);
-
-  const fetchRegistryList = async () => {
-    const { data } = await supabase.from("registroo").select("*");
-    setVociRegistro(data ? data : []);
-  };
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase

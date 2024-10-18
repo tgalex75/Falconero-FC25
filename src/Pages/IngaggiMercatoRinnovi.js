@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
@@ -8,8 +8,10 @@ import { supabase } from "../supabaseClient";
 import { v4 as uuidv4 } from "uuid";
 import { MdArrowForward } from "react-icons/md";
 import BonusAnnuali from "../Components/BonusAnnuali";
+import useFetchData from "../Hooks/useFetchData";
 
 const IngaggiMercatoRinnovi = (props) => {
+  const {data: vociRegistro, fetchRegistryList} = useFetchData("registroo")
   const [casuale, setCasuale] = useState(null);
 
   const estraiNumeroCasuale = () => {
@@ -19,8 +21,6 @@ const IngaggiMercatoRinnovi = (props) => {
   const isImpr = casuale === 7;
 
   const inputRef = useRef(null);
-
-  const [vociRegistro, setVociRegistro] = useState([]);
 
   const tipoImprevisto = props.tipoImprevisto;
 
@@ -55,15 +55,6 @@ const IngaggiMercatoRinnovi = (props) => {
   const linksRapidi = listaMsgImprevisto.filter(
     (el) => el.tipo !== tipoImprevisto,
   );
-
-  useEffect(() => {
-    fetchRegistryList();
-  }, []);
-
-  const fetchRegistryList = async () => {
-    const { data } = await supabase.from("registroo").select("*");
-    setVociRegistro(data ? data : []);
-  };
 
   const uploadListDB = async (list) => {
     const { data, error } = await supabase
@@ -233,7 +224,7 @@ const IngaggiMercatoRinnovi = (props) => {
         />
       </motion.div>
 
-      {Dado(estraiNumeroCasuale)}
+      {<Dado clickFunc={estraiNumeroCasuale} />}
     </section>
   );
 };

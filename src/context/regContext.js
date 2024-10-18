@@ -61,11 +61,11 @@ export const CartProvider = ({ children }) => {
   };
 
   const insertItem = async (impr) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("registroimprevisti")
       .insert([{ title: impr.title, quantity: impr.quantity }])
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
+    error && console.log("error: ", error);
   };
 
   const removeItem = async (element) => {
@@ -86,24 +86,24 @@ export const CartProvider = ({ children }) => {
   };
 
   const updateValueDBAdd = async (item, itemQuantity) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("registroimprevisti")
       .update({
         quantity: itemQuantity.quantity === 3 ? 3 : itemQuantity.quantity + 1,
       })
       .eq("title", item.title)
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
-  };
+      error && console.log("error: ", error);
+    };
 
   const updateValueDBDel = async (item, itemQuantity) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("registroimprevisti")
       .update({ quantity: itemQuantity.quantity - 1 })
       .eq("title", item.title)
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
-  };
+      error && console.log("error: ", error);
+    };
 
   const clearCart = () => {
     setCartItems([]);
@@ -128,6 +128,7 @@ export const CartProvider = ({ children }) => {
         addToCart,
         removeFromCart,
         clearCart,
+        removeItem,
       }}
     >
       {children}

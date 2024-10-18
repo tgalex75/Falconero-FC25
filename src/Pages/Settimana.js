@@ -71,7 +71,7 @@ const Settimana = () => {
                   {description}
                 </p>
                 {/* Eccezione imprevisto n. 28 */}
-                <p className="text-xl italic animate-bounce mb-8">
+                <p className="mb-8 animate-bounce text-xl italic">
                   {id === 8 || id === 16
                     ? "Non applicabile se il giocatore estratto è in prestito. In tal caso si ripete l’estrazione."
                     : ""}
@@ -86,7 +86,7 @@ const Settimana = () => {
           </>
         )}
       </LayoutBase>
-      {Dado(estraiNumeroCasuale)}
+      {<Dado clickFunc={estraiNumeroCasuale} />}
     </>
   );
 };

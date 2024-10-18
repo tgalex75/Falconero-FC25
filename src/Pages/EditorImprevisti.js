@@ -1,23 +1,15 @@
-import { useState, useRef, useEffect } from "react";
+import { useRef } from "react";
 import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdSend, MdClear } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import useFetchData from "../Hooks/useFetchData";
 
 const EditorImprevisti = () => {
-  const [vociRegistro, setVociRegistro] = useState([]);
+  const {data, fetchRegistryList} = useFetchData("imprevisti")
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
-
-  const fetchRegistryList = async () => {
-    const { data } = await supabase.from("imprevisti").select("*");
-    setVociRegistro(data ? data : []);
-  };
-
-  useEffect(() => {
-    fetchRegistryList(); // eslint-disable-next-line
-  }, []);
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
@@ -29,12 +21,12 @@ const EditorImprevisti = () => {
   };
 
   const updateVociRegistro = async (element, refTitolo, refDescr) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("imprevisti")
       .update({ titolo: refTitolo.toUpperCase(), descrizione: refDescr })
       .eq("id", element)
       .select();
-    console.log(data ? data : error);
+    console.log(error && error);
     fetchRegistryList();
   };
 
@@ -42,7 +34,7 @@ const EditorImprevisti = () => {
 
   const uploadNewImpr = async (objForm) => {
     const { titolo, descrizione } = objForm;
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("imprevisti")
       .insert([
         {
@@ -51,7 +43,7 @@ const EditorImprevisti = () => {
         },
       ])
       .select();
-    console.log(data ? data : console.log(error));
+    console.log(error && console.log(error));
     fetchRegistryList();
   };
 
@@ -86,11 +78,11 @@ const EditorImprevisti = () => {
         <div className="relative flex min-h-[50dvh] w-full flex-col items-center justify-center gap-2 p-1">
           <header className="flex w-full items-center justify-between p-1">
             <strong className="w-full text-end text-sm font-semibold text-[--clr-ter]">
-              Numero imprevisti: {vociRegistro.length}
+              Numero imprevisti: {data.length}
             </strong>
           </header>
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
-            {vociRegistro?.map((el) => (
+            {data?.map((el) => (
               <li
                 key={el.id}
                 className="flex select-all items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left text-sm font-normal hover:bg-gray-600/50"
