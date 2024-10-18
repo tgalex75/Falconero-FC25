@@ -8,7 +8,7 @@ import useFetchData from "../Hooks/useFetchData";
 
 const RegistroRiepilogo = () => {
 
-  const {data: vociRegistro, fetchRegistryList} = useFetchData("registro")
+  const {data: vociRegistro, fetchRegistryList} = useFetchData("registroo")
 
   const { cartItems, removeItem } = useContext(CartContext);
 

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { mySelect, tattiche, listaTattiche, extrTitolari, arrayRange } from "../Funzioni/schemi";
+import { mySelect, tattiche, listaTattiche, extrTitolari } from "../Funzioni/schemi";
 import { v4 as uuidv4 } from "uuid";
 
 const IndicatoreGiocatoriImpr = (props) => {
@@ -30,8 +30,6 @@ const IndicatoreGiocatoriImpr = (props) => {
 
   const filteredTactics = listaTattiche.filter((item) => item.nome === schema);
 
-  const panchina = arrayRange(12, 18, 1)
-
   const tactics = (arr, start, end) => {
     return (
       <section key={Math.random()} className="flex items-center justify-center">
@@ -39,7 +37,7 @@ const IndicatoreGiocatoriImpr = (props) => {
           {arr.slice(start, end).map((el) => (
             <div
               key={uuidv4()}
-              className="my-2 flex w-2 items-center justify-center rounded-lg border px-4 py-1 text-xs font-semibold text-gray-200"
+              className="my-2 flex w-2 items-center justify-center rounded-full border px-4  py-2 text-xs font-semibold text-gray-200"
               style={
                 extractedPlayer.find((item) => item === el.nome) &&
                 extractedPlayerStyle
@@ -61,22 +59,6 @@ const IndicatoreGiocatoriImpr = (props) => {
           tactics(extrTitolari, el === 1 ? 0 : array[i - 1], el),
         )}
       </div>
-      {/* PANCHINA */}    
-      <div className="flex w-4/5 flex-wrap items-center justify-around p-1">
-        {panchina.map((el) => (
-          <div
-            key={uuidv4()}
-            className="my-2 flex w-1 items-center justify-center rounded-lg border bg-gray-900/80 px-3 py-1 text-[.6rem] font-semibold text-gray-200"
-            style={
-              extractedPlayer.find((item) => item === el) &&
-              extractedPlayerStyle
-            }
-          >
-            {el}
-          </div>
-        ))}
-      </div>
-
       <div className="">
         {mySelect("Schema", selectRef, getSchema, tattiche)}
       </div>
