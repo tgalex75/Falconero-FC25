@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import datiPrepartita from "../Data/datiPrepartita";
 import UploadRegistro from "../Funzioni/UploadRegistro";
 import datiMenoFrequenti from "../Data/datiMenoFrequenti";
@@ -7,42 +7,37 @@ import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
+import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import random from "random";
 
 const Prepartita = () => {
   const [casuale, setCasuale] = useState(null);
 
-  const inputRef = useRef(null);
-
-
   // Prima Estrazione
 
-  
   const noImprevisto = {
     id: 999,
     title: "Nessun Imprevisto",
     description: "",
     isImprev: false,
   };
-  
+
   const estraiNumeroCasuale = () => {
     const scegliLista = random.int(1, 5);
     const listaEstrazione =
       scegliLista < 4
         ? scegliLista === 1
-          ? { data: [...datiRari], listaLength: datiRari.length +5 }
+          ? { data: [...datiRari], listaLength: datiRari.length + 5 }
           : {
               data: [...datiMenoFrequenti],
-              listaLength: datiMenoFrequenti.length +4,
+              listaLength: datiMenoFrequenti.length + 4,
             }
-        : { data: [...datiPrepartita], listaLength: (datiPrepartita.length + 3) }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
-  
+        : { data: [...datiPrepartita], listaLength: datiPrepartita.length + 3 }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
+
     const { data, listaLength } = listaEstrazione;
     const numeroPool = random.int(1, listaLength);
     setCasuale(
-      numeroPool > data.length
-        ? noImprevisto
-        : random.choice(data),
+      numeroPool > data.length ? noImprevisto : random.choice(data),
       // datiPrepartita[4]     //TEST IMPREVISTI COMMUNITY
     );
     //console.log("numero lista estratta: ", scegliLista);
@@ -50,7 +45,7 @@ const Prepartita = () => {
     //console.log("Numero estratto: ", numeroPool);
     //console.log("Lunghezza Lista: ", listaLength);
   };
-  
+
   const {
     id,
     title,
@@ -61,11 +56,10 @@ const Prepartita = () => {
     numbExtrPlayer,
     notaBene,
   } = casuale ? casuale : {};
-  
+
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
-  
-  
+
   //console.log("Casuale: ", id, title);
 
   return (
@@ -124,8 +118,13 @@ const Prepartita = () => {
                 baseEstrazione={baseEstrazione}
               />
             )}
-            {(title === "Notte brava" || title === "Lite nello spogliatoio") &&
-              <UploadRegistro inputRef={inputRef} title={title} />}
+            {(title === "Notte brava" ||
+              title === "Lite nello spogliatoio") && (
+              <>
+                <UploadRegistro title={title} />
+                <RegistroSerieNegativa />
+              </>
+            )}
           </>
         )}
       </LayoutBase>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Dado from "../Components/Dado";
 import random from "random";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
@@ -8,8 +8,6 @@ import { motion } from "framer-motion";
 import UploadRegistro from "../Funzioni/UploadRegistro";
 const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
-
-  const inputRef = useRef(null);
 
   // Prima Estrazione
 
@@ -83,7 +81,7 @@ const SerieNegativa = () => {
                   baseEstrazione={baseEstrazione}
                 />
               )}
-              {isImprev && <UploadRegistro inputRef={inputRef} title={title} />}
+              {isImprev && <UploadRegistro title={title} />}
               <RegistroSerieNegativa />
             </div>
           </>
