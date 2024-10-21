@@ -13,7 +13,7 @@ const RegistroSerieNegativa = () => {
       transition={{ delay: 0.7, duration: 0.7 }}
       className="absolute bottom-1 left-1 top-1 hidden h-[98%] w-[24vw] items-center gap-2 overflow-hidden rounded-lg bg-black/90 text-gray-300 md:flex md:flex-col"
     >
-      <h6 className="uppercase text-[--clr-prim]">Registro Serie Negativa</h6>
+      <h6 className="uppercase text-[--clr-prim]">Registro Giocatori</h6>
       <AnimatePresence initial={false} mode="popLayout">
         <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-1 pb-2">
           {cartItems.map((item) => (
