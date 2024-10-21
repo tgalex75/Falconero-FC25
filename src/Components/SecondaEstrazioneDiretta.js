@@ -22,11 +22,11 @@ const SecondaEstrazioneDiretta = ((props) => {
       </h4>
       <main
         id="mainSecEstrDiretta"
-        className="flex h-full w-full items-center justify-between gap-2"
+        className="flex h-full w-full items-center justify-end gap-2"
       >
         <div
           id="extractedPlayers"
-          className="flex h-full flex-wrap items-center justify-around rounded-lg md:w-3/4 md:flex-nowrap md:gap-4 md:self-start"
+          className="flex h-full flex-wrap items-center justify-end rounded-lg md:flex-nowrap md:gap-4 md:w-1/2"
         >
           {extractedPlayer.map((player, i) => {
             return (
