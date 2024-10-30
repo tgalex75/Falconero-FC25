@@ -118,8 +118,7 @@ const Prepartita = () => {
                 baseEstrazione={baseEstrazione}
               />
             )}
-            {(title === "Notte brava" ||
-              title === "Lite nello spogliatoio") && (
+            {title === "Notte brava" && (
               <>
                 <UploadRegistro title={title} />
                 <RegistroSerieNegativa />
