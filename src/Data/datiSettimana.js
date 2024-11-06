@@ -3,14 +3,14 @@ const datiSettimana = [
     id: 101,
     title: "nessun imprevisto",
     description:
-      "Il giocatore passerà in tribuna le partite giocate questa settimana.",
+      "Il giocatore sarà scarsamente considerato, in questa settimana.",
     isImprev: false,
   },
   {
     id: 103,
     title: "nessun imprevisto",
     description:
-      "Il giocatore passerà in tribuna le partite giocate questa settimana.",
+      "Il giocatore sarà scarsamente considerato, in questa settimana.",
     isImprev: false,
   },
   {
@@ -24,14 +24,14 @@ const datiSettimana = [
     id: 105,
     title: "nessun imprevisto",
     description:
-      "Il giocatore passerà in tribuna le partite giocate questa settimana.",
+      "Il giocatore sarà scarsamente considerato, in questa settimana.",
     isImprev: false,
   },
   {
     id: 107,
     title: "nessun imprevisto",
     description:
-      "Il giocatore passerà in tribuna le partite giocate questa settimana.",
+      "Il giocatore sarà scarsamente considerato, in questa settimana.",
     isImprev: false,
   },
   {
@@ -45,7 +45,7 @@ const datiSettimana = [
     id: 109,
     title: "nessun imprevisto",
     description:
-      "Il giocatore passerà in tribuna le partite giocate questa settimana.",
+      "Il giocatore sarà scarsamente considerato, in questa settimana.",
     isImprev: false,
   },
   {
