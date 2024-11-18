@@ -2,7 +2,7 @@ const datiPrepartita = [
   {
     id: 1,
     title: "Predestinato",
-    description: "Prendi il miglior giocatore della primavera e schierarlo titolare. Confermalo per un’altra partita ogni volta che segna.",
+    description: "Prendi il miglior giocatore della primavera e schieralo titolare. Confermalo per un’altra partita ogni volta che segna.",
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
@@ -32,6 +32,14 @@ const datiPrepartita = [
     ultEstrazione: true,
     baseEstrazione: 30,
     numbExtrPlayer: 1,
+  },
+  {
+    id: 5,
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
+    isImprev: true,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
   },
 ];
 
