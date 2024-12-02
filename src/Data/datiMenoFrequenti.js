@@ -35,10 +35,18 @@ const datiMenoFrequenti = [
     numbExtrPlayer: 3,
     notaBene: "Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
   },
-  {
+  /* {
     id: 5,
     title: "Rafael Twittao",
     description: "Il tuo miglior giocatore mette un like a un post social contro di te. Mettilo fuori rosa una partita.",
+    isImprev: true,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
+  }, */
+  {
+    id: 6,
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,

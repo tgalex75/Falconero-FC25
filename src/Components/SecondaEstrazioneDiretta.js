@@ -38,7 +38,7 @@ const SecondaEstrazioneDiretta = ((props) => {
                     player === 1 ? `url(${gkKit})` : `url(${firstkit})`,
                 }}
               >
-                <span className="block pb-5 font-['Anton'] text-4xl font-bold text-gray-300 md:text-7xl">
+                <span className={`block pb-5 font-['Anton'] text-4xl font-bold text-gray-300 ${numbExtrPlayer > 3 ? "md:text-5xl pb-3" : "md:text-7xl"}`}>
                   {player}
                 </span>
               </div>

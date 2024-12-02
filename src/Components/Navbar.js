@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { MdHome, MdMenu, MdClose, MdLogout } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -18,10 +18,6 @@ const Navbar = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    myUser()
-  },[])
 
   const dettagliMenu = [
     { id: 1, voceLi: "Home", linkTo: "/" },
@@ -43,20 +39,6 @@ const Navbar = () => {
     { id: 9, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
     { id: 10, voceLi: "Riepilogo Imprevisti", linkTo: "/riepilogo-imprevisti" },
   ];
-
-  const [loggedUser, setLoggedUser] = useState(null);
-
-  const myUser = async () => {
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-    setLoggedUser({ user });
-  };
-
-
-
-  const isTestUser =
-    loggedUser?.user.email === "test@test.com" ? "Utente di Test" : "";
 
   //Sostituire div con <Link> from react-router
   const linksMenu = dettagliMenu.map((voce) => {
@@ -139,9 +121,6 @@ const Navbar = () => {
           {linksMenu}
         </ul>
       </div>
-      <span className="fixed bottom-1 right-2 text-xs font-bold text-green-600 opacity-75">
-        {isOpenMenu && isTestUser}
-      </span>
     </nav>
   );
 };

@@ -1,12 +1,12 @@
 const datiPrepartita = [
-  {
+  /* {
     id: 1,
     title: "Predestinato",
     description: "Prendi il miglior giocatore della primavera e schieralo titolare. Confermalo per un’altra partita ogni volta che segna.",
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-  },
+  }, */
   {
     id: 2,
     title: "Intossicazione",
@@ -16,14 +16,14 @@ const datiPrepartita = [
     baseEstrazione: 11,
     numbExtrPlayer: 5,
   },
-  {
+  /* {
     id: 3,
     title: "L’ora del condor",
     description: "Prendi un giocatore a scelta nella lista svincolati purché sia al di sotto del 75 di overall.",
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-  },
+  }, */
   {
     id: 4,
     title: "Agente problematico",
@@ -35,6 +35,22 @@ const datiPrepartita = [
   },
   {
     id: 5,
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
+    isImprev: true,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
+  },
+  {
+    id: 6,
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
+    isImprev: true,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
+  },
+  {
+    id: 7,
     title: "PAROLA ALLA COMMUNITY!",
     description: "",
     isImprev: true,

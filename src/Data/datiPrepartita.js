@@ -40,6 +40,14 @@ const datiPrepartita = [
     ultEstrazione: false,
     numbExtrPlayer: 0,
   },
+  {
+    id: 6,
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
+    isImprev: true,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
+  },
 ];
 
 export default datiPrepartita;

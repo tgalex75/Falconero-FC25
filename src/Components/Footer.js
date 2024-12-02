@@ -1,22 +1,42 @@
 //import { color } from "framer-motion";
-import React from "react";
+import { useState, useEffect } from "react";
 import { isMobile } from "react-device-detect";
+import { supabase } from "../supabaseClient";
 
-const Footer = (props) => {
+const Footer = () => {
   // const { session } = props;
 
+  const [loggedUser, setLoggedUser] = useState(null);
+
+  const myUser = async () => {
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    setLoggedUser({ user });
+  };
+
+  const isTestUser =
+    loggedUser?.user.email === "test@test.com" ? "Utente di Test" : "";
+
+  useEffect(() => {
+    myUser();
+  }, []);
+
   return (
-    <div
+    <footer
       className={
         isMobile
           ? "hidden"
-          : "absolute bottom-0 left-0 m-1 flex w-full justify-start text-sm"
+          : "absolute bottom-0 left-0 m-1 flex w-full justify-between text-sm"
       }
     >
       <small className="z-10 ps-4 opacity-20">
         coded by tgalex75 - Falconero Community - beta version
       </small>
-    </div>
+      <span className="text-xs text-green-400 opacity-75 me-32">
+        {isTestUser}
+      </span>
+    </footer>
   );
 };
 
