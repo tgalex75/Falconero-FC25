@@ -1,6 +1,6 @@
 const datiPrepartita = [
   {
-    id: 1,
+    id: 11,
     title: "CONTRATTURA",
     description: "Il giocatore estratto salterà la partita per infortunio.",
     isImprev: true,
@@ -9,7 +9,7 @@ const datiPrepartita = [
     numbExtrPlayer: 1,
   },
   {
-    id: 2,
+    id: 12,
     title: "Raccomandato",
     description: "Schiera titolare il peggior giocatore in rosa per 90'",
     isImprev: true,
@@ -17,7 +17,7 @@ const datiPrepartita = [
     numbExtrPlayer: 0,
   },
   {
-    id: 3,
+    id: 13,
     title: "Veterano",
     description: "Schiera titolare il giocatore più vecchio in rosa.",
     isImprev: true,
@@ -25,7 +25,7 @@ const datiPrepartita = [
     numbExtrPlayer: 0,
   },
   {
-    id: 4,
+    id: 14,
     title: "Sotto pressione",
     description: "Se il tuo miglior giocatore offensivo non segna salta la prossima partita",
     isImprev: true,
@@ -33,7 +33,7 @@ const datiPrepartita = [
     numbExtrPlayer: 0,
   },
   {
-    id: 5,
+    id: 15,
     title: "PAROLA ALLA COMMUNITY!",
     description: "",
     isImprev: true,
@@ -41,7 +41,7 @@ const datiPrepartita = [
     numbExtrPlayer: 0,
   },
   {
-    id: 6,
+    id: 16,
     title: "PAROLA ALLA COMMUNITY!",
     description: "",
     isImprev: true,
