@@ -1,12 +1,27 @@
 const datiPrepartita = [
   {
     id: 21,
-    title: "Intossicazione",
-    description: "La cena di squadra è stata una tragedia. Fuori cinque titolari.",
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
     isImprev: true,
-    ultEstrazione: true,
-    baseEstrazione: 11,
-    numbExtrPlayer: 5,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
+  },
+  {
+    id: 22,
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
+    isImprev: true,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
+  },
+  {
+    id: 23,
+    title: "PAROLA ALLA COMMUNITY!",
+    description: "",
+    isImprev: true,
+    ultEstrazione: false,
+    numbExtrPlayer: 0,
   },
   {
     id: 24,
