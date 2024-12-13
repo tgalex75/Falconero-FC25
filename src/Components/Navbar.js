@@ -38,6 +38,7 @@ const Navbar = () => {
     { id: 8, voceLi: "Registro Giocatori", linkTo: "/registro-giocatori" },
     { id: 9, voceLi: "Editor Imprevisti", linkTo: "/editor-imprevisti" },
     { id: 10, voceLi: "Riepilogo Imprevisti", linkTo: "/riepilogo-imprevisti" },
+    { id: 11, voceLi: "Imprevisti Sospesi", linkTo: "/imprevisti-sospesi" },
   ];
 
   //Sostituire div con <Link> from react-router
