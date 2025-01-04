@@ -3,9 +3,9 @@ import { supabase } from "../supabaseClient";
 import { GrPowerReset } from "react-icons/gr";
 import { LiaTrophySolid } from "react-icons/lia";
 import { GiLaurelsTrophy, GiTrophyCup } from "react-icons/gi";
-import { IoMdTrendingUp } from "react-icons/io";
+import { IoMdTrendingDown, IoMdTrendingUp } from "react-icons/io";
 import { LuArrowUpWideNarrow, LuArrowDownWideNarrow } from "react-icons/lu";
-import { PiRanking } from "react-icons/pi";
+import { PiListBulletsBold } from "react-icons/pi";
 
 const SaldoPunti = () => {
   const [data, setData] = useState([]);
@@ -20,12 +20,14 @@ const SaldoPunti = () => {
   const { id, punti } = data ? data : {};
 
   const updateSaldoPunti = async (val) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("saldo-punti")
-      .update({ punti: punti + val > 0 ? punti + val : 0 })
+      .update({
+        punti: punti + val > 0 ? punti + val : 0,
+      })
       .eq("id", id)
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
+    error && console.log("error: ", error);
     fetchSaldo();
   };
 
@@ -45,6 +47,12 @@ const SaldoPunti = () => {
 
   const bonusCompetizioni = [
     {
+      id: "srn01",
+      nome: "Serie Negativa -1",
+      valore: -1,
+      icon: <IoMdTrendingDown size={36} className="mb-1" />,
+    },
+    {
       id: "srp01",
       nome: "Serie Positiva +1",
       valore: 1,
@@ -52,9 +60,9 @@ const SaldoPunti = () => {
     },
     {
       id: "cmp01",
-      nome: "Promozione +10",
-      valore: 10,
-      icon: <PiRanking size={36} className="mb-1" />,
+      nome: "Salvezza +5",
+      valore: 5,
+      icon: <PiListBulletsBold size={36} className="mb-1" />,
     },
     {
       id: "cmp02",
@@ -78,28 +86,28 @@ const SaldoPunti = () => {
   const bonusCessioni = [
     {
       id: "c01",
-      nome: "≥70 +1",
-      valore: 1,
+      nome: "≥70 +1.5",
+      valore: 1.5,
     },
     {
       id: "c02",
-      nome: "≥75 +2",
-      valore: 2,
-    },
-    {
-      id: "c03",
-      nome: "≥80 +3",
+      nome: "≥75 +3",
       valore: 3,
     },
     {
+      id: "c03",
+      nome: "≥80 +4.5",
+      valore: 4.5,
+    },
+    {
       id: "c04",
-      nome: "≥85 +4",
-      valore: 4,
+      nome: "≥85 +6",
+      valore: 6,
     },
     {
       id: "c05",
-      nome: "≥90 +5",
-      valore: 5,
+      nome: "≥90 +7.5",
+      valore: 7.5,
     },
   ];
 
@@ -196,7 +204,7 @@ const SaldoPunti = () => {
           className="flex h-1/3 w-full flex-col items-center justify-around gap-2 rounded-xl border-2 border-purple-700/60 p-2 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30"
         >
           <h2 className="text-3xl">Competizioni</h2>
-          <div className="grid h-auto w-full grid-cols-5 justify-center gap-2 p-2">
+          <div className="grid h-auto w-full grid-cols-6 justify-center gap-2 p-2">
             {mappedCompetizioni}
           </div>
         </section>
