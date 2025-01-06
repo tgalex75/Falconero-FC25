@@ -49,7 +49,7 @@ const SaldoPunti = () => {
   };
 
   const bonusMalusStyle =
-    "flex flex-col cursor-pointer text-center text-base py-1 border-none hover:border items-center justify-center rounded-xl hover:text-black hover:bg-[--clr-ter]";
+    "flex flex-col cursor-pointer text-center text-base p-2 border-none hover:border items-center justify-center rounded-xl hover:text-black hover:bg-[--clr-ter]";
 
   const mappedCessioni = bonusCessioni.map((el) => (
     <div
@@ -124,6 +124,31 @@ const SaldoPunti = () => {
             </span>
           </div>
         </section>
+        {/* CESSIONI */}
+
+        <section
+          id="acquistiCessioni"
+          className="flex h-1/4 w-full items-center gap-1 text-lg font-bold"
+        >
+          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
+            <h2 className="inline-flex items-center text-lg">
+              Cessioni Mercato
+              <LuArrowUpWideNarrow className="mx-3 inline-block" size={28} />
+            </h2>
+            <div className="grid h-auto w-full grid-cols-5 justify-center">
+              {mappedCessioni}
+            </div>
+          </div>
+          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
+            <h2 className="inline-flex items-center text-lg">
+              Acquisti Mercato
+              <LuArrowDownWideNarrow className="mx-3 inline-block" size={28} />
+            </h2>
+            <div className="grid h-auto w-full grid-cols-5 justify-center">
+              {mappedAcquisti}
+            </div>
+          </div>
+        </section>
 
         {/* COMPETIZIONI */}
 
@@ -152,32 +177,6 @@ const SaldoPunti = () => {
           <h2 className="text-lg">Trofei Conquistati</h2>
           <div className="grid h-auto w-full grid-cols-5 justify-center">
             {mappedTrofei}
-          </div>
-        </section>
-
-        {/* CESSIONI */}
-
-        <section
-          id="acquistiCessioni"
-          className="flex h-1/4 w-full items-center gap-1 text-lg font-bold"
-        >
-          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
-            <h2 className="inline-flex items-center text-lg">
-              Cessioni Mercato
-              <LuArrowUpWideNarrow className="mx-3 inline-block" size={28} />
-            </h2>
-            <div className="grid h-auto w-full grid-cols-5 justify-center">
-              {mappedCessioni}
-            </div>
-          </div>
-          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
-            <h2 className="inline-flex items-center text-lg">
-              Acquisti Mercato
-              <LuArrowDownWideNarrow className="mx-3 inline-block" size={28} />
-            </h2>
-            <div className="grid h-auto w-full grid-cols-5 justify-center">
-              {mappedAcquisti}
-            </div>
           </div>
         </section>
       </main>
