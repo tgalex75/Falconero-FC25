@@ -49,7 +49,7 @@ const SaldoPunti = () => {
   };
 
   const bonusMalusStyle =
-    "flex flex-col cursor-pointer text-lg py-1 border-none hover:border items-center justify-center rounded-xl hover:text-black hover:bg-[--clr-ter]";
+    "flex flex-col cursor-pointer text-center text-base py-1 border-none hover:border items-center justify-center rounded-xl hover:text-black hover:bg-[--clr-ter]";
 
   const mappedCessioni = bonusCessioni.map((el) => (
     <div
