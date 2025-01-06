@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import { bonusCessioni, bonusTrofei, malusAcquisti, trendPrestazioni, piazzamentoCampionato } from "../Data/datiSaldoPunti";
 import { GrPowerReset } from "react-icons/gr";
-import { LiaTrophySolid } from "react-icons/lia";
-import { GiLaurelsTrophy, GiTrophyCup } from "react-icons/gi";
-import { IoMdTrendingDown, IoMdTrendingUp } from "react-icons/io";
 import { LuArrowUpWideNarrow, LuArrowDownWideNarrow } from "react-icons/lu";
-import { PiListBulletsBold } from "react-icons/pi";
 
 const SaldoPunti = () => {
   const [data, setData] = useState([]);
@@ -45,102 +42,8 @@ const SaldoPunti = () => {
     fetchSaldo();
   };
 
-  const bonusCompetizioni = [
-    {
-      id: "srn01",
-      nome: "Serie Negativa -1",
-      valore: -1,
-      icon: <IoMdTrendingDown size={36} className="mb-1" />,
-    },
-    {
-      id: "srp01",
-      nome: "Serie Positiva +1",
-      valore: 1,
-      icon: <IoMdTrendingUp size={36} className="mb-1" />,
-    },
-    {
-      id: "cmp01",
-      nome: "Salvezza +5",
-      valore: 5,
-      icon: <PiListBulletsBold size={36} className="mb-1" />,
-    },
-    {
-      id: "cmp02",
-      nome: "Coppa Nazionale +10",
-      valore: 10,
-      icon: <GiTrophyCup size={32} className="mb-1" />,
-    },
-    {
-      id: "cmp03",
-      nome: "Scudetto +18",
-      valore: 18,
-      icon: <LiaTrophySolid size={36} className="mb-1" />,
-    },
-    {
-      id: "cmp04",
-      nome: "Coppa Europea +30",
-      valore: 30,
-      icon: <GiLaurelsTrophy size={36} className="mb-1" />,
-    },
-  ];
-  const bonusCessioni = [
-    {
-      id: "c01",
-      nome: "≥70 +1.5",
-      valore: 1.5,
-    },
-    {
-      id: "c02",
-      nome: "≥75 +3",
-      valore: 3,
-    },
-    {
-      id: "c03",
-      nome: "≥80 +4.5",
-      valore: 4.5,
-    },
-    {
-      id: "c04",
-      nome: "≥85 +6",
-      valore: 6,
-    },
-    {
-      id: "c05",
-      nome: "≥90 +7.5",
-      valore: 7.5,
-    },
-  ];
-
-  const malusAcquisti = [
-    {
-      id: "a03",
-      nome: "≥70 -3",
-      valore: -3,
-    },
-    {
-      id: "a06",
-      nome: "≥75 -6",
-      valore: -6,
-    },
-    {
-      id: "a09",
-      nome: "≥80 -9",
-      valore: -9,
-    },
-    {
-      id: "a12",
-      nome: "≥85 -12",
-      valore: -12,
-    },
-    {
-      id: "a15",
-      nome: "≥90 -15",
-      valore: -15,
-    },
-  ];
-
   const bonusMalusStyle =
-    "flex flex-col cursor-pointer text-xl py-4 border-none hover:border items-center justify-center rounded-xl hover:bg-purple-700/60";
+    "flex flex-col cursor-pointer text-lg py-2 border-none hover:border items-center justify-center rounded-xl hover:text-black hover:bg-[--clr-ter]";
 
   const mappedCessioni = bonusCessioni.map((el) => (
     <div
@@ -161,7 +64,27 @@ const SaldoPunti = () => {
       {el.nome}
     </div>
   ));
-  const mappedCompetizioni = bonusCompetizioni.map((el) => (
+  const mappedTrofei = bonusTrofei.map((el) => (
+    <div
+      key={el.id}
+      onClick={() => updateSaldoPunti(el.valore)}
+      className={bonusMalusStyle}
+    >
+      {el.icon}
+      {el.nome}
+    </div>
+  ));
+  const mappedTrend = trendPrestazioni.map((el) => (
+    <div
+      key={el.id}
+      onClick={() => updateSaldoPunti(el.valore)}
+      className={bonusMalusStyle}
+    >
+      {el.icon}
+      {el.nome}
+    </div>
+  ));
+  const mappedPiazzamento = piazzamentoCampionato.map((el) => (
     <div
       key={el.id}
       onClick={() => updateSaldoPunti(el.valore)}
@@ -176,14 +99,13 @@ const SaldoPunti = () => {
     <>
       <main
         id="saldo-punti"
-        className="flex h-full w-full flex-col items-center justify-between gap-4 bg-black/30 px-4 py-6"
+        className="flex h-full w-full flex-col items-center justify-between gap-1 bg-black/30 px-4 py-6 select-none"
       >
         <h1 className="relative pb-4">Saldo Punti </h1>
         <section
           id="saldoPunti"
           className="hover:bg-700/80 flex h-1/4 w-full flex-col items-center justify-around font-bold"
         >
-          <h2 className="text-xl">Attuale</h2>
           <h3 className="text-9xl font-black italic">{punti}</h3>
           <div className="absolute right-2 flex flex-col items-center p-2">
             <GrPowerReset
@@ -200,12 +122,30 @@ const SaldoPunti = () => {
         {/* COMPETIZIONI */}
 
         <section
-          id="bonusCompetizioni"
-          className="flex h-1/3 w-full flex-col items-center justify-around gap-2 rounded-xl border-2 border-purple-700/60 p-2 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30"
+          id="trendPrestazioni"
+          className="flex h-1/4 w-full flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 p-2 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30"
         >
-          <h2 className="text-3xl">Competizioni</h2>
-          <div className="grid h-auto w-full grid-cols-6 justify-center gap-2 p-2">
-            {mappedCompetizioni}
+          <h2 className="text-xl">Trend delle Prestazioni</h2>
+          <div className="grid h-auto w-full grid-cols-2 justify-center p-2">
+            {mappedTrend}
+          </div>
+        </section>
+        <section
+          id="piazzamentoCampionato"
+          className="flex h-1/4 w-full flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 p-2 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30"
+        >
+          <h2 className="text-xl">Piazzamento in Campionato</h2>
+          <div className="grid h-auto w-full grid-cols-7 justify-center p-2">
+            {mappedPiazzamento}
+          </div>
+        </section>
+        <section
+          id="bonusTrofei"
+          className="flex h-1/4 w-full flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 p-2 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30"
+        >
+          <h2 className="text-xl">Trofei Conquistati</h2>
+          <div className="grid h-auto w-full grid-cols-5 justify-center p-2">
+            {mappedTrofei}
           </div>
         </section>
 
@@ -213,23 +153,23 @@ const SaldoPunti = () => {
 
         <section
           id="acquistiCessioni"
-          className="flex h-1/3 w-full items-center gap-4 text-lg font-bold"
+          className="flex h-1/4 w-full items-center gap-2 text-lg font-bold"
         >
-          <div className="flex h-full w-1/2 flex-col items-center justify-around gap-2 rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30">
-            <h2 className="inline-flex items-center text-3xl">
-              Cessioni
-              <LuArrowUpWideNarrow className="mx-3 inline-block" size={36} />
+          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
+            <h2 className="inline-flex items-center text-xl">
+              Cessioni Mercato
+              <LuArrowUpWideNarrow className="mx-3 inline-block" size={28} />
             </h2>
-            <div className="grid h-auto w-full grid-cols-5 justify-center gap-2 p-2">
+            <div className="grid h-auto w-full grid-cols-5 justify-center p-2">
               {mappedCessioni}
             </div>
           </div>
-          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-black/30">
-            <h2 className="inline-flex items-center text-3xl">
-              Acquisti
-              <LuArrowDownWideNarrow className="mx-3 inline-block" size={36} />
+          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
+            <h2 className="inline-flex items-center text-xl">
+              Acquisti Mercato
+              <LuArrowDownWideNarrow className="mx-3 inline-block" size={28} />
             </h2>
-            <div className="grid h-auto w-full grid-cols-5 justify-center gap-2 p-2">
+            <div className="grid h-auto w-full grid-cols-5 justify-center p-2">
               {mappedAcquisti}
             </div>
           </div>
