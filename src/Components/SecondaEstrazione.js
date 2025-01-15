@@ -45,7 +45,7 @@ const SecondaEstrazione = () => {
       </div>
         <>
           <div
-            className="flex h-64 w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all"
+            className={`flex h-64 w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all ${secondExtractedNumber ? "visible" : "invisible"}`}
             style={{
               backgroundImage:
                 secondExtractedNumber === 1
