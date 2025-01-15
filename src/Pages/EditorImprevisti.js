@@ -99,14 +99,14 @@ const EditorImprevisti = () => {
                 className="flex select-all items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left text-sm font-normal hover:bg-gray-600/50"
               >
                 <input
-                  className="w-1/6 select-all rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
+                  className="w-[15%] select-all rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
                   defaultValue={el.titolo}
                   ref={(element) =>
                     (aggiornaTitoloImprRef.current[el.id] = element)
                   }
                 />
                 <input
-                  className="w-4/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
+                  className="w-[75%] rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
                   defaultValue={el.descrizione}
                   ref={(element) =>
                     (aggiornaDescImprRef.current[el.id] = element)
@@ -115,7 +115,7 @@ const EditorImprevisti = () => {
                 <select
                   name="ultEstr"
                   id="ultEstr"
-                  className="w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
+                  className="w-[10%] rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
                   ref={(element) =>
                     (aggiornaUltEstrImprRef.current[el.id] = element)
                   }
