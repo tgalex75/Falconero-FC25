@@ -1,65 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import firstkit from "../assets/imgs/firstKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
-import { isMobile } from "react-device-detect";
+import random from "random";
 
 const SecondaEstrazione = () => {
-  const [inputField, setInputField] = useState({
-    randomPlayerNum: "",
-  });
+  const [refState, setRefState] = useState("imprevisto");
 
-  function handleChange(event) {
-    setInputField((prevInputField) => {
-      return {
-        ...prevInputField,
-        [event.target.name]: event.target.value,
-      };
-    });
-  }
-
-  const [secondExtractedNumber, setSecondExtractedNumber] = useState(null);
-
-  const genSecondRandomNumber = () => {
-    setSecondExtractedNumber(
-      Math.floor(Math.random() * inputField.randomPlayerNum) + 1,
-    );
+  
+  const ref = useRef(null);
+  
+  const handleRefState = () => {
+    setRefState(parseInt(ref.current.value));
   };
-
-  const extractedPlayer = [secondExtractedNumber];
+  
+  const [secondExtractedNumber, setSecondExtractedNumber] = useState(null);
+  
+  const randomNumber = () => {
+    setSecondExtractedNumber(random.int(1, refState));
+  };
+  const extractedPlayer = [secondExtractedNumber]
 
   return (
-    <section className="flex h-[40vh] w-full items-center justify-around gap-2 rounded-md border-2 border-gray-300/20 px-1 md:min-h-[50%] md:w-3/4 md:px-12">
-      <div className="flex h-fit flex-col items-center justify-around gap-6 rounded-lg px-2">
+    <section className="flex h-auto w-full items-center justify-between gap-2 rounded-md border-2 border-gray-300/20 p-2">
+      <div className="flex h-fit flex-col items-center justify-around gap-2 rounded-lg px-2">
         <div className="flex w-full flex-col items-center justify-around">
-          <label
-            htmlFor="name-with-label"
-            className="mb-1 self-start text-xs text-gray-300 md:text-sm"
-          >
-            A chi toccherà oggi?
-          </label>
           <input
-            onChange={handleChange}
-            value={inputField.randomPlayerNum}
+            onChange={handleRefState}
+            ref={ref}
             type="number"
             id="input-estrazione-giocatore"
-            className="md:text-md min-h-[2rem] w-full flex-1 appearance-none rounded-lg border-gray-300 bg-white px-4 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700 md:min-h-[3rem]"
+            className="w-full h-8 flex-1 appearance-none text-center rounded-lg border-gray-300 bg-white p-2 text-sm text-gray-800 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-4 focus:ring-sky-700"
             name="randomPlayerNum"
-            placeholder="Titolari o intera Rosa?"
+            placeholder="Su quanti giocatori?"
           />
         </div>
         <button
           type="button"
-          onClick={genSecondRandomNumber}
-          className="min-h-[2rem] w-full rounded-lg bg-sky-700 px-4 text-center text-sm font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2 focus:ring-offset-sky-800 md:h-12"
+          onClick={() => randomNumber()}
+          className="h-8 p-2 w-full flex items-center justify-center rounded-lg bg-purple-700 px-4 text-center text-sm font-semibold text-gray-100 shadow-md transition duration-200 ease-in hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter] focus:ring-offset-2 focus:ring-offset-sky-800"
         >
           Estrai
         </button>
       </div>
-      {secondExtractedNumber && (
         <>
           <div
-            className="flex h-full w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all"
+            className="flex h-64 w-1/2 flex-col items-center justify-center overflow-hidden rounded bg-contain bg-center bg-no-repeat p-6 transition-all"
             style={{
               backgroundImage:
                 secondExtractedNumber === 1
@@ -67,17 +53,12 @@ const SecondaEstrazione = () => {
                   : `url(${firstkit})`,
             }}
           >
-            <span
-              className="mb-12 block font-['Anton'] text-4xl font-bold text-gray-300 md:text-8xl"
-            >
+            <span className="mb-4 block font-['Anton'] text-7xl font-bold text-gray-300">
               {secondExtractedNumber}
             </span>
           </div>
-          {!isMobile && (
-            <IndicatoreGiocatoriImpr extractedPlayer={extractedPlayer} />
-          )}
+          <IndicatoreGiocatoriImpr extractedPlayer={extractedPlayer}/>
         </>
-      )}
     </section>
   );
 };

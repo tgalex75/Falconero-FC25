@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import useFetchData from "../Hooks/useFetchData";
 
 const EditorImprevisti = () => {
-  const {data, fetchRegistryList} = useFetchData("imprevisti")
+  const { data, fetchRegistryList } = useFetchData("imprevisti");
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
@@ -33,13 +33,14 @@ const EditorImprevisti = () => {
   // LOGICA NUOVO IMPREVISTO
 
   const uploadNewImpr = async (objForm) => {
-    const { titolo, descrizione } = objForm;
+    const { titolo, descrizione, ultEstrazione } = objForm;
     const { error } = await supabase
       .from("imprevisti")
       .insert([
         {
           titolo: titolo.toUpperCase(),
           descrizione: descrizione,
+          ultEstrazione: ultEstrazione,
         },
       ])
       .select();
@@ -88,7 +89,7 @@ const EditorImprevisti = () => {
                 className="flex select-all items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left text-sm font-normal hover:bg-gray-600/50"
               >
                 <input
-                  className="w-1/6 rounded select-all border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
+                  className="w-1/6 select-all rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
                   defaultValue={el.titolo}
                   ref={(element) =>
                     (aggiornaTitoloImprRef.current[el.id] = element)
@@ -126,12 +127,12 @@ const EditorImprevisti = () => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex h-full w-3/4 flex-col items-center justify-between gap-2 rounded-md px-4 py-2 font-normal"
+          className="flex h-full w-5/6 flex-col items-center justify-between gap-2 rounded-md px-4 py-2 font-normal"
         >
           <h3 className="text-center uppercase text-[--clr-ter]">
             Aggiungi imprevisto
           </h3>
-          <div className="flex h-full w-full items-start justify-around px-8">
+          <div className="flex h-full w-full items-start justify-between gap-2 px-8">
             <label className="my-1 flex w-full flex-col items-start gap-4 self-start text-sm font-semibold">
               Titolo Imprevisto
               {errors.titolo && (
@@ -146,7 +147,7 @@ const EditorImprevisti = () => {
                 placeholder="Titolo dell'imprevisto"
               />
             </label>
-            <label className="my-1 flex flex-col w-full items-start gap-4 self-start text-sm font-semibold">
+            <label className="my-1 flex w-full flex-col items-start gap-4 self-start text-sm font-semibold">
               Descrizione Imprevisto
               {errors.descrizione && (
                 <span className="text-[--clr-ter]">
@@ -162,10 +163,39 @@ const EditorImprevisti = () => {
                 className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
               />
             </label>
+            <label
+              htmlFor="ultEstrazione"
+              className="my-1 ms-4 flex w-full items-start gap-2 self-start text-sm font-semibold"
+            >
+              Bisogna estrarre uno o più giocatori?
+              {errors.ultEstrazione && (
+                <span className="text-[--clr-ter]">
+                  Il campo estrazione giocatore è obbligatorio
+                </span>
+              )}
+              <label htmlFor="ultEstrazioneYES">Sì</label>
+              <input
+                {...register("ultEstrazione", { required: true })}
+                id="ultEstrazioneYES"
+                name="ultEstrazione"
+                type="radio"
+                value={true}
+                className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-purple-600 focus:ring-2 focus:ring-purple-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-purple-600"
+              />
+              <label htmlFor="ultEstrazioneNO">No</label>
+              <input
+                {...register("ultEstrazione", { required: true })}
+                id="ultEstrazioneNO"
+                name="ultEstrazione"
+                type="radio"
+                value={false}
+                className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-purple-600 focus:ring-2 focus:ring-purple-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-purple-600"
+              />
+            </label>
           </div>
           <button
             type="submit"
-            className="w-1/3 rounded-lg bg-sky-700 py-1 font-semibold hover:bg-sky-600"
+            className="w-1/3 rounded-lg bg-purple-700 py-1 font-semibold hover:bg-purple-600"
           >
             Salva ed Invia
           </button>

@@ -77,7 +77,7 @@ const BonusAnnuali = () => {
       <div className="flex h-1/6 w-full items-center justify-between gap-2 px-4 text-[.8rem] font-semibold">
         <button
           type="button"
-          className="flex h-5/6 w-full items-center justify-center rounded border border-sky-700 px-3 text-center text-white shadow-md transition duration-200 ease-in hover:bg-sky-700"
+          className="flex h-5/6 w-full items-center justify-center rounded border border-sky-700 px-3 text-center text-white shadow-md transition duration-200 ease-in hover:bg-purple-700"
           style={limiteRaggiunto ? { pointerEvents: "none", opacity: 0.3 } : {}}
           onClick={() =>
             addVociBonus({

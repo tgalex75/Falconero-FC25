@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetchData from "../Hooks/useFetchData";
+import SecondaEstrazione from "../Components/SecondaEstrazione";
 import { supabase } from "../supabaseClient";
 import capitalize from "lodash.capitalize";
 import { MdOutlineSnooze } from "react-icons/md";
@@ -29,7 +30,7 @@ export default function FetchImprevisto() {
     descrizione: "LISTA VUOTA!!!",
   };
 
-  const { id, titolo, descrizione } = casuale;
+  const { id, titolo, descrizione, ultEstrazione } = casuale;
 
   const rimandaImprevisto = async () => {
     const { error } = await supabase
@@ -43,7 +44,7 @@ export default function FetchImprevisto() {
   return (
     <section
       id="fetchImprevisto"
-      className="flex h-2/3 w-4/5 flex-col items-center justify-start gap-6"
+      className="flex h-full w-4/5 flex-col items-center justify-between gap-2"
     >
       <h3
         style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
@@ -53,27 +54,24 @@ export default function FetchImprevisto() {
       </h3>
       <p
         className={`andika-regular flex h-fit items-center justify-center overflow-y-auto px-4 scrollbar ${
-          descrizione && descrizione.length > 200 ? "text-xl" : "text-3xl"
+          descrizione && descrizione.length > 200 ? "text-lg" : "text-2xl"
         }`}
       >
         {capitalize(descrizione)}
       </p>
+      {ultEstrazione && <SecondaEstrazione />}
       <button
         onClick={rimandaImprevisto}
-        className="peer mt-16 rounded-full p-2 text-center text-sm font-bold shadow-md transition duration-200 ease-in hover:scale-125 hover:bg-purple-700 hover:text-gray-300"
+        className="peer rounded-full p-2 text-center text-sm font-bold shadow-md transition duration-200 ease-in hover:scale-125 hover:bg-purple-700 hover:text-gray-300"
       >
         <MdOutlineSnooze size={36} />
       </button>
       {!isSaved ? (
-        <span
-          className="peer-hover:visible invisible text-xs transition-all duration-150 ease-in-out"
-        >
+        <span className="invisible text-xs transition-all duration-150 ease-in-out peer-hover:visible">
           Posticipa e salva imprevisto?
         </span>
       ) : (
-        <span
-          className="text-xs transition-all duration-150 ease-in-out"
-        >
+        <span className="text-xs transition-all duration-150 ease-in-out">
           Imprevisto posticipato e salvato!
         </span>
       )}
