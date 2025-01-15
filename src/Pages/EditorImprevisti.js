@@ -10,6 +10,7 @@ const EditorImprevisti = () => {
 
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
+  const aggiornaUltEstrImprRef = useRef([]);
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
@@ -20,13 +21,22 @@ const EditorImprevisti = () => {
     fetchRegistryList();
   };
 
-  const updateVociRegistro = async (element, refTitolo, refDescr) => {
+  const updateVociRegistro = async (
+    element,
+    refTitolo,
+    refDescr,
+    refUltEstr,
+  ) => {
     const { error } = await supabase
       .from("imprevisti")
-      .update({ titolo: refTitolo.toUpperCase(), descrizione: refDescr })
+      .update({
+        titolo: refTitolo.toUpperCase(),
+        descrizione: refDescr,
+        ultEstrazione: refUltEstr,
+      })
       .eq("id", element)
       .select();
-    console.log(error && error);
+    error && console.log(error);
     fetchRegistryList();
   };
 
@@ -96,12 +106,26 @@ const EditorImprevisti = () => {
                   }
                 />
                 <input
-                  className="w-5/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
+                  className="w-4/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
                   defaultValue={el.descrizione}
                   ref={(element) =>
                     (aggiornaDescImprRef.current[el.id] = element)
                   }
                 />
+                <select
+                  name="ultEstr"
+                  id="ultEstr"
+                  className="w-1/6 rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
+                  ref={(element) =>
+                    (aggiornaUltEstrImprRef.current[el.id] = element)
+                  }
+                  defaultValue={el.ultEstrazione}
+                >
+                  <option value={true}>
+                    SI
+                  </option>
+                  <option value={false}>NO</option>
+                </select>
 
                 <MdSend
                   size={24}
@@ -111,6 +135,7 @@ const EditorImprevisti = () => {
                       el.id,
                       aggiornaTitoloImprRef.current[el.id].value,
                       aggiornaDescImprRef.current[el.id].value,
+                      aggiornaUltEstrImprRef.current[el.id].value,
                     )
                   }
                 />
