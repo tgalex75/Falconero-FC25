@@ -11,6 +11,8 @@ const EditorImprevisti = () => {
   const aggiornaTitoloImprRef = useRef([]);
   const aggiornaDescImprRef = useRef([]);
   const aggiornaUltEstrImprRef = useRef([]);
+  const aggiornaQtGiocatoriImprRef = useRef([]);
+  const aggiornaTitRosaImprRef = useRef([]);
 
   const removeVociRegistro = async (element) => {
     const { error } = await supabase
@@ -26,6 +28,8 @@ const EditorImprevisti = () => {
     refTitolo,
     refDescr,
     refUltEstr,
+    refQtgiocat,
+    refTitRosa,
   ) => {
     const { error } = await supabase
       .from("imprevisti")
@@ -33,6 +37,8 @@ const EditorImprevisti = () => {
         titolo: refTitolo.toUpperCase(),
         descrizione: refDescr,
         ultEstrazione: refUltEstr,
+        qtGiocatori: refQtgiocat,
+        titolariRosa: refTitRosa,
       })
       .eq("id", element)
       .select();
@@ -43,7 +49,8 @@ const EditorImprevisti = () => {
   // LOGICA NUOVO IMPREVISTO
 
   const uploadNewImpr = async (objForm) => {
-    const { titolo, descrizione, ultEstrazione } = objForm;
+    const { titolo, descrizione, ultEstrazione, qtGiocatori, titolariRosa } =
+      objForm;
     const { error } = await supabase
       .from("imprevisti")
       .insert([
@@ -51,6 +58,8 @@ const EditorImprevisti = () => {
           titolo: titolo.toUpperCase(),
           descrizione: descrizione,
           ultEstrazione: ultEstrazione,
+          qtGiocatori: parseInt(qtGiocatori),
+          titolariRosa: parseInt(titolariRosa),
         },
       ])
       .select();
@@ -86,7 +95,7 @@ const EditorImprevisti = () => {
       >
         {/* Lista Imprevisti Attuale */}
 
-        <div className="relative flex min-h-[50dvh] w-full flex-col items-center justify-center gap-2 p-1">
+        <div className="relative flex min-h-[40dvh] w-full flex-col items-center justify-center gap-2 p-1">
           <header className="flex w-full items-center justify-between p-1">
             <strong className="w-full text-end text-sm font-semibold text-[--clr-ter]">
               Numero imprevisti: {data.length}
@@ -115,16 +124,33 @@ const EditorImprevisti = () => {
                 <select
                   name="ultEstr"
                   id="ultEstr"
-                  className="w-[10%] rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
+                  className="w-[5%] rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
                   ref={(element) =>
                     (aggiornaUltEstrImprRef.current[el.id] = element)
                   }
                   defaultValue={el.ultEstrazione}
                 >
-                  <option value={true}>
-                    SI
-                  </option>
+                  <option value={true}>SI</option>
                   <option value={false}>NO</option>
+                </select>
+                <input
+                  className="w-[5%] select-all rounded border border-gray-300/20 bg-transparent p-1 text-center font-medium uppercase"
+                  defaultValue={el.qtGiocatori}
+                  ref={(element) =>
+                    (aggiornaQtGiocatoriImprRef.current[el.id] = element)
+                  }
+                />
+                <select
+                  name="ultEstr"
+                  id="ultEstr"
+                  className="w-[5%] rounded border border-gray-300/20 bg-transparent p-1 text-center font-medium"
+                  ref={(element) =>
+                    (aggiornaTitRosaImprRef.current[el.id] = element)
+                  }
+                  defaultValue={el.titolariRosa}
+                >
+                  <option value={11}>11</option>
+                  <option value={30}>30</option>
                 </select>
 
                 <MdSend
@@ -136,6 +162,8 @@ const EditorImprevisti = () => {
                       aggiornaTitoloImprRef.current[el.id].value,
                       aggiornaDescImprRef.current[el.id].value,
                       aggiornaUltEstrImprRef.current[el.id].value,
+                      aggiornaQtGiocatoriImprRef.current[el.id].value,
+                      aggiornaTitRosaImprRef.current[el.id].value,
                     )
                   }
                 />
@@ -152,17 +180,17 @@ const EditorImprevisti = () => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex h-full w-5/6 flex-col items-center justify-between gap-2 rounded-md px-4 py-2 font-normal"
+          className="flex h-full w-full flex-col items-center justify-between gap-2 rounded-md px-4 py-2 font-normal"
         >
-          <h3 className="text-center uppercase text-[--clr-ter]">
+          <h3 className="text-center font-bold uppercase text-[--clr-ter]">
             Aggiungi imprevisto
           </h3>
-          <div className="flex h-full w-full items-start justify-between gap-2 px-8">
+          <div className="flex h-2/3 w-full items-start justify-between gap-2 px-2">
             <label className="my-1 flex w-full flex-col items-start gap-4 self-start text-sm font-semibold">
               Titolo Imprevisto
               {errors.titolo && (
-                <span className="text-[--clr-ter]">
-                  Il campo Titolo è obbligatorio - max 20 caratteri
+                <span className="font-normal italic text-[--clr-ter]">
+                  Il campo "Titolo" è obbligatorio - max 20 caratteri
                 </span>
               )}
               <input
@@ -175,27 +203,29 @@ const EditorImprevisti = () => {
             <label className="my-1 flex w-full flex-col items-start gap-4 self-start text-sm font-semibold">
               Descrizione Imprevisto
               {errors.descrizione && (
-                <span className="text-[--clr-ter]">
-                  Il campo descrizione è obbligatorio
+                <span className="font-normal italic text-[--clr-ter]">
+                  Il campo "Descrizione" è obbligatorio
                 </span>
               )}
               <textarea
                 name="descrizione"
                 {...register("descrizione", { required: true })}
-                rows={6}
+                rows={3}
                 id="descrizione"
                 placeholder="Descrizione dell'imprevisto"
                 className="w-full rounded p-1 text-sm font-semibold text-black placeholder:italic"
               />
             </label>
+          </div>
+          <div className="flex h-1/3 w-full items-start justify-between gap-2 px-2">
             <label
               htmlFor="ultEstrazione"
               className="my-1 ms-4 flex w-full items-start gap-2 self-start text-sm font-semibold"
             >
               Bisogna estrarre uno o più giocatori?
               {errors.ultEstrazione && (
-                <span className="text-[--clr-ter]">
-                  Il campo estrazione giocatore è obbligatorio
+                <span className="font-normal italic text-[--clr-ter]">
+                  Il campo "estrazione giocatore" è obbligatorio
                 </span>
               )}
               <label htmlFor="ultEstrazioneYES">Sì</label>
@@ -216,6 +246,54 @@ const EditorImprevisti = () => {
                 value={false}
                 className="ms-2 h-4 w-4 rounded border-gray-300 bg-gray-100 text-purple-600 focus:ring-2 focus:ring-purple-500 md:m-0 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-purple-600"
               />
+            </label>
+            <label
+              htmlFor="qtGiocatori"
+              className="my-1 ms-4 flex w-full items-start gap-2 self-start text-sm font-semibold"
+            >
+              Quanti giocatori saranno estratti?
+              {errors.qtGiocatori && (
+                <span className="font-normal italic text-[--clr-ter]">
+                  Il campo "Quanti Giocatori" è obbligatorio - Inserisci un
+                  numero da 0 a 10
+                </span>
+              )}
+              <input
+                {...register("qtGiocatori", {
+                  required: true,
+                  min: 0,
+                  max: 10,
+                })}
+                id="qtGiocatori"
+                name="qtGiocatori"
+                type="number"
+                placeholder="Quanti giocatori?"
+                className="w-48 rounded p-1 text-sm font-semibold text-black placeholder:italic"
+              />
+            </label>
+            <label
+              htmlFor="qtGiocatori"
+              className="my-1 ms-4 flex w-full items-start gap-2 self-start text-sm font-semibold"
+            >
+              Solo i Titolari o l'intera Rosa?
+              {errors.titolariRosa && (
+                <span className="font-normal italic text-[--clr-ter]">
+                  Il campo "Titolari o intera rosa" è obbligatorio
+                </span>
+              )}
+              <select
+                {...register("titolariRosa", {
+                  required: true,
+                })}
+                id="titolariRosa"
+                name="titolariRosa"
+                type="number"
+                placeholder="Titolari o Intera rosa?"
+                className="w-48 rounded p-1 text-sm font-semibold text-black placeholder:italic"
+              >
+                <option value={11}>Titolari</option>
+                <option value={30}>Intera Rosa</option>
+              </select>
             </label>
           </div>
           <button

@@ -11,6 +11,7 @@ const SecondaEstrazioneDiretta = ((props) => {
     (player) => player.id,
   );
   const extractedPlayer = pickRandom(numbers, { count: numbExtrPlayer });
+  
 
   return (
     <section

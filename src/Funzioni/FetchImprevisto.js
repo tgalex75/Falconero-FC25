@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetchData from "../Hooks/useFetchData";
-import SecondaEstrazione from "../Components/SecondaEstrazione";
+import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import { supabase } from "../supabaseClient";
 import capitalize from "lodash.capitalize";
 import { MdOutlineSnooze } from "react-icons/md";
@@ -30,7 +30,8 @@ export default function FetchImprevisto() {
     descrizione: "LISTA VUOTA!!!",
   };
 
-  const { id, titolo, descrizione, ultEstrazione } = casuale;
+  const { id, titolo, descrizione, ultEstrazione, qtGiocatori, titolariRosa } =
+    casuale;
 
   const rimandaImprevisto = async () => {
     const { error } = await supabase
@@ -59,7 +60,12 @@ export default function FetchImprevisto() {
       >
         {capitalize(descrizione)}
       </p>
-      {ultEstrazione && <SecondaEstrazione />}
+      {ultEstrazione && (
+        <SecondaEstrazioneDiretta
+          numbExtrPlayer={qtGiocatori}
+          baseEstrazione={titolariRosa}
+        />
+      )}
       <button
         onClick={rimandaImprevisto}
         className="peer rounded-full p-2 text-center text-sm font-bold shadow-md transition duration-200 ease-in hover:scale-125 hover:bg-purple-700 hover:text-gray-300"
