@@ -26,7 +26,7 @@ const SaldoPunti = () => {
     const { error } = await supabase
       .from("saldo-punti")
       .update({
-        punti: punti + val > 0 ? punti + val : 0,
+        punti: punti + val /* > 0 ? punti + val : 0 */,
       })
       .eq("id", id)
       .select();
@@ -166,7 +166,7 @@ const SaldoPunti = () => {
           className="flex h-1/4 w-full flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 p-1 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30"
         >
           <h2 className="text-lg">Piazzamento in Campionato</h2>
-          <div className="grid h-auto w-full grid-cols-7 justify-center">
+          <div className="grid h-auto w-full grid-cols-6 justify-center">
             {mappedPiazzamento}
           </div>
         </section>

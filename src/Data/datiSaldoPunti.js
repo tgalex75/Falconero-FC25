@@ -144,10 +144,10 @@ export const piazzamentoCampionato = [
         valore: 1,
         icon: <PiListBulletsBold size={28} className="mb-1" />,
     },
-    {
+    /* {
       id: "svz05",
       nome: "Salvezza +5",
       valore: 5,
       icon: <PiListBulletsBold size={28} className="mb-1" />,
-    },
+    }, */
   ]
