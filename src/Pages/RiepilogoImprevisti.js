@@ -1,9 +1,9 @@
 import { supabase } from "../supabaseClient";
 import { motion } from "framer-motion";
 import { MdClear } from "react-icons/md";
-import datiPrepartita from "../Data/datiPrepartita";
-import datiRari from "../Data/datiRari";
-import datiMenoFrequenti from "../Data/datiMenoFrequenti";
+import {datiPrepartita} from "../Data/datiPrepartita";
+import {datiRari} from "../Data/datiRari";
+import {datiMenoFrequenti} from "../Data/datiMenoFrequenti";
 import datiSettimana from "../Data/datiSettimana";
 import useFetchData from "../Hooks/useFetchData";
 

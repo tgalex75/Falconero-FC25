@@ -1,49 +1,39 @@
 import React, { useState } from "react";
-import datiPrepartita from "../Data/datiPrepartita";
+import useFetchData from "../Hooks/useFetchData";
+import { supabase } from "../supabaseClient";
+import { randomDatiPrepartita } from "../Data/datiPrepartita";
 import UploadRegistro from "../Funzioni/UploadRegistro";
-import datiMenoFrequenti from "../Data/datiMenoFrequenti";
-import datiRari from "../Data/datiRari";
+import { randomDatiMenoFrequenti } from "../Data/datiMenoFrequenti";
+import { randomDatiRari } from "../Data/datiRari";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import random from "random";
+import rnd from "random-weight";
+import { MdOutlineSnooze } from "react-icons/md";
 
 const Prepartita = () => {
   const [casuale, setCasuale] = useState(null);
 
   // Prima Estrazione
 
-  const noImprevisto = {
-    id: 999,
-    title: "Nessun Imprevisto",
-    description: "",
-    isImprev: false,
-  };
-
   const estraiNumeroCasuale = () => {
-    const scegliLista = random.int(1, 5);
-    const listaEstrazione =
-      scegliLista < 4
-        ? scegliLista === 1
-          ? { data: [...datiRari], listaLength: datiRari.length + 5 }
-          : {
-              data: [...datiMenoFrequenti],
-              listaLength: datiMenoFrequenti.length + 4,
-            }
-        : { data: [...datiPrepartita], listaLength: datiPrepartita.length + 3 }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
+    const listaEstrazione = [
+      { ...randomDatiPrepartita, weight: 3 },
+      { ...randomDatiMenoFrequenti, weight: 2 },
+      { ...randomDatiRari, weight: 1 },
+    ];
 
-    const { data, listaLength } = listaEstrazione;
-    const numeroPool = random.int(1, listaLength);
-    setCasuale(
-      numeroPool > data.length ? noImprevisto : random.choice(data),
-      // datiPrepartita[4]     //TEST IMPREVISTI COMMUNITY
-    );
-    //console.log("numero lista estratta: ", scegliLista);
-    //console.log("Lista estratta nel dettaglio: ", data);
-    //console.log("Numero estratto: ", numeroPool);
-    //console.log("Lunghezza Lista: ", listaLength);
+    const estratto = rnd(listaEstrazione, (i) => i.weight);
+
+    setCasuale(estratto);
+
+    isImpCommunity &&
+      setTimeout(() => {
+        delElemento();
+      }, 3000);
   };
 
   const {
@@ -60,7 +50,46 @@ const Prepartita = () => {
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
 
-  //console.log("Casuale: ", id, title);
+  // Estrazione Community
+  const { data } = useFetchData("imprevisti");
+
+  const casualeCommunity = random.choice(data) || {
+    id: 0,
+    descrizione: "LISTA VUOTA!!!",
+  };
+
+  const {
+    id: idCM,
+    titolo,
+    descrizione,
+    ultEstrazione: ultEstrazioneCM,
+    qtGiocatori,
+    titolariRosa,
+  } = casualeCommunity;
+
+  console.log(casualeCommunity);
+  
+
+  const delElemento = async () => {
+    const { error } = await supabase
+      .from("imprevisti")
+      .delete("id")
+      .eq("id", idCM);
+    error && console.log(error);
+  };
+
+  // Rimanda Imprevisto
+
+  const [isSaved, setIsSaved] = useState(false);
+
+  const rimandaImprevisto = async () => {
+    const { error } = await supabase
+      .from("salvaxdopo")
+      .insert([{ id: id, titolo: titolo, descrizione: descrizione }])
+      .select();
+    error && console.log(error);
+    setIsSaved(true);
+  };
 
   return (
     <>
@@ -109,7 +138,13 @@ const Prepartita = () => {
               </>
             ) : (
               <>
-                <FetchImprevisto />
+                <FetchImprevisto
+                  titolo={titolo}
+                  descrizione={descrizione}
+                  ultEstrazione={ultEstrazioneCM}
+                  qtGiocatori={qtGiocatori}
+                  titolariRosa={titolariRosa}
+                />
               </>
             )}
             {ultEstrazione && (
@@ -123,6 +158,26 @@ const Prepartita = () => {
                 <UploadRegistro title={title} />
                 <RegistroSerieNegativa />
               </>
+            )}
+          </>
+        )}
+        {/* SALVA PER DOPO */}
+        {isImprev && (
+          <>
+            <button
+              onClick={rimandaImprevisto}
+              className="peer rounded-full p-2 text-center text-sm font-bold shadow-md transition duration-200 ease-in hover:scale-125 hover:bg-purple-700 hover:text-gray-300"
+            >
+              <MdOutlineSnooze size={36} />
+            </button>
+            {!isSaved ? (
+              <span className="invisible text-xs transition-all duration-150 ease-in-out peer-hover:visible">
+                Posticipa e salva imprevisto?
+              </span>
+            ) : (
+              <span className="text-xs transition-all duration-150 ease-in-out">
+                Imprevisto posticipato e salvato!
+              </span>
             )}
           </>
         )}

@@ -1,4 +1,6 @@
-const datiMenoFrequenti = [
+import rnd from 'random-weight'
+
+export const datiMenoFrequenti = [
   {
     id: 1,
     title: "Lite nello spogliatoio",
@@ -7,6 +9,7 @@ const datiMenoFrequenti = [
     ultEstrazione: true,
     baseEstrazione: 30,
     numbExtrPlayer: 2,
+    weight: 10,
   },
   {
     id: 2,
@@ -16,6 +19,7 @@ const datiMenoFrequenti = [
     ultEstrazione: true,
     baseEstrazione: 30,
     numbExtrPlayer: 1,
+    weight: 10,
   },
   {
     id: 3,
@@ -24,6 +28,7 @@ const datiMenoFrequenti = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
+    weight: 10,
   },
   {
     id: 4,
@@ -33,7 +38,8 @@ const datiMenoFrequenti = [
     ultEstrazione: true,
     baseEstrazione: 11,
     numbExtrPlayer: 3,
-    notaBene: "Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)"
+    notaBene: "Non si applica alle partite determinanti (es. turni di ritorno, partite secche, scontri diretti)",
+    weight: 8,
   },
   {
     id: 5,
@@ -42,7 +48,14 @@ const datiMenoFrequenti = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
+    weight: 20,
   },
+  {
+    id: 99,
+    title: "Nessun imprevisto",
+    isImprev: false,
+    weight: 25,
+},
 ];
 
-export default datiMenoFrequenti;
+export const randomDatiMenoFrequenti =  rnd(datiMenoFrequenti, i => i.weight)
