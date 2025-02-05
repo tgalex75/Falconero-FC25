@@ -3,6 +3,7 @@ import { GiLaurelsTrophy, GiTrophyCup, GiTrophy, GiDiamondTrophy } from "react-i
 import { IoMdTrendingDown, IoMdTrendingUp } from "react-icons/io";
 import { PiListBulletsBold } from "react-icons/pi";
 import { IoMdPodium } from "react-icons/io";
+import { TbPlayFootball } from "react-icons/tb";
 
 export const bonusTrofei = [
     {
@@ -144,10 +145,16 @@ export const piazzamentoCampionato = [
         valore: 1,
         icon: <PiListBulletsBold size={28} className="mb-1" />,
     },
-    /* {
-      id: "svz05",
-      nome: "Salvezza +5",
+    {
+      id: "cpc05",
+      nome: "Miglior Marcatore +5",
       valore: 5,
-      icon: <PiListBulletsBold size={28} className="mb-1" />,
+      icon: <TbPlayFootball size={28} className="mb-1" />,
+    },
+    /* {
+      id: "ast03",
+      nome: "Uomo Assist +3",
+      valore: 3,
+      icon: <TbPlayFootball size={28} className="mb-1" />,
     }, */
   ]
