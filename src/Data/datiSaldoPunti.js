@@ -1,5 +1,5 @@
 import { LiaTrophySolid } from "react-icons/lia";
-import { GiLaurelsTrophy, GiTrophyCup, GiTrophy, GiDiamondTrophy } from "react-icons/gi";
+import { GiLaurelsTrophy, GiTrophyCup, GiTrophy, GiDiamondTrophy, GiSoccerBall } from "react-icons/gi";
 import { IoMdTrendingDown, IoMdTrendingUp } from "react-icons/io";
 import { PiListBulletsBold } from "react-icons/pi";
 import { IoMdPodium } from "react-icons/io";
@@ -147,14 +147,14 @@ export const piazzamentoCampionato = [
     },
     {
       id: "cpc05",
-      nome: "Miglior Marcatore +5",
+      nome: "Marcatore +5",
       valore: 5,
-      icon: <TbPlayFootball size={28} className="mb-1" />,
+      icon: <GiSoccerBall size={28} className="mb-1" />,
     },
-    /* {
+    {
       id: "ast03",
-      nome: "Uomo Assist +3",
+      nome: "Assist +3",
       valore: 3,
       icon: <TbPlayFootball size={28} className="mb-1" />,
-    }, */
+    },
   ]
