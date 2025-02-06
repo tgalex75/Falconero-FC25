@@ -1,4 +1,4 @@
-import rnd from 'random-weight'
+//import rnd from 'random-weight'
 
 export const datiPrepartita = [
   {
@@ -54,4 +54,4 @@ export const datiPrepartita = [
   },
 ];
 
-export const randomDatiPrepartita = rnd(datiPrepartita, i => i.weight)
+//export const randomDatiPrepartita = rnd(datiPrepartita, i => i.weight)

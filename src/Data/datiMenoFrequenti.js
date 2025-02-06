@@ -1,4 +1,4 @@
-import rnd from 'random-weight'
+//import rnd from 'random-weight'
 
 export const datiMenoFrequenti = [
   {
@@ -58,4 +58,4 @@ export const datiMenoFrequenti = [
 },
 ];
 
-export const randomDatiMenoFrequenti =  rnd(datiMenoFrequenti, i => i.weight)
+//export const randomDatiMenoFrequenti =  rnd(datiMenoFrequenti, i => i.weight)

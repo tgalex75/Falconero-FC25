@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useState, useEffect } from "react";
 import useFetchData from "../Hooks/useFetchData";
 import { supabase } from "../supabaseClient";
-import { randomDatiPrepartita } from "../Data/datiPrepartita";
+import { datiPrepartita } from "../Data/datiPrepartita";
 import UploadRegistro from "../Funzioni/UploadRegistro";
-import { randomDatiMenoFrequenti } from "../Data/datiMenoFrequenti";
-import { randomDatiRari } from "../Data/datiRari";
+import { datiMenoFrequenti  } from "../Data/datiMenoFrequenti";
+import { datiRari } from "../Data/datiRari";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
@@ -12,30 +13,31 @@ import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import random from "random";
 import rnd from "random-weight";
+import { v4 as uuidv4 } from "uuid";
 import { MdOutlineSnooze } from "react-icons/md";
 
 const Prepartita = () => {
   const [casuale, setCasuale] = useState(null);
+  const [isSaved, setIsSaved] = useState(false);
 
   // Prima Estrazione
+  const randomDatiPrepartita = rnd(datiPrepartita, i => i.weight)
+  const randomDatiMenoFrequenti = rnd(datiMenoFrequenti, i => i.weight)
+  const randomDatiRari = rnd(datiRari, i => i.weight)
 
-  const estraiNumeroCasuale = () => {
-    const listaEstrazione = [
-      { ...randomDatiPrepartita, weight: 3 },
-      { ...randomDatiMenoFrequenti, weight: 2 },
-      { ...randomDatiRari, weight: 1 },
-    ];
+  const listaEstrazione = [
+    { ...randomDatiPrepartita, weight: 3 },
+    { ...randomDatiMenoFrequenti, weight: 2 },
+    { ...randomDatiRari, weight: 1 },
+  ];
 
+  const estraiNumeroCasuale = useCallback(() => {
     const estratto = rnd(listaEstrazione, (i) => i.weight);
-
     setCasuale(estratto);
-
-    isImpCommunity &&
-      setTimeout(() => {
-        delElemento();
-      }, 3000);
-  };
-
+    setIsSaved(false);
+  });
+  console.log(casuale?.title);
+  
   const {
     id,
     title,
@@ -52,12 +54,13 @@ const Prepartita = () => {
 
   // Estrazione Community
   const { data } = useFetchData("imprevisti");
-
+  
   const casualeCommunity = random.choice(data) || {
     id: 0,
     descrizione: "LISTA VUOTA!!!",
   };
-
+  
+  
   const {
     id: idCM,
     titolo,
@@ -65,10 +68,7 @@ const Prepartita = () => {
     ultEstrazione: ultEstrazioneCM,
     qtGiocatori,
     titolariRosa,
-  } = casualeCommunity;
-
-  console.log(casualeCommunity);
-  
+  } = casualeCommunity;  
 
   const delElemento = async () => {
     const { error } = await supabase
@@ -78,14 +78,21 @@ const Prepartita = () => {
     error && console.log(error);
   };
 
+  useEffect(()=> {
+
+    isImpCommunity &&
+      setTimeout(() => {
+        delElemento();
+      }, 3000);
+  },[isImpCommunity]) 
+
   // Rimanda Imprevisto
 
-  const [isSaved, setIsSaved] = useState(false);
 
   const rimandaImprevisto = async () => {
     const { error } = await supabase
       .from("salvaxdopo")
-      .insert([{ id: id, titolo: titolo, descrizione: descrizione }])
+      .insert([{ id: isImpCommunity ? idCM : uuidv4(), titolo: isImpCommunity ? titolo : title, descrizione: isImpCommunity ? descrizione : description }])
       .select();
     error && console.log(error);
     setIsSaved(true);

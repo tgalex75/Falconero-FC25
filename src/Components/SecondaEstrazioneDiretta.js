@@ -1,3 +1,4 @@
+import React from "react"
 import firstkit from "../assets/imgs/firstKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
 import pickRandom from "pick-random";
