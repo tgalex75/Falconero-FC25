@@ -68,28 +68,38 @@ export const bonusCessioni = [
 export const malusAcquisti = [
     {
       id: "a03",
-      nome: "≥70 -3",
-      valore: -3,
+      nomeUnder: "≥70 -3",
+      nomeOver: "≥70 -3",
+      valoreUnder: -3,
+      valoreOver: -3,
     },
     {
       id: "a06",
-      nome: "≥75 -6",
-      valore: -6,
+      nomeUnder: "≥75 -6",
+      nomeOver: "≥75 -3",
+      valoreUnder: -6,
+      valoreOver: -3,
     },
     {
       id: "a09",
-      nome: "≥80 -9",
-      valore: -9,
+      nomeUnder: "≥80 -9",
+      nomeOver: "≥80 -6",
+      valoreUnder: -9,
+      valoreOver: -6,
     },
     {
       id: "a12",
-      nome: "≥85 -12",
-      valore: -12,
+      nomeUnder: "≥85 -12",
+      nomeOver: "≥85 -9",
+      valoreUnder: -12,
+      valoreOver: -9,
     },
     {
         id: "a15",
-      nome: "≥90 -15",
-      valore: -15,
+      nomeUnder: "≥90 -15",
+      nomeOver: "≥90 -12",
+      valoreUnder: -15,
+      valoreOver: -12,
     },
 ];
 
