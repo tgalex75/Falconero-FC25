@@ -1,11 +1,11 @@
-import React from "react"
+import React, {memo} from "react"
 import firstkit from "../assets/imgs/firstKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
 import pickRandom from "pick-random";
 import { extrTitolari, extrRosa } from "../Funzioni/schemi";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 
-const SecondaEstrazioneDiretta = ((props) => {
+const SecondaEstrazioneDiretta = memo(((props) => {
   const { numbExtrPlayer, baseEstrazione } = props;
 
   const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map(
@@ -51,6 +51,6 @@ const SecondaEstrazioneDiretta = ((props) => {
       </main>
     </section>
   );
-});
+}));
 
 export default SecondaEstrazioneDiretta;
