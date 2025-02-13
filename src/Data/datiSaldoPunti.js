@@ -69,9 +69,9 @@ export const malusAcquisti = [
     {
       id: "a03",
       nomeUnder: "≥70 -3",
-      nomeOver: "≥70 -3",
+      nomeOver: "≥70 -1.5",
       valoreUnder: -3,
-      valoreOver: -3,
+      valoreOver: -1.5,
     },
     {
       id: "a06",
