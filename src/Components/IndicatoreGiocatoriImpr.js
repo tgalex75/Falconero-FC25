@@ -39,7 +39,7 @@ const IndicatoreGiocatoriImpr = (props) => {
               key={uuidv4()}
               className="my-2 flex w-2 items-center justify-center rounded-full border px-4  py-2 text-xs font-semibold text-gray-200"
               style={
-                extractedPlayer.find((item) => item === el.nome) &&
+                extractedPlayer?.find((item) => item === el.nome) &&
                 extractedPlayerStyle
               }
             >

@@ -1,41 +1,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, memo } from "react";
-import useFetchData from "../Hooks/useFetchData";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RimandaImprevisto from "./RimandaImprevisto";
 import { supabase } from "../supabaseClient";
 import capitalize from "lodash.capitalize";
-import random from "random";
 
-const FetchImprevisto = () => {
-  const { data } = useFetchData("imprevisti") 
-  
-  
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      delElemento();
-    }, 3000);
-    // Cleanup del timeout per evitare memory leak
-    return () => clearTimeout(timeout);
-},[]);
+const FetchImprevisto = (props) => {
 
-  const delElemento = async () => {
-    const { error } = await supabase
+  const {casualeCommunity} = props
+  
+  const { id, titolo, descrizione, ultEstrazione, qtGiocatori, titolariRosa } = casualeCommunity
+
+
+    const delElemento = async () => {
+      const { error } = await supabase
       .from("imprevisti")
-      .delete("id")
+      .delete()
       .eq("id", id);
-    error && console.log(error);
-  };
+      error && console.log(error);
+    };
+    
+    useEffect(() => {
+      let timeout = setTimeout(() => {
+        id!== 0 && delElemento();
+        timeout = null;
+      }, 3000);
+      // Cleanup del timeout per evitare memory leak
+      return () => clearTimeout(timeout);
+    }, []);
 
-  const casuale = random.choice(data) || {
-    id: 0,
-    descrizione: "LISTA VUOTA!!!",
-  };
-
-  const { id, titolo, descrizione, ultEstrazione, qtGiocatori, titolariRosa } =
-    casuale;
-  
-  const SecondaEstrazioneDirettaMemo = memo(SecondaEstrazioneDiretta)
+  const SecondaEstrazioneDirettaMemo = memo(SecondaEstrazioneDiretta);
 
   return (
     <section
