@@ -1,5 +1,5 @@
 import { LiaTrophySolid } from "react-icons/lia";
-import { GiLaurelsTrophy, GiTrophyCup, GiTrophy, GiDiamondTrophy } from "react-icons/gi";
+import { GiLaurelsTrophy, GiTrophyCup, GiTrophy, GiDiamondTrophy, GiSoccerBall } from "react-icons/gi";
 import { IoMdTrendingDown, IoMdTrendingUp } from "react-icons/io";
 import { PiListBulletsBold } from "react-icons/pi";
 import { IoMdPodium } from "react-icons/io";
@@ -68,28 +68,38 @@ export const bonusCessioni = [
 export const malusAcquisti = [
     {
       id: "a03",
-      nome: "≥70 -3",
-      valore: -3,
+      nomeUnder: "≥70 -3",
+      nomeOver: "≥70 -1.5",
+      valoreUnder: -3,
+      valoreOver: -1.5,
     },
     {
       id: "a06",
-      nome: "≥75 -6",
-      valore: -6,
+      nomeUnder: "≥75 -6",
+      nomeOver: "≥75 -3",
+      valoreUnder: -6,
+      valoreOver: -3,
     },
     {
       id: "a09",
-      nome: "≥80 -9",
-      valore: -9,
+      nomeUnder: "≥80 -9",
+      nomeOver: "≥80 -6",
+      valoreUnder: -9,
+      valoreOver: -6,
     },
     {
       id: "a12",
-      nome: "≥85 -12",
-      valore: -12,
+      nomeUnder: "≥85 -12",
+      nomeOver: "≥85 -9",
+      valoreUnder: -12,
+      valoreOver: -9,
     },
     {
         id: "a15",
-      nome: "≥90 -15",
-      valore: -15,
+      nomeUnder: "≥90 -15",
+      nomeOver: "≥90 -12",
+      valoreUnder: -15,
+      valoreOver: -12,
     },
 ];
 
@@ -147,14 +157,14 @@ export const piazzamentoCampionato = [
     },
     {
       id: "cpc05",
-      nome: "Miglior Marcatore +5",
+      nome: "Marcatore +5",
       valore: 5,
-      icon: <TbPlayFootball size={28} className="mb-1" />,
+      icon: <GiSoccerBall size={28} className="mb-1" />,
     },
-    /* {
+    {
       id: "ast03",
-      nome: "Uomo Assist +3",
+      nome: "Assist +3",
       valore: 3,
       icon: <TbPlayFootball size={28} className="mb-1" />,
-    }, */
+    },
   ]

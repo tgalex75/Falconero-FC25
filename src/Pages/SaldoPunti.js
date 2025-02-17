@@ -12,6 +12,11 @@ import { LuArrowUpWideNarrow, LuArrowDownWideNarrow } from "react-icons/lu";
 
 const SaldoPunti = () => {
   const [data, setData] = useState([]);
+  const [isOver32, setIsOver32] = useState(false)
+
+  const checkisOver = () => {
+    setIsOver32(!isOver32)
+  }
 
   const fetchSaldo = async () => {
     let { data: saldo_punti, error } = await supabase
@@ -26,7 +31,7 @@ const SaldoPunti = () => {
     const { error } = await supabase
       .from("saldo-punti")
       .update({
-        punti: punti + val /* > 0 ? punti + val : 0 */,
+        punti: punti + val,
       })
       .eq("id", id)
       .select();
@@ -64,10 +69,10 @@ const SaldoPunti = () => {
   const mappedAcquisti = malusAcquisti.map((el) => (
     <div
       key={el.id}
-      onClick={() => updateSaldoPunti(el.valore)}
+      onClick={() => updateSaldoPunti(isOver32 ? el.valoreOver : el.valoreUnder)}
       className={bonusMalusStyle}
     >
-      {el.nome}
+      {isOver32? el.nomeOver : el.nomeUnder}
     </div>
   ));
   const mappedTrofei = bonusTrofei.map((el) => (
@@ -113,7 +118,7 @@ const SaldoPunti = () => {
         >
           <h1 className="relative">Saldo Punti</h1>
           <h3 className="text-7xl font-black italic">{punti}</h3>
-          <div className="absolute right-2 flex justify-around flex-col items-center p-2 mt-12">
+          <div className="absolute right-2 mt-12 flex flex-col items-center justify-around p-2">
             <GrPowerReset
               size={32}
               className="peer cursor-pointer hover:animate-spin hover:stroke-purple-700 active:scale-150"
@@ -139,13 +144,29 @@ const SaldoPunti = () => {
               {mappedCessioni}
             </div>
           </div>
-          <div className="flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
+          <div className="relative flex h-full w-1/2 flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30">
             <h2 className="inline-flex items-center text-lg">
               Acquisti Mercato
               <LuArrowDownWideNarrow className="mx-3 inline-block" size={28} />
             </h2>
             <div className="grid h-auto w-full grid-cols-5 justify-center">
               {mappedAcquisti}
+            </div>
+            {/* TOGGLE OVER 32 */}
+            <div class="p-2 flex items-center gap-2 text-xs absolute top-1 right-1">
+              <label
+                htmlFor="switch-link"
+                className="cursor-pointer font-sans antialiased"
+              >
+                Over 32? {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
+              </label>
+              <input
+                id="switch-link"
+                type="checkbox"
+                checked={isOver32}
+                onChange={checkisOver}
+                className="relative inline-block h-4 w-8 cursor-pointer appearance-none rounded-full before:absolute before:left-0 before:top-0 before:inline-block before:h-full before:w-full before:rounded-full before:bg-stone-400 before:transition-colors before:duration-200 before:ease-in after:absolute after:left-0 after:top-2/4 after:h-6 after:w-6 after:-translate-y-2/4 after:rounded-full after:border after:border-stone-500 after:bg-stone-600 after:transition-all after:duration-200 after:ease-in checked:before:bg-stone-200 checked:after:translate-x-1/2 checked:after:border-stone-200 disabled:cursor-not-allowed disabled:opacity-50 dark:checked:after:bg-purple-600"
+              />
             </div>
           </div>
         </section>
@@ -166,7 +187,7 @@ const SaldoPunti = () => {
           className="flex h-1/4 w-full flex-col items-center justify-around rounded-xl border-2 border-purple-700/60 p-1 text-lg font-bold transition-all duration-300 ease-in-out hover:border-gray-200 hover:bg-purple-800/30"
         >
           <h2 className="text-lg">Piazzamento in Campionato</h2>
-          <div className="grid h-auto w-full grid-cols-7 justify-center">
+          <div className="grid h-auto w-full grid-cols-8 justify-center">
             {mappedPiazzamento}
           </div>
         </section>
