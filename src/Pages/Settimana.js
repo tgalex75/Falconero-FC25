@@ -15,8 +15,6 @@ const Settimana = () => {
     setCasuale(random.choice(datiSettimana));
   };
 
-  console.log(casuale);
-
   const { id, title, description, isImprev } = casuale ? casuale : {};
 
   const titoloH1 = "Settimanale";

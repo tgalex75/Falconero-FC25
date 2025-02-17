@@ -44,7 +44,7 @@ export const datiPrepartita = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 2,
+    weight: 1,
   },
   {
     id: 199,

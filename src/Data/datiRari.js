@@ -8,7 +8,7 @@ export const datiRari = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 4,
+    weight: 2,
   },
   {
     id: 22,
@@ -24,7 +24,7 @@ export const datiRari = [
     id: 299,
     title: "Nessun imprevisto",
     isImprev: false,
-    weight: 3,
+    weight: 2,
   },
 ];
 

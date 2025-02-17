@@ -14,9 +14,7 @@ const SalvaPerDopo = () => {
     error && console.log(error);
     fetchRegistryList();
   };
-
-  console.log(vociRegistro)
-
+  
   return (
     <section className="flex h-full w-full flex-col items-center justify-center gap-12 p-4 font-bold">
       <h1>Imprevisti Sospesi</h1>

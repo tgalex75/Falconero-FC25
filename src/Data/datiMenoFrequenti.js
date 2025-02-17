@@ -48,13 +48,13 @@ export const datiMenoFrequenti = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 20,
+    weight: 10,
   },
   {
     id: 99,
     title: "Nessun imprevisto",
     isImprev: false,
-    weight: 25,
+    weight: 15,
 },
 ];
 

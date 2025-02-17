@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, memo } from "react";
 import { datiPrepartita } from "../Data/datiPrepartita";
 import UploadRegistro from "../Funzioni/UploadRegistro";
 import { datiMenoFrequenti } from "../Data/datiMenoFrequenti";
@@ -43,6 +43,9 @@ const Prepartita = () => {
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
 
+  const FetchImprevistoMemo = memo(FetchImprevisto);
+  const SecondaEstrazioneDirettaMemo = memo(SecondaEstrazioneDiretta);
+
   return (
     <>
       <LayoutBase
@@ -66,11 +69,11 @@ const Prepartita = () => {
             >
               {isImpCommunity ? "Imprevisto della Community" : "IMPREVISTO!"}
             </h2>
-            {!isImpCommunity ? (
+            {!isImpCommunity && (
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`text-4xl font-extrabold uppercase md:flex-1 ${
+                  className={`text-4xl font-extrabold uppercase ${
                     title === "PAROLA ALLA COMMUNITY!" && "invisible"
                   }, ${
                     id === 999 &&
@@ -88,13 +91,12 @@ const Prepartita = () => {
                   {notaBene && notaBene}
                 </p>
               </>
-            ) : (
-              <>
-                <FetchImprevisto />
-              </>
             )}
+            
+            {isImpCommunity && <FetchImprevistoMemo />}
+
             {ultEstrazione && (
-              <SecondaEstrazioneDiretta
+              <SecondaEstrazioneDirettaMemo
                 numbExtrPlayer={numbExtrPlayer}
                 baseEstrazione={baseEstrazione}
               />
