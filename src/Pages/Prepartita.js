@@ -1,51 +1,53 @@
-import React, { useState } from "react";
-import datiPrepartita from "../Data/datiPrepartita";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useCallback, useState, useEffect } from "react";
+import useFetchData from "../Hooks/useFetchData";
+import { datiPrepartita } from "../Data/datiPrepartita";
 import UploadRegistro from "../Funzioni/UploadRegistro";
-import datiMenoFrequenti from "../Data/datiMenoFrequenti";
-import datiRari from "../Data/datiRari";
+import { datiMenoFrequenti } from "../Data/datiMenoFrequenti";
+import { datiRari } from "../Data/datiRari";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
-import random from "random";
+import rnd from "random-weight";
+import random from "random"
+import { extrTitolari, extrRosa } from "../Funzioni/schemi";
+import pickRandom from "pick-random";
+
 
 const Prepartita = () => {
+  const { data: dataCommunity, fetchRegistryList } = useFetchData("imprevisti");
   const [casuale, setCasuale] = useState(null);
+  const [casualeCommunity, setCasualeCommunity] = useState(null);
+
+  const [extractedPlayer, setExtractedPlayer] = useState(null);
+  
+  useEffect(() => {
+    setCasualeCommunity(dataCommunity?.length > 0 ? random.choice(dataCommunity) : {id: 0, descrizione: "LISTA VUOTA!!!"})
+    fetchRegistryList()
+    let timeout = setTimeout(()=>{
+      setExtractedPlayer(pickRandom(numbers, { count: numbExtrPlayer }));
+    },200
+  )
+    return ()=> clearTimeout(timeout)
+  },[casuale])
 
   // Prima Estrazione
-
-  const noImprevisto = {
-    id: 999,
-    title: "Nessun Imprevisto",
-    description: "",
-    isImprev: false,
-  };
-
-  const estraiNumeroCasuale = () => {
-    const scegliLista = random.int(1, 5);
-    const listaEstrazione =
-      scegliLista < 4
-        ? scegliLista === 1
-          ? { data: [...datiRari], listaLength: datiRari.length + 5 }
-          : {
-              data: [...datiMenoFrequenti],
-              listaLength: datiMenoFrequenti.length + 4,
-            }
-        : { data: [...datiPrepartita], listaLength: datiPrepartita.length + 3 }; //escluso dal conteggio Imprevisto Community per aumentare la percentuale di imprevisto
-
-    const { data, listaLength } = listaEstrazione;
-    const numeroPool = random.int(1, listaLength);
-    setCasuale(
-      numeroPool > data.length ? noImprevisto : random.choice(data),
-      // datiPrepartita[4]     //TEST IMPREVISTI COMMUNITY
-    );
-    //console.log("numero lista estratta: ", scegliLista);
-    //console.log("Lista estratta nel dettaglio: ", data);
-    //console.log("Numero estratto: ", numeroPool);
-    //console.log("Lunghezza Lista: ", listaLength);
-  };
-
+  
+  const estraiNumeroCasuale = useCallback(() => {
+    const randomDatiPrepartita = rnd(datiPrepartita, (i) => i.weight);
+    const randomDatiMenoFrequenti = rnd(datiMenoFrequenti, (i) => i.weight);
+    const randomDatiRari = rnd(datiRari, (i) => i.weight);
+    const listaEstrazione = [
+      { ...randomDatiPrepartita, weight: 3 },
+      { ...randomDatiMenoFrequenti, weight: 2 },
+      { ...randomDatiRari, weight: 1 },
+    ];
+    const estratto = rnd(listaEstrazione, (i) => i.weight);
+    setCasuale(estratto);
+  }, []);
+  
   const {
     id,
     title,
@@ -56,12 +58,14 @@ const Prepartita = () => {
     numbExtrPlayer,
     notaBene,
   } = casuale ? casuale : {};
-
+  
+  const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map(
+    (player) => player.id,
+  );
+  
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
-
-  //console.log("Casuale: ", id, title);
-
+  
   return (
     <>
       <LayoutBase
@@ -79,21 +83,21 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1 md:text-5xl"
+                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1"
                   : "invisible"
               }
             >
               {isImpCommunity ? "Imprevisto della Community" : "IMPREVISTO!"}
             </h2>
-            {!isImpCommunity ? (
+            {!isImpCommunity && (
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`text-4xl font-extrabold uppercase md:flex-1 ${
+                  className={`text-4xl font-extrabold uppercase flex-1 ${
                     title === "PAROLA ALLA COMMUNITY!" && "invisible"
                   }, ${
                     id === 999 &&
-                    "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:absolute"
+                    "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute"
                   }`}
                 >
                   {title}
@@ -107,15 +111,14 @@ const Prepartita = () => {
                   {notaBene && notaBene}
                 </p>
               </>
-            ) : (
-              <>
-                <FetchImprevisto />
-              </>
             )}
-            {ultEstrazione && (
+            
+            {isImpCommunity && <FetchImprevisto extractedPlayer={extractedPlayer} casualeCommunity={casualeCommunity} />}
+
+            {(ultEstrazione && !isImpCommunity) && (
               <SecondaEstrazioneDiretta
                 numbExtrPlayer={numbExtrPlayer}
-                baseEstrazione={baseEstrazione}
+                extractedPlayer={extractedPlayer}
               />
             )}
             {title === "Notte brava" && (

@@ -27,13 +27,13 @@ const Footer = () => {
       className={
         isMobile
           ? "hidden"
-          : "absolute bottom-0 left-0 m-1 flex w-full justify-between text-sm"
+          : "absolute bottom-0 left-0 m-1 flex w-full justify-between text-sm bg-opacity-50 bg-pink-600"
       }
     >
       <small className="z-10 ps-4 opacity-20">
         coded by tgalex75 - Falconero Community - beta version
       </small>
-      <span className="text-xs text-green-400 opacity-75 me-32">
+      <span className="text-xs font-bold text-white opacity-75 me-32">
         {isTestUser}
       </span>
     </footer>
