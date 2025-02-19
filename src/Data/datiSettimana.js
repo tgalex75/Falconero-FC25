@@ -21,7 +21,7 @@ const datiSettimana = [
     description:
       "Il giocatore in oggetto causa un infortunio al miglior giocatore della tua rosa, che resta fuori per 3 partite.",
     isImprev: true,
-    weight: 15,
+    weight: 10,
   },
   {
     id: 111,
@@ -36,7 +36,7 @@ const datiSettimana = [
     description:
       "II giocatore dovrà disputare tutte le partite per tutto il mese.",
     isImprev: true,
-    weight: 15,
+    weight: 10,
   },
   {
     id: 113,

@@ -1,14 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo } from "react";
+import React from "react";
 import firstkit from "../assets/imgs/firstKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 
 const SecondaEstrazioneDiretta = (props) => {
   const { numbExtrPlayer, extractedPlayer } = props;
-
-
-  const IndicatoreGiocatoriImprMemo = memo(IndicatoreGiocatoriImpr);
   
   return (
     <section
@@ -45,7 +42,7 @@ const SecondaEstrazioneDiretta = (props) => {
             );
           })}
         </div>
-        <IndicatoreGiocatoriImprMemo extractedPlayer={extractedPlayer} />
+        <IndicatoreGiocatoriImpr extractedPlayer={extractedPlayer} />
       </main>
     </section>
   );

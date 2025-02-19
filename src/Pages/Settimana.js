@@ -15,7 +15,7 @@ const Settimana = () => {
     setCasuale([estrattoSettimana1, estrattoSettimana2]);
   };
 
-  const titoloH1 = "Peggiore della Settimana";
+  const titoloH1 = "Peggiore della Settimana n. ";
 
   return (
     <div className="flex h-full w-full items-center justify-center">
@@ -27,7 +27,7 @@ const Settimana = () => {
       {casuale?.map((array, i) => (
         <LayoutBase
           key={i}
-          titoloH1={titoloH1 + " " + parseInt(i+1)}
+          titoloH1={titoloH1 + parseInt(i+1)}
           id={array.id}
           isImprev={array.isImprev}
           casuale={array}
