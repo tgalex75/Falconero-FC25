@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useCallback, useState, memo, useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import useFetchData from "../Hooks/useFetchData";
 import { datiPrepartita } from "../Data/datiPrepartita";
 import UploadRegistro from "../Funzioni/UploadRegistro";
