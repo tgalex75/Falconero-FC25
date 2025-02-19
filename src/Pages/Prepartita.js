@@ -12,15 +12,25 @@ import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import rnd from "random-weight";
 import random from "random"
+import { extrTitolari, extrRosa } from "../Funzioni/schemi";
+import pickRandom from "pick-random";
+
 
 const Prepartita = () => {
   const { data: dataCommunity, fetchRegistryList } = useFetchData("imprevisti");
   const [casuale, setCasuale] = useState(null);
   const [casualeCommunity, setCasualeCommunity] = useState(null);
 
+  const [extractedPlayer, setExtractedPlayer] = useState(null);
+  
   useEffect(() => {
     setCasualeCommunity(dataCommunity?.length > 0 ? random.choice(dataCommunity) : {id: 0, descrizione: "LISTA VUOTA!!!"})
     fetchRegistryList()
+    let timeout = setTimeout(()=>{
+      setExtractedPlayer(pickRandom(numbers, { count: numbExtrPlayer }));
+    },200
+  )
+    return ()=> clearTimeout(timeout)
   },[casuale])
 
   // Prima Estrazione
@@ -35,7 +45,6 @@ const Prepartita = () => {
       { ...randomDatiRari, weight: 1 },
     ];
     const estratto = rnd(listaEstrazione, (i) => i.weight);
-    setCasualeCommunity(dataCommunity.length > 0 ? random.choice(dataCommunity) : {id: 0, descrizione: "LISTA VUOTA!!!"})
     setCasuale(estratto);
   }, []);
   
@@ -50,10 +59,12 @@ const Prepartita = () => {
     notaBene,
   } = casuale ? casuale : {};
   
+  const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map(
+    (player) => player.id,
+  );
+  
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
-  
-  const FetchImprevistoMemo = memo(FetchImprevisto);
   
   return (
     <>
@@ -102,12 +113,12 @@ const Prepartita = () => {
               </>
             )}
             
-            {isImpCommunity && <FetchImprevistoMemo casualeCommunity={casualeCommunity} />}
+            {isImpCommunity && <FetchImprevisto extractedPlayer={extractedPlayer} casualeCommunity={casualeCommunity} />}
 
-            {ultEstrazione && (
+            {(ultEstrazione && !isImpCommunity) && (
               <SecondaEstrazioneDiretta
                 numbExtrPlayer={numbExtrPlayer}
-                baseEstrazione={baseEstrazione}
+                extractedPlayer={extractedPlayer}
               />
             )}
             {title === "Notte brava" && (

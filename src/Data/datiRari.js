@@ -1,5 +1,3 @@
-//import rnd from 'random-weight'
-
 export const datiRari = [
   {
     id: 21,
@@ -8,7 +6,7 @@ export const datiRari = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 2,
+    weight: 15,
   },
   {
     id: 22,
@@ -18,14 +16,12 @@ export const datiRari = [
     ultEstrazione: true,
     baseEstrazione: 30,
     numbExtrPlayer: 1,
-    weight: 1,
+    weight: 10,
   },
   {
     id: 999,
     title: "Nessun imprevisto",
     isImprev: false,
-    weight: 2,
+    weight: 15,
   },
 ];
-
-//export const randomDatiRari = rnd(datiRari, i => i.weight)

@@ -1,35 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, memo } from "react";
+import { useEffect } from "react";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RimandaImprevisto from "./RimandaImprevisto";
 import { supabase } from "../supabaseClient";
 import capitalize from "lodash.capitalize";
 
 const FetchImprevisto = (props) => {
+  const { casualeCommunity } = props;
 
-  const {casualeCommunity} = props
-  
-  const { id, titolo, descrizione, ultEstrazione, qtGiocatori, titolariRosa } = casualeCommunity
+  const { id, titolo, descrizione, ultEstrazione, qtGiocatori, titolariRosa } =
+    casualeCommunity;
 
+  const delElemento = async () => {
+    const { error } = await supabase.from("imprevisti").delete().eq("id", id);
+    error && console.log(error);
+  };
 
-    const delElemento = async () => {
-      const { error } = await supabase
-      .from("imprevisti")
-      .delete()
-      .eq("id", id);
-      error && console.log(error);
-    };
-    
-    useEffect(() => {
-      let timeout = setTimeout(() => {
-        id!== 0 && delElemento();
-        timeout = null;
-      }, 3000);
-      // Cleanup del timeout per evitare memory leak
-      return () => clearTimeout(timeout);
-    }, []);
-
-  const SecondaEstrazioneDirettaMemo = memo(SecondaEstrazioneDiretta);
+  useEffect(() => {
+    let timeout = setTimeout(() => {
+      id !== 0 && delElemento();
+      timeout = null;
+    }, 3000);
+    // Cleanup del timeout per evitare memory leak
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <section
@@ -50,7 +44,7 @@ const FetchImprevisto = (props) => {
         {capitalize(descrizione)}
       </p>
       {ultEstrazione && (
-        <SecondaEstrazioneDirettaMemo
+        <SecondaEstrazioneDiretta
           numbExtrPlayer={qtGiocatori}
           baseEstrazione={titolariRosa}
         />

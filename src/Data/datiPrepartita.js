@@ -1,5 +1,3 @@
-//import rnd from 'random-weight'
-
 export const datiPrepartita = [
   {
     id: 11,
@@ -9,7 +7,7 @@ export const datiPrepartita = [
     ultEstrazione: true,
     baseEstrazione: 11,
     numbExtrPlayer: 1,
-    weight: 2,
+    weight: 15,
   },
   {
     id: 12,
@@ -18,7 +16,7 @@ export const datiPrepartita = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 1,
+    weight: 10,
   },
   {
     id: 13,
@@ -27,16 +25,17 @@ export const datiPrepartita = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 1,
+    weight: 10,
   },
   {
     id: 14,
     title: "Sotto pressione",
-    description: "Se il tuo miglior giocatore offensivo non segna salta la prossima partita",
+    description:
+      "Se il tuo miglior giocatore offensivo non segna salta la prossima partita",
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 2,
+    weight: 15,
   },
   {
     id: 15,
@@ -44,14 +43,12 @@ export const datiPrepartita = [
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
-    weight: 1,
+    weight: 15,
   },
   {
     id: 999,
     title: "Nessun imprevisto",
     isImprev: false,
-    weight: 2,
+    weight: 15,
   },
 ];
-
-//export const randomDatiPrepartita = rnd(datiPrepartita, i => i.weight)

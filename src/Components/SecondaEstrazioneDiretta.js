@@ -1,24 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { memo, useState, useEffect } from "react";
+import React, { memo } from "react";
 import firstkit from "../assets/imgs/firstKit.png";
 import gkKit from "../assets/imgs/gkKit.png";
-import pickRandom from "pick-random";
-import { extrTitolari, extrRosa } from "../Funzioni/schemi";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 
 const SecondaEstrazioneDiretta = (props) => {
-  const { numbExtrPlayer, baseEstrazione } = props;
-  const [extractedPlayer, setExtractedPlayer] = useState(null);
+  const { numbExtrPlayer, extractedPlayer } = props;
 
-  const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map(
-    (player) => player.id,
-  );
 
   const IndicatoreGiocatoriImprMemo = memo(IndicatoreGiocatoriImpr);
-
-  useEffect(() => {
-    setExtractedPlayer(pickRandom(numbers, { count: numbExtrPlayer }));
-  }, []);
   
   return (
     <section
