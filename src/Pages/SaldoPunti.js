@@ -153,7 +153,7 @@ const SaldoPunti = () => {
               {mappedAcquisti}
             </div>
             {/* TOGGLE OVER 32 */}
-            <div class="p-2 flex items-center gap-2 text-xs absolute top-1 right-1">
+            <div className="p-2 flex items-center gap-2 text-xs absolute top-1 right-1">
               <label
                 htmlFor="switch-link"
                 className="cursor-pointer font-sans antialiased"
