@@ -13,7 +13,7 @@ const datiSettimana = [
     description:
       "Tramite il suo agente il giocatore fa giungere una richiesta di adeguamento del contratto per raggiungere il più pagato della rosa. Che fai? Accetti o lo cacci?",
     isImprev: true,
-    weight: 10,
+    weight: 8,
   },
   {
     id: 110,
@@ -44,7 +44,14 @@ const datiSettimana = [
     description:
       "Acquista tra gli svincolati un connazionale a scelta e schierali insieme per 4 partite.",
     isImprev: true,
-    weight: 10,
+    weight: 8,
+  },
+  {
+    id: 114,
+    title: "Agente problematico",
+    description: "Il giocatore chiede il rinnovo al 50% in più del suo attuale stipendio: rinnova o cedi.",
+    isImprev: true,
+    weight: 5,
   },
   {
     id: 999,

@@ -4,7 +4,6 @@ import useFetchData from "../Hooks/useFetchData";
 import { datiPrepartita } from "../Data/datiPrepartita";
 import UploadRegistro from "../Funzioni/UploadRegistro";
 import { datiMenoFrequenti } from "../Data/datiMenoFrequenti";
-import { datiRari } from "../Data/datiRari";
 import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
@@ -38,11 +37,9 @@ const Prepartita = () => {
   const estraiNumeroCasuale = useCallback(() => {
     const randomDatiPrepartita = rnd(datiPrepartita, (i) => i.weight);
     const randomDatiMenoFrequenti = rnd(datiMenoFrequenti, (i) => i.weight);
-    const randomDatiRari = rnd(datiRari, (i) => i.weight);
     const listaEstrazione = [
-      { ...randomDatiPrepartita, weight: 3 },
-      { ...randomDatiMenoFrequenti, weight: 2 },
-      { ...randomDatiRari, weight: 1 },
+      { ...randomDatiPrepartita, weight: 25 },
+      { ...randomDatiMenoFrequenti, weight: 10 },
     ];
     const estratto = rnd(listaEstrazione, (i) => i.weight);
     setCasuale(estratto);
