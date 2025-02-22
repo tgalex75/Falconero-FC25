@@ -47,13 +47,6 @@ const datiSettimana = [
     weight: 8,
   },
   {
-    id: 114,
-    title: "Agente problematico",
-    description: "Il giocatore chiede il rinnovo al 50% in più del suo attuale stipendio: rinnova o cedi.",
-    isImprev: true,
-    weight: 5,
-  },
-  {
     id: 999,
     title: "nessun imprevisto",
     description:
