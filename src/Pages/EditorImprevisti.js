@@ -204,12 +204,12 @@ const EditorImprevisti = () => {
               Titolo Imprevisto
               {errors.titolo && (
                 <span className="font-normal italic text-[--clr-ter]">
-                  Il campo "Titolo" è obbligatorio - max 20 caratteri
+                  Il campo "Titolo" è obbligatorio - max 50 caratteri
                 </span>
               )}
               <input
                 name="titolo"
-                {...register("titolo", { required: true, maxLength: 20 })}
+                {...register("titolo", { required: true, maxLength: 50 })}
                 className="block w-2/3 self-start rounded p-1 text-sm font-semibold uppercase text-black placeholder:normal-case placeholder:italic"
                 placeholder="Titolo dell'imprevisto"
               />
