@@ -40,28 +40,28 @@ export const bonusTrofei = [
 export const bonusCessioni = [
     {
         id: "c01",
-      nome: "≥70 +1.5",
-      valore: 1.5,
+      nome: "≥70 +2",
+      valore: 2,
     },
     {
         id: "c02",
-        nome: "≥75 +3",
-        valore: 3,
+        nome: "≥75 +4",
+        valore: 4,
     },
     {
         id: "c03",
-        nome: "≥80 +4.5",
-        valore: 4.5,
+        nome: "≥80 +5.5",
+        valore: 5.5,
     },
     {
         id: "c04",
-        nome: "≥85 +6",
-        valore: 6,
+        nome: "≥85 +7",
+        valore: 7,
     },
     {
         id: "c05",
-        nome: "≥90 +7.5",
-        valore: 7.5,
+        nome: "≥90 +9",
+        valore: 9,
     },
 ];
 
