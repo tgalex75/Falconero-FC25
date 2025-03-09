@@ -170,8 +170,7 @@ const SaldoPunti = () => {
                 htmlFor="switch-link"
                 className={`cursor-pointer font-sans antialiased ${isSerieMinore && "border-b-2 border-b-[--clr-ter] text-[--clr-ter]"}`}
               >
-                Serie Minore?{" "}
-                {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
+                Serie Minore<span>{isSerieMinore ? " " : "?"}</span>
               </label>
               <input
                 id="switch-link"
@@ -187,9 +186,8 @@ const SaldoPunti = () => {
                 htmlFor="switch-link"
                 className={`cursor-pointer font-sans antialiased ${isOver32 && "border-b-2 border-b-[--clr-ter] text-[--clr-ter]"}`}
               >
-                Over 32?{" "}
-                {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
-              </label>
+                Over 32<span>{isOver32 ? " " : "?"}</span>
+                </label>
               <input
                 id="switch-link"
                 type="checkbox"
