@@ -13,9 +13,15 @@ import { LuArrowUpWideNarrow, LuArrowDownWideNarrow } from "react-icons/lu";
 const SaldoPunti = () => {
   const [data, setData] = useState([]);
   const [isOver32, setIsOver32] = useState(false)
+  const [isSerieMinore, setIsSerieMinore] = useState(false)
 
   const checkisOver = () => {
     setIsOver32(!isOver32)
+    setIsSerieMinore(false)
+  }
+  const checkisSerieMinore = () => {
+    setIsSerieMinore(!isSerieMinore)
+    setIsOver32(false )
   }
 
   const fetchSaldo = async () => {
@@ -72,7 +78,8 @@ const SaldoPunti = () => {
       onClick={() => updateSaldoPunti(isOver32 ? el.valoreOver : el.valoreUnder)}
       className={bonusMalusStyle}
     >
-      {isOver32? el.nomeOver : el.nomeUnder}
+      {isOver32? el.nomeOver : isSerieMinore ? el.nomeSerieMinori : el.nomeUnder}
+      
     </div>
   ));
   const mappedTrofei = bonusTrofei.map((el) => (
@@ -152,11 +159,27 @@ const SaldoPunti = () => {
             <div className="grid h-auto w-full grid-cols-5 justify-center">
               {mappedAcquisti}
             </div>
+            {/* TOGGLE SERIE MINORE */}
+            <div className="p-2 flex items-center gap-2 text-xs absolute top-1 left-1">
+              <label
+                htmlFor="switch-link"
+                className={`cursor-pointer font-sans antialiased ${isSerieMinore && "border-b-2 border-b-[--clr-ter] text-[--clr-ter]"}`}
+              >
+                Serie Minore? {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
+              </label>
+              <input
+                id="switch-link"
+                type="checkbox"
+                checked={isSerieMinore}
+                onChange={checkisSerieMinore}
+                className="relative inline-block h-4 w-8 cursor-pointer appearance-none rounded-full before:absolute before:left-0 before:top-0 before:inline-block before:h-full before:w-full before:rounded-full before:bg-stone-400 before:transition-colors before:duration-200 before:ease-in after:absolute after:left-0 after:top-2/4 after:h-6 after:w-6 after:-translate-y-2/4 after:rounded-full after:border after:border-stone-500 after:bg-stone-600 after:transition-all after:duration-200 after:ease-in checked:before:bg-stone-200 checked:after:translate-x-1/2 checked:after:border-stone-200 disabled:cursor-not-allowed disabled:opacity-50 dark:checked:after:bg-purple-600"
+              />
+            </div>
             {/* TOGGLE OVER 32 */}
             <div className="p-2 flex items-center gap-2 text-xs absolute top-1 right-1">
               <label
                 htmlFor="switch-link"
-                className="cursor-pointer font-sans antialiased"
+                className={`cursor-pointer font-sans antialiased ${isOver32 && "border-b-2 border-b-[--clr-ter] text-[--clr-ter]"}`}
               >
                 Over 32? {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
               </label>
