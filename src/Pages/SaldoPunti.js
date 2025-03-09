@@ -12,17 +12,17 @@ import { LuArrowUpWideNarrow, LuArrowDownWideNarrow } from "react-icons/lu";
 
 const SaldoPunti = () => {
   const [data, setData] = useState([]);
-  const [isOver32, setIsOver32] = useState(false)
-  const [isSerieMinore, setIsSerieMinore] = useState(false)
+  const [isOver32, setIsOver32] = useState(false);
+  const [isSerieMinore, setIsSerieMinore] = useState(false);
 
   const checkisOver = () => {
-    setIsOver32(!isOver32)
-    setIsSerieMinore(false)
-  }
+    setIsOver32(!isOver32);
+    setIsSerieMinore(false);
+  };
   const checkisSerieMinore = () => {
-    setIsSerieMinore(!isSerieMinore)
-    setIsOver32(false )
-  }
+    setIsSerieMinore(!isSerieMinore);
+    setIsOver32(false);
+  };
 
   const fetchSaldo = async () => {
     let { data: saldo_punti, error } = await supabase
@@ -50,12 +50,12 @@ const SaldoPunti = () => {
   }, []);
 
   const resetPunti = async () => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("saldo-punti")
       .update({ punti: 10 })
       .eq("id", id)
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
+    error && console.log("error: ", error);
     fetchSaldo();
   };
 
@@ -75,11 +75,16 @@ const SaldoPunti = () => {
   const mappedAcquisti = malusAcquisti.map((el) => (
     <div
       key={el.id}
-      onClick={() => updateSaldoPunti(isOver32 ? el.valoreOver : el.valoreUnder)}
+      onClick={() =>
+        updateSaldoPunti(isOver32 ? el.valoreOver : isSerieMinore ? el.valoreSerieMinore : el.valoreUnder)
+      }
       className={bonusMalusStyle}
     >
-      {isOver32? el.nomeOver : isSerieMinore ? el.nomeSerieMinori : el.nomeUnder}
-      
+      {isOver32
+        ? el.nomeOver
+        : isSerieMinore
+          ? el.nomeSerieMinori
+          : el.nomeUnder}
     </div>
   ));
   const mappedTrofei = bonusTrofei.map((el) => (
@@ -160,12 +165,13 @@ const SaldoPunti = () => {
               {mappedAcquisti}
             </div>
             {/* TOGGLE SERIE MINORE */}
-            <div className="p-2 flex items-center gap-2 text-xs absolute top-1 left-1">
+            <div className="absolute left-1 top-1 flex items-center gap-2 p-2 text-xs">
               <label
                 htmlFor="switch-link"
                 className={`cursor-pointer font-sans antialiased ${isSerieMinore && "border-b-2 border-b-[--clr-ter] text-[--clr-ter]"}`}
               >
-                Serie Minore? {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
+                Serie Minore?{" "}
+                {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
               </label>
               <input
                 id="switch-link"
@@ -176,12 +182,13 @@ const SaldoPunti = () => {
               />
             </div>
             {/* TOGGLE OVER 32 */}
-            <div className="p-2 flex items-center gap-2 text-xs absolute top-1 right-1">
+            <div className="absolute right-1 top-1 flex items-center gap-2 p-2 text-xs">
               <label
                 htmlFor="switch-link"
                 className={`cursor-pointer font-sans antialiased ${isOver32 && "border-b-2 border-b-[--clr-ter] text-[--clr-ter]"}`}
               >
-                Over 32? {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
+                Over 32?{" "}
+                {/* <span className="ms-3">{isOver32 ? "SI" : "NO"}</span> */}
               </label>
               <input
                 id="switch-link"
