@@ -8,12 +8,12 @@ import FetchImprevisto from "../Funzioni/FetchImprevisto";
 import LayoutBase from "../Components/LayoutBase";
 import Dado from "../Components/Dado";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
+import BonusAnnuali from "../Components/BonusAnnuali";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import rnd from "random-weight";
-import random from "random"
+import random from "random";
 import { extrTitolari, extrRosa } from "../Funzioni/schemi";
 import pickRandom from "pick-random";
-
 
 const Prepartita = () => {
   const { data: dataCommunity, fetchRegistryList } = useFetchData("imprevisti");
@@ -21,19 +21,22 @@ const Prepartita = () => {
   const [casualeCommunity, setCasualeCommunity] = useState(null);
 
   const [extractedPlayer, setExtractedPlayer] = useState(null);
-  
+
   useEffect(() => {
-    setCasualeCommunity(dataCommunity?.length > 0 ? random.choice(dataCommunity) : {id: 0, descrizione: "LISTA VUOTA!!!"})
-    fetchRegistryList()
-    let timeout = setTimeout(()=>{
+    setCasualeCommunity(
+      dataCommunity?.length > 0
+        ? random.choice(dataCommunity)
+        : { id: 0, descrizione: "LISTA VUOTA!!!" },
+    );
+    fetchRegistryList();
+    let timeout = setTimeout(() => {
       setExtractedPlayer(pickRandom(numbers, { count: numbExtrPlayer }));
-    },200
-  )
-    return ()=> clearTimeout(timeout)
-  },[casuale])
+    }, 200);
+    return () => clearTimeout(timeout);
+  }, [casuale]);
 
   // Prima Estrazione
-  
+
   const estraiNumeroCasuale = useCallback(() => {
     const randomDatiPrepartita = rnd(datiPrepartita, (i) => i.weight);
     const randomDatiMenoFrequenti = rnd(datiMenoFrequenti, (i) => i.weight);
@@ -44,7 +47,7 @@ const Prepartita = () => {
     const estratto = rnd(listaEstrazione, (i) => i.weight);
     setCasuale(estratto);
   }, []);
-  
+
   const {
     id,
     title,
@@ -55,14 +58,14 @@ const Prepartita = () => {
     numbExtrPlayer,
     notaBene,
   } = casuale ? casuale : {};
-  
+
   const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map(
     (player) => player.id,
   );
-  
+
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
-  
+
   return (
     <>
       <LayoutBase
@@ -90,11 +93,11 @@ const Prepartita = () => {
               <>
                 <h3
                   style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`text-4xl font-extrabold uppercase flex-1 ${
+                  className={`flex-1 text-4xl font-extrabold uppercase ${
                     title === "PAROLA ALLA COMMUNITY!" && "invisible"
                   }, ${
                     id === 999 &&
-                    "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 absolute"
+                    "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
                   }`}
                 >
                   {title}
@@ -109,10 +112,15 @@ const Prepartita = () => {
                 </p>
               </>
             )}
-            
-            {isImpCommunity && <FetchImprevisto extractedPlayer={extractedPlayer} casualeCommunity={casualeCommunity} />}
 
-            {(ultEstrazione && !isImpCommunity) && (
+            {isImpCommunity && (
+              <FetchImprevisto
+                extractedPlayer={extractedPlayer}
+                casualeCommunity={casualeCommunity}
+              />
+            )}
+
+            {ultEstrazione && !isImpCommunity && (
               <SecondaEstrazioneDiretta
                 numbExtrPlayer={numbExtrPlayer}
                 extractedPlayer={extractedPlayer}
@@ -124,6 +132,7 @@ const Prepartita = () => {
                 <RegistroSerieNegativa />
               </>
             )}
+            {isImprev && <BonusAnnuali />}
           </>
         )}
       </LayoutBase>

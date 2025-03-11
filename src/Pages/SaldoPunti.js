@@ -14,14 +14,13 @@ const SaldoPunti = () => {
   const [data, setData] = useState([]);
   const [isOver32, setIsOver32] = useState(false);
   const [isSerieMinore, setIsSerieMinore] = useState(false);
+  const isSerieMinoreOver = isOver32 && isSerieMinore;
 
   const checkisOver = () => {
     setIsOver32(!isOver32);
-    setIsSerieMinore(false);
   };
   const checkisSerieMinore = () => {
     setIsSerieMinore(!isSerieMinore);
-    setIsOver32(false);
   };
 
   const fetchSaldo = async () => {
@@ -76,15 +75,25 @@ const SaldoPunti = () => {
     <div
       key={el.id}
       onClick={() =>
-        updateSaldoPunti(isOver32 ? el.valoreOver : isSerieMinore ? el.valoreSerieMinore : el.valoreUnder)
+        isSerieMinoreOver
+          ? updateSaldoPunti(el.valoreSerieMinoreOver)
+          : updateSaldoPunti(
+              isOver32
+                ? el.valoreOver
+                : isSerieMinore
+                  ? el.valoreSerieMinore
+                  : el.valoreUnder,
+            )
       }
       className={bonusMalusStyle}
     >
-      {isOver32
-        ? el.nomeOver
-        : isSerieMinore
-          ? el.nomeSerieMinori
-          : el.nomeUnder}
+      {isSerieMinoreOver
+        ? el.nomeSerieMinoriOver
+        : isOver32
+          ? el.nomeOver
+          : isSerieMinore
+            ? el.nomeSerieMinori
+            : el.nomeUnder}
     </div>
   ));
   const mappedTrofei = bonusTrofei.map((el) => (
@@ -187,7 +196,7 @@ const SaldoPunti = () => {
                 className={`cursor-pointer font-sans antialiased ${isOver32 && "border-b-2 border-b-[--clr-ter] text-[--clr-ter]"}`}
               >
                 Over 32<span>{isOver32 ? " " : "?"}</span>
-                </label>
+              </label>
               <input
                 id="switch-link"
                 type="checkbox"

@@ -17,11 +17,11 @@ const BonusAnnuali = () => {
   };
 
   const uploadListDB = async (list) => {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("bonus-annuali")
       .insert([{ id: list.id }])
       .select();
-    data ? console.log("data: ", data) : console.log("error: ", error);
+    error && console.log("error: ", error);
     fetchLista();
   };
 
@@ -30,7 +30,7 @@ const BonusAnnuali = () => {
       .from("bonus-annuali")
       .delete("id")
       .lt("id", 4);
-    console.log(error);
+    error && console.log(error);
     fetchLista();
   };
 
@@ -51,7 +51,7 @@ const BonusAnnuali = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.7, duration: 0.7 }}
-      className="absolute right-1 top-36 mt-2 hidden h-2/5 w-[20vw] items-center justify-between overflow-hidden rounded-lg bg-black/50 p-2 uppercase text-gray-300 md:flex md:flex-col"
+      className="absolute right-1 top-1 mt-2 hidden h-1/4 w-[20vw] items-center justify-between overflow-hidden rounded-lg bg-black/20 p-2 uppercase text-gray-300 md:flex md:flex-col"
     >
       <h6 className="font-bold uppercase text-[--clr-prim]">Bonus Annuali</h6>
       <section className="flex w-full items-center justify-around gap-1 p-1">
@@ -65,7 +65,7 @@ const BonusAnnuali = () => {
             className="flex h-full w-1/3 items-center justify-center rounded py-1"
             key={item.id}
           >
-            <div className="flex min-h-full w-full flex-col items-center justify-center rounded-t-lg bg-orange-600/95 text-center">
+            <div className="flex min-h-full w-full flex-col text-[--clr-sec] items-center justify-center rounded-t-lg bg-[--clr-ter] text-center">
               <h6 className="text-[.6rem]">Bonus</h6>
               <h3 className="mx-2 text-sm font-bold uppercase md:text-sm">
                 {item.id}
@@ -74,10 +74,10 @@ const BonusAnnuali = () => {
           </motion.div>
         ))}
       </section>
-      <div className="flex h-1/6 w-full items-center justify-between gap-2 px-4 text-[.8rem] font-semibold">
+      <div className="flex h-1/3 w-full items-center justify-between gap-2 px-4 text-[.8rem] font-semibold">
         <button
           type="button"
-          className="flex h-5/6 w-full items-center justify-center rounded border border-sky-700 px-3 text-center text-white shadow-md transition duration-200 ease-in hover:bg-purple-700"
+          className="flex h-3/4 w-full items-center justify-center rounded border border-purple-700 px-3 text-center text-white shadow-md transition duration-200 ease-in hover:bg-purple-700"
           style={limiteRaggiunto ? { pointerEvents: "none", opacity: 0.3 } : {}}
           onClick={() =>
             addVociBonus({
@@ -89,7 +89,7 @@ const BonusAnnuali = () => {
         </button>
         <button
           type="button"
-          className="flex h-5/6 w-full items-center justify-center rounded border border-[--clr-prim] px-3 text-center text-white shadow-md transition duration-200 ease-in hover:bg-[--clr-prim]"
+          className="flex h-3/4 w-full items-center justify-center rounded border border-red-700 px-3 text-center text-white shadow-md transition duration-200 ease-in hover:bg-red-700"
           onClick={azzeraVociBonus}
         >
           Azzera

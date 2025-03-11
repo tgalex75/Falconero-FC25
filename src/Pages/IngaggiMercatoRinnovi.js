@@ -1,17 +1,15 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
 import RegistroGiocatori from "../Components/RegistroGiocatori";
 import { supabase } from "../supabaseClient";
 import { v4 as uuidv4 } from "uuid";
-import { MdArrowForward } from "react-icons/md";
 import BonusAnnuali from "../Components/BonusAnnuali";
 import useFetchData from "../Hooks/useFetchData";
 
 const IngaggiMercatoRinnovi = (props) => {
-  const {data: vociRegistro, fetchRegistryList} = useFetchData("registroo")
+  const { data: vociRegistro, fetchRegistryList } = useFetchData("registroo");
   const [casuale, setCasuale] = useState(null);
 
   const estraiNumeroCasuale = () => {
@@ -28,7 +26,7 @@ const IngaggiMercatoRinnovi = (props) => {
     {
       tipo: "Mercato",
       msgIsImpr: "Mercenario",
-      msgNoImpr: "Bilancio in Ordine",
+      msgNoImpr: "Bilancio OK",
       descrIsImpr: "Accetta l'offerta o raddoppia l'ingaggio appena possibile",
       descrNoImpr: "Totale libertà di scelta",
       linkTo: "/offerte-mercato",
@@ -51,10 +49,6 @@ const IngaggiMercatoRinnovi = (props) => {
   );
 
   const { msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr } = msgImprevisto[0];
-
-  const linksRapidi = listaMsgImprevisto.filter(
-    (el) => el.tipo !== tipoImprevisto,
-  );
 
   const uploadListDB = async (list) => {
     const { data, error } = await supabase
@@ -104,9 +98,7 @@ const IngaggiMercatoRinnovi = (props) => {
         className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl bg-black/50 px-4 pb-4 text-center shadow-lg ring ring-inset ring-white/75 md:px-10 md:pb-8"
       >
         {!casuale && (
-          <h2
-            className=" andika-regular-italic text-5xl italic"
-          >
+          <h2 className="andika-regular-italic text-5xl italic">
             Buzzzz it!...
           </h2>
         )}
@@ -135,7 +127,7 @@ const IngaggiMercatoRinnovi = (props) => {
               style={{
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
-              className="mt-4 px-4 text-2xl md:w-3/5 md:text-4xl andika-regular"
+              className="andika-regular mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
             >
               {isImpr ? descrIsImpr : descrNoImpr}
             </p>
@@ -158,7 +150,7 @@ const IngaggiMercatoRinnovi = (props) => {
                 />
                 <button
                   type="button"
-                  className="h-10 w-1/2 rounded-lg bg-purple-700 px-2 py-2 text-center text-sm font-bold text-gray-300 shadow-md transition duration-200 ease-in hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2  focus:ring-offset-indigo-200 "
+                  className="h-10 w-1/2 rounded-lg bg-purple-700 px-2 py-2 text-center text-sm font-bold text-gray-300 shadow-md transition duration-200 ease-in hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter]"
                   onClick={() =>
                     uploadListDB({
                       id: uuidv4(),
@@ -172,56 +164,16 @@ const IngaggiMercatoRinnovi = (props) => {
                 </button>
               </div>
             </div>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.7, duration: 0.7 }}
-              className="absolute right-1 top-1 hidden h-auto w-[20vw] items-start gap-2 overflow-hidden rounded-lg bg-black/50 px-2 pt-2 pb-4 mb-2 uppercase text-gray-300 md:flex md:flex-col"
-            >
-              <h6 className="uppercase text-[--clr-prim] self-center">
-                Links Rapidi
-              </h6>
-
-              {linksRapidi.map((el, i) => {
-                return (
-                  <motion.div
-                    whileHover={{ x: ".5rem" }}
-                    transition={{
-                      type: "spring",
-                      duration: 0.4,
-                      ease: "easeIn",
-                    }}
-                    key={i}
-                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
-                  >
-                    <MdArrowForward />
-                    <Link to={el.linkTo}>{el.linkDesc}</Link>
-                  </motion.div>
-                );
-              })}
-              <motion.div
-                    whileHover={{ x: ".5rem" }}
-                    transition={{
-                      type: "spring",
-                      duration: 0.4,
-                      ease: "easeIn",
-                    }}
-                    key="prepartita"
-                    className="flex w-full items-center justify-start gap-4 hover:text-[--clr-ter]"
-                  >
-                    <MdArrowForward />
-                    <Link to="/prepartita">Prepartita</Link>
-                  </motion.div>
-            </motion.div>
             <BonusAnnuali />
           </>
         )}
-        <RegistroGiocatori
-          vociRegistro={vociRegistro}
-          deleteListDB={deleteListDB}
-          removeVociRegistro={removeVociRegistro}
-          tipoImprevisto={tipoImprevisto}
-        />
+        {tipoImprevisto === "Mercato" && (
+          <RegistroGiocatori
+            vociRegistro={vociRegistro}
+            deleteListDB={deleteListDB}
+            removeVociRegistro={removeVociRegistro}
+          />
+        )}
       </motion.div>
 
       {<Dado clickFunc={estraiNumeroCasuale} />}
