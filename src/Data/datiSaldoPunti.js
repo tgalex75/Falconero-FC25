@@ -4,6 +4,7 @@ import { IoMdTrendingDown, IoMdTrendingUp } from "react-icons/io";
 import { PiListBulletsBold } from "react-icons/pi";
 import { IoMdPodium } from "react-icons/io";
 import { TbPlayFootball } from "react-icons/tb";
+import { GiGoalKeeper } from "react-icons/gi";
 
 export const bonusTrofei = [
     {
@@ -186,5 +187,11 @@ export const piazzamentoCampionato = [
       nome: "Assist +3",
       valore: 3,
       icon: <TbPlayFootball size={28} className="mb-1" />,
+    },
+    {
+      id: "cls01",
+      nome: "Portiere +3",
+      valore: 3,
+      icon: <GiGoalKeeper size={28} className="mb-1" />,
     },
   ]
