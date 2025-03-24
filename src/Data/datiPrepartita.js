@@ -31,7 +31,7 @@ export const datiPrepartita = [
     id: 14,
     title: "Sotto pressione",
     description:
-      "Se il tuo miglior giocatore offensivo non segna salta la prossima partita",
+      "Se il tuo miglior giocatore offensivo non segna (o non serve almeno due assist) salta la prossima partita",
     isImprev: true,
     ultEstrazione: false,
     numbExtrPlayer: 0,
