@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
+import BonusAnnuali from "../Components/BonusAnnuali";
 
 const IngaggiMercatoRinnovi = (props) => {
   const [casuale, setCasuale] = useState(null);
@@ -91,6 +92,7 @@ const IngaggiMercatoRinnovi = (props) => {
             </p>
           </>
         )}
+        {isImpr && <BonusAnnuali />}
       </motion.div>
 
       {<Dado clickFunc={estraiNumeroCasuale} />}
