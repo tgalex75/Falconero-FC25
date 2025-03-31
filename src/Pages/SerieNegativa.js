@@ -1,20 +1,26 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect } from "react";
 import Dado from "../Components/Dado";
 import random from "random";
 import datiSerieNegativa from "../Data/datiSerieNegativa";
 import SecondaEstrazioneDiretta from "../Components/SecondaEstrazioneDiretta";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import { motion } from "framer-motion";
+import { extrTitolari, extrRosa } from "../Funzioni/schemi";
 import UploadRegistro from "../Funzioni/UploadRegistro";
+import pickRandom from "pick-random";
+
 const SerieNegativa = () => {
   const [casuale, setCasuale] = useState(null);
+
+  const [extractedPlayer, setExtractedPlayer] = useState(null);
 
   // Prima Estrazione
 
   const estraiNumeroCasuale = () => {
     setCasuale(random.choice(datiSerieNegativa));
   };
-
+  
   const {
     title,
     description,
@@ -23,6 +29,17 @@ const SerieNegativa = () => {
     baseEstrazione,
     numbExtrPlayer,
   } = casuale ? casuale : {};
+
+  const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map(
+    (player) => player.id,
+  );
+
+  useEffect(()=>{
+    let timeout = setTimeout(() => {
+      casuale && setExtractedPlayer(pickRandom(numbers, { count: numbExtrPlayer }));
+    }, 50);
+    return () => clearTimeout(timeout);
+  },[numbExtrPlayer])
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
@@ -78,7 +95,7 @@ const SerieNegativa = () => {
               {ultEstrazione && (
                 <SecondaEstrazioneDiretta
                   numbExtrPlayer={numbExtrPlayer}
-                  baseEstrazione={baseEstrazione}
+                  extractedPlayer={extractedPlayer}
                 />
               )}
               {isImprev && <UploadRegistro title={title} />}

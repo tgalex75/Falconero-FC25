@@ -4,7 +4,6 @@ import { AnimatePresence } from "framer-motion";
 import Home from "../Pages/Home";
 import Prepartita from "../Pages/Prepartita";
 import Settimana from "../Pages/Settimana";
-import RegistroRiepilogo from "../Pages/RegistroRiepilogo";
 import SalvaPerDopo from "../Pages/SalvaPerDopo";
 import RiepilogoImprevisti from "../Pages/RiepilogoImprevisti";
 import IngaggiMercatoRinnovi from "../Pages/IngaggiMercatoRinnovi";
@@ -23,7 +22,6 @@ const AnimatedRoutes = () => {
         <Route path="/home" element={<Home />} />
         <Route path="/prepartita" element={<Prepartita />} />
         <Route path="/settimana" element={<Settimana />} />
-        <Route path="/registro-giocatori" element={<RegistroRiepilogo />} />
         <Route path="/editor-imprevisti" element={<EditorImprevisti />} />
         <Route path="/riepilogo-imprevisti" element={<RiepilogoImprevisti />} />
         <Route path="/imprevisti-sospesi" element={<SalvaPerDopo />} />

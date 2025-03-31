@@ -1,15 +1,9 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import Dado from "../Components/Dado";
 import { motion } from "framer-motion";
 import { isMobile } from "react-device-detect";
-import RegistroGiocatori from "../Components/RegistroGiocatori";
-import { supabase } from "../supabaseClient";
-import { v4 as uuidv4 } from "uuid";
-import BonusAnnuali from "../Components/BonusAnnuali";
-import useFetchData from "../Hooks/useFetchData";
 
 const IngaggiMercatoRinnovi = (props) => {
-  const { data: vociRegistro, fetchRegistryList } = useFetchData("registroo");
   const [casuale, setCasuale] = useState(null);
 
   const estraiNumeroCasuale = () => {
@@ -17,8 +11,6 @@ const IngaggiMercatoRinnovi = (props) => {
   };
 
   const isImpr = casuale === 7;
-
-  const inputRef = useRef(null);
 
   const tipoImprevisto = props.tipoImprevisto;
 
@@ -49,40 +41,6 @@ const IngaggiMercatoRinnovi = (props) => {
   );
 
   const { msgNoImpr, msgIsImpr, descrIsImpr, descrNoImpr } = msgImprevisto[0];
-
-  const uploadListDB = async (list) => {
-    const { data, error } = await supabase
-      .from("registroo")
-      .insert([
-        {
-          id: list.id,
-          name: list.name,
-          description: list.description,
-          tipo: list.tipo,
-        },
-      ])
-      .select();
-    data ? console.log() : console.log("error: ", error);
-    fetchRegistryList();
-  };
-
-  const deleteListDB = async () => {
-    const { error } = await supabase
-      .from("registroo")
-      .delete("name")
-      .neq("name", null);
-    error && console.log(error);
-    fetchRegistryList();
-  };
-
-  const removeVociRegistro = async (element) => {
-    const { error } = await supabase
-      .from("registroo")
-      .delete()
-      .eq("id", element);
-    error && console.log(error);
-    fetchRegistryList();
-  };
 
   return (
     <section className="flex h-full w-full select-none flex-col items-center justify-around gap-2 px-4 py-6 font-bold md:p-8">
@@ -131,48 +89,7 @@ const IngaggiMercatoRinnovi = (props) => {
             >
               {isImpr ? descrIsImpr : descrNoImpr}
             </p>
-            {/* Pulsanti per inserimento nome giocatore nel registro */}
-            <div className="hidden text-start md:flex md:w-1/3 md:flex-col">
-              <label
-                htmlFor="nome-giocatore"
-                className="mb-1 inline-block text-xs text-gray-300 md:text-sm"
-              >
-                Giocatore da annotare nel registro
-              </label>
-              <div className="hidden items-center justify-between gap-2 md:flex">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  id="nome-giocatore"
-                  className="h-10 w-1/2 appearance-none rounded-lg border border-gray-300 border-transparent bg-white px-2 py-2 text-sm text-gray-700 placeholder-gray-400 shadow-sm focus:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  name="nomeGiocatore"
-                  placeholder="Nome del giocatore"
-                />
-                <button
-                  type="button"
-                  className="h-10 w-1/2 rounded-lg bg-purple-700 px-2 py-2 text-center text-sm font-bold text-gray-300 shadow-md transition duration-200 ease-in hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-[--clr-ter]"
-                  onClick={() =>
-                    uploadListDB({
-                      id: uuidv4(),
-                      name: inputRef.current.value,
-                      description: isImpr ? msgIsImpr : msgNoImpr,
-                      tipo: tipoImprevisto,
-                    })
-                  }
-                >
-                  Aggiungi al Registro
-                </button>
-              </div>
-            </div>
-            <BonusAnnuali />
           </>
-        )}
-        {tipoImprevisto === "Mercato" && (
-          <RegistroGiocatori
-            vociRegistro={vociRegistro}
-            deleteListDB={deleteListDB}
-            removeVociRegistro={removeVociRegistro}
-          />
         )}
       </motion.div>
 

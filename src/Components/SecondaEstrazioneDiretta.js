@@ -5,7 +5,7 @@ import gkKit from "../assets/imgs/gkKit.png";
 import IndicatoreGiocatoriImpr from "./IndicatoreGiocatoriImpr";
 
 const SecondaEstrazioneDiretta = (props) => {
-  const { numbExtrPlayer, extractedPlayer } = props;
+  const { numbExtrPlayer, extractedPlayer } = props;  
   
   return (
     <section
