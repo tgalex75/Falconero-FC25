@@ -72,7 +72,7 @@ export const CartProvider = ({ children }) => {
     const { error } = await supabase
       .from("registroimprevisti")
       .delete()
-      .eq("title", element.title);
+      .eq("id", element.id);
     error && console.log(error);
     fetchDataDB()
   };
@@ -80,8 +80,8 @@ export const CartProvider = ({ children }) => {
   const deleteListDB = async () => {
     const { error } = await supabase
       .from("registroimprevisti")
-      .delete("id")
-      .lt("id", 1000);
+      .delete()
+      .neq("title", -1);
     error && console.log(error);
   };
 

@@ -20,7 +20,7 @@ export const mySelect = (labelText, ref, func, arr, defaultVal) => {
     <div className="flex gap-1 flex-col">
       <label
         htmlFor="tattica"
-        className="block text-xs font-medium text-gray-300"
+        className="block text-sm xl:text-xs font-medium text-gray-300"
       >
         {labelText}
       </label>
@@ -58,3 +58,9 @@ export const extrTitolari = titolari.map((el) => {
 export const extrRosa = interaRosa.map((el) => {
   return { id: el, nome: el };
 });
+
+export const numbers = (suQtGiocatori) => {
+  return (suQtGiocatori === 11 ? extrTitolari : extrRosa).map(
+    (player) => player.id,
+  );
+}

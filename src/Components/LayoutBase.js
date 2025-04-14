@@ -5,7 +5,7 @@ import  random  from "random";
 const LayoutBase = ({ titoloH1, isImprev, casuale, children }) => {
   return (
     <section
-      className="flex h-dvh w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-bold md:justify-around md:p-8"
+      className="flex h-dvh w-full select-none flex-col items-center justify-start gap-2 px-4 py-6 font-bold md:justify-around xl:p-8"
     >
       {/* BOX PRIMA ESTRAZIONE */}
       <h1>{titoloH1}</h1>
@@ -16,7 +16,7 @@ const LayoutBase = ({ titoloH1, isImprev, casuale, children }) => {
         key={random.float()}
         id="containerPrimaEstrazione"
         style={isImprev && { color: "var(--clr-ter)" }}
-        className="flex h-full w-full select-none flex-col items-center justify-around gap-4 rounded-xl bg-black/30 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:justify-evenly md:gap-2 md:px-10"
+        className="flex h-full w-full select-none flex-col items-center justify-around gap-4 rounded-xl bg-black/30 px-4 py-2 text-center shadow-lg ring ring-inset ring-white/75 md:justify-evenly md:gap-2 xl:px-10"
       >
         {!casuale && (
           <h2 className="andika-regular-italic flex h-full items-center justify-center text-5xl italic">

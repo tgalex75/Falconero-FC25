@@ -12,7 +12,7 @@ import BonusAnnuali from "../Components/BonusAnnuali";
 import RegistroSerieNegativa from "../Components/RegistroSerieNegativa";
 import rnd from "random-weight";
 import random from "random";
-import { extrTitolari, extrRosa } from "../Funzioni/schemi";
+import { numbers } from "../Funzioni/schemi";
 import pickRandom from "pick-random";
 
 const Prepartita = () => {
@@ -22,15 +22,16 @@ const Prepartita = () => {
 
   const [extractedPlayer, setExtractedPlayer] = useState(null);
 
+  
   useEffect(() => {
     setCasualeCommunity(
       dataCommunity?.length > 0
-        ? random.choice(dataCommunity)
+      ? random.choice(dataCommunity)
         : { id: 0, descrizione: "LISTA VUOTA!!!" },
-    );
+      );
     fetchRegistryList();
     let timeout = setTimeout(() => {
-      setExtractedPlayer(pickRandom(numbers, { count: numbExtrPlayer }));
+      setExtractedPlayer(pickRandom(numbersEx, { count: numbExtrPlayer }));
     }, 200);
     return () => clearTimeout(timeout);
   }, [casuale]);
@@ -47,7 +48,7 @@ const Prepartita = () => {
     const estratto = rnd(listaEstrazione, (i) => i.weight);
     setCasuale(estratto);
   }, []);
-
+  
   const {
     id,
     title,
@@ -58,13 +59,10 @@ const Prepartita = () => {
     numbExtrPlayer,
     notaBene,
   } = casuale ? casuale : {};
-
-  const numbers = (baseEstrazione === 11 ? extrTitolari : extrRosa).map(
-    (player) => player.id,
-  );
-
+  
   const titoloH1 = "Prepartita";
   const isImpCommunity = title === "PAROLA ALLA COMMUNITY!";
+  const numbersEx = numbers(baseEstrazione)
 
   return (
     <>
@@ -83,7 +81,7 @@ const Prepartita = () => {
               }}
               className={
                 isImprev
-                  ? "text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1"
+                  ? "text-7xl xl:text-5xl font-extrabold uppercase md:relative md:top-2 md:flex-1"
                   : "invisible"
               }
             >
@@ -92,17 +90,16 @@ const Prepartita = () => {
             {!isImpCommunity && (
               <>
                 <h3
-                  style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
-                  className={`flex-1 text-4xl font-extrabold uppercase ${
+                  className={`flex-1 text-6xl xl:text-4xl font-extrabold uppercase ${
                     title === "PAROLA ALLA COMMUNITY!" && "invisible"
                   }, ${
                     id === 999 &&
-                    "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+                    "absolute left-1/2 top-1/3 xl:top-1/2 -translate-x-1/2 -translate-y-1/2"
                   }`}
                 >
                   {title}
                 </h3>
-                <p className="andika-regular mt-4 w-1/2 px-4 text-xl md:flex-1 md:text-2xl">
+                <p className="andika-regular xl:mt-4 w-4/5 xl:w-1/2 px-4 text-3xl md:flex-1 xl:text-2xl">
                   {description && description}
                 </p>
 
@@ -116,6 +113,7 @@ const Prepartita = () => {
             {isImpCommunity && (
               <FetchImprevisto
                 extractedPlayer={extractedPlayer}
+                setExtractedPlayer={setExtractedPlayer}
                 casualeCommunity={casualeCommunity}
               />
             )}

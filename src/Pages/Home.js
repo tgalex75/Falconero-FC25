@@ -65,7 +65,7 @@ const Home = () => {
             style={{
               zIndex: el.id,
             }}
-            className="ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group h-1/2 grow basis-1/2 cursor-pointer items-center justify-start overflow-hidden transition-all duration-150 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 md:basis-1/3"
+            className="ease-[cubic-bezier(0.770, 0.000, 0.175, 1.000)] group h-1/3 grow basis-1/2 xl:basis-1/3 cursor-pointer items-center justify-start overflow-hidden transition-all duration-150 [box-shadow:-12px_0px_10px_-3px_rgba(2,2,2,0.5)] hover:text-gray-300 xl:h-1/2"
           >
             <Link to={el.link} className="flex h-full bg-transparent">
               <h2
@@ -75,7 +75,7 @@ const Home = () => {
                 {el.impr}
               </h2>
               <div
-                className={`flex w-full items-center justify-center bg-black/20 hover:bg-slate-800 transition-all`}
+                className={`flex w-full items-center justify-center bg-black/20 transition-all hover:bg-slate-800`}
               >
                 {el.img}
               </div>

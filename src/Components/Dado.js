@@ -16,7 +16,7 @@ const Dado = (props) => {
         scale: 1.2,
       }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="absolute bottom-0 right-0 mb-14 me-4 flex h-24 w-24 cursor-pointer select-none items-center justify-center rounded-full md:m-4 md:p-3 md:hover:bg-gray-500/10"
+      className="absolute bottom-2 xl:bottom-0 right-2 xl:right-0 mb-20 xl:mb-14 xl:me-4 flex h-24 w-24 cursor-pointer select-none items-center justify-center md:m-4 md:p-3"
       style={{
         backgroundPosition: "center",
         backgroundSize: "cover",
