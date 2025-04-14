@@ -95,27 +95,27 @@ const EditorImprevisti = () => {
       >
         {/* Lista Imprevisti Attuale */}
 
-        <div className="relative flex min-h-[40dvh] w-full flex-col items-center justify-center gap-2 p-1">
+        <div className="relative flex min-h-[60vh] xl:min-h-[40dvh] w-full flex-col items-center justify-center gap-2 p-1">
           <header className="flex w-full items-center justify-between p-1">
             <strong className="w-full text-end text-sm font-semibold text-[--clr-ter]">
               Numero imprevisti: {data.length}
             </strong>
           </header>
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-4">
+          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto rounded-lg border p-1 xl:p-4">
             {data?.map((el) => (
               <li
                 key={el.id}
                 className="flex select-all items-center justify-between gap-2 bg-gray-700/20 ps-2 text-left text-sm font-normal hover:bg-gray-600/50"
               >
                 <input
-                  className="w-[15%] select-all rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
+                  className="w-[25%] xl:w-[15%] select-all rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium uppercase"
                   defaultValue={el.titolo}
                   ref={(element) =>
                     (aggiornaTitoloImprRef.current[el.id] = element)
                   }
                 />
                 <input
-                  className="w-[75%] rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
+                  className="w-[65%] xl:w-[75%] rounded border border-gray-300/20 bg-transparent p-1 pe-6 font-medium"
                   defaultValue={el.descrizione}
                   ref={(element) =>
                     (aggiornaDescImprRef.current[el.id] = element)
@@ -194,7 +194,7 @@ const EditorImprevisti = () => {
 
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex h-full w-full flex-col items-center justify-between gap-2 rounded-md px-4 py-2 font-normal"
+          className="flex h-full w-full flex-col items-center justify-around xl:justify-between gap-2 rounded-md px-4 xl:py-2 py-8 font-normal"
         >
           <h3 className="text-center font-bold uppercase text-[--clr-ter]">
             Aggiungi imprevisto
@@ -312,7 +312,7 @@ const EditorImprevisti = () => {
           </div>
           <button
             type="submit"
-            className="w-1/3 rounded-lg bg-purple-700 py-1 font-semibold hover:bg-purple-600"
+            className="w-2/3 xl:h-12 h-16 xl:w-1/3 rounded-lg bg-purple-700 py-1 font-semibold hover:bg-purple-600"
           >
             Salva ed Invia
           </button>
