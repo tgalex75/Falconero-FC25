@@ -51,23 +51,22 @@ const BonusAnnuali = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.7, duration: 0.7 }}
-      className="absolute right-1 top-1 mt-2 hidden h-1/4 w-[20vw] items-center justify-between overflow-hidden rounded-lg bg-black/20 p-2 uppercase text-gray-300 md:flex md:flex-col"
+      className="xl:absolute xl:right-1 xl:top-1 mb-4 xl:mb-0 xl:mt-2 xl:h-1/4 h-40 w-3/4 xl:w-[20vw] items-center justify-between overflow-hidden rounded-lg bg-black/50 xl:bg-black/20 p-2 uppercase text-gray-300 flex flex-col"
     >
       <h6 className="font-bold uppercase text-[--clr-prim]">Bonus Annuali</h6>
-      <section className="flex w-full items-center justify-around gap-1 p-1">
+      <section className="flex w-full items-center justify-around gap-4 xl:gap-1 xl:p-1">
         {vociBonus.map((item) => (
           <motion.div
-            //layout
+            layout
             initial={{ opacity: 0, y: -1000 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 1000 }}
             transition={{ duration: 0.7, type: "spring" }}
-            className="flex h-full w-1/3 items-center justify-center rounded py-1"
+            className="flex h-full w-1/3 items-center justify-center rounded p-2 xl:py-1"
             key={item.id}
           >
-            <div className="flex min-h-full w-full flex-col text-[--clr-sec] items-center justify-center rounded-t-lg bg-[--clr-ter] text-center">
-              <h6 className="text-[.6rem]">Bonus</h6>
-              <h3 className="mx-2 text-sm font-bold uppercase md:text-sm">
+            <div className="flex min-h-full w-full xl:flex-col p-2 text-[--clr-sec] items-center justify-center rounded-t-lg bg-[--clr-ter] text-center">
+              <h3 className="mx-2 text-xl font-bold uppercase xl:text-base">
                 {item.id}
               </h3>
             </div>

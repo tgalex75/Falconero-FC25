@@ -54,7 +54,7 @@ const IngaggiMercatoRinnovi = (props) => {
         key={casuale}
         id="containerPrimaEstrazione"
         style={isImpr ? { color: "var(--clr-ter)" } : {}}
-        className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl bg-black/50 px-4 pb-4 text-center shadow-lg ring ring-inset ring-white/75 md:px-10 md:pb-8"
+        className="flex h-full w-full select-none flex-col items-center justify-around rounded-xl bg-black/50 pt-2 text-center shadow-lg ring ring-inset ring-white/75 xl:px-10 xl:pb-8"
       >
         {!casuale && (
           <h2 className="andika-regular-italic text-5xl italic">
@@ -77,7 +77,6 @@ const IngaggiMercatoRinnovi = (props) => {
               imprevisto!
             </h2>
             <h3
-              style={{ filter: "drop-shadow(.05rem .05rem 0.1rem #000)" }}
               className="text-4xl font-extrabold uppercase md:text-6xl"
             >
               {isImpr ? msgIsImpr : msgNoImpr}

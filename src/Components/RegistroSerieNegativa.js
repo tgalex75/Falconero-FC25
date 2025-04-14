@@ -6,18 +6,20 @@ import { CartContext } from "../context/regContext";
 const RegistroSerieNegativa = () => {
   const { cartItems, addToCart, removeFromCart, clearCart } =
     useContext(CartContext);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.7, duration: 0.7 }}
-      className="absolute bottom-1 left-1 top-1 hidden h-[98%] w-[24vw] items-center gap-2 overflow-hidden rounded-lg bg-black/90 text-gray-300 md:flex md:flex-col"
+      className="flex h-72 w-full flex-col items-center gap-2 rounded-lg bg-black/90 text-gray-300 xl:absolute xl:left-1 xl:top-1 xl:h-[98%] xl:w-[24vw] xl:overflow-hidden"
     >
       <h6 className="uppercase text-[--clr-prim]">Registro Giocatori</h6>
       <AnimatePresence initial={false} mode="popLayout">
         <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-1 pb-2">
-          {cartItems.map((item) => (
+          {cartItems.map((item, i) => (
             <motion.div
+              key={i}
               layout={true}
               initial={{ opacity: 0, y: -300 }}
               animate={{ opacity: 1, y: 0 }}
@@ -29,7 +31,6 @@ const RegistroSerieNegativa = () => {
                   : {}
               }
               className="flex items-center justify-between bg-gray-700/20 ps-1 text-left text-[0.6rem] uppercase"
-              key={item.id}
             >
               <small className="text-xs font-semibold uppercase md:text-sm">
                 {item.title}
