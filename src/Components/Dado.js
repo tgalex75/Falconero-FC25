@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 import pulsante from "../assets/imgs/mascotte.png";
 
 const Dado = (props) => {
+  const { clickFunc } = props;
 
-  const {clickFunc} = props
-  
   return (
     <motion.div
       whileHover={{
@@ -16,7 +15,7 @@ const Dado = (props) => {
         scale: 1.2,
       }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="absolute bottom-2 xl:bottom-0 right-2 xl:right-0 mb-20 xl:mb-14 xl:me-4 flex h-24 w-24 cursor-pointer select-none items-center justify-center md:m-4 md:p-3"
+      className="absolute bottom-2 right-2 mb-20 flex h-24 w-24 cursor-pointer select-none items-center justify-center md:m-4 md:p-3 xl:bottom-0 xl:right-0 xl:mb-14 xl:me-4"
       style={{
         backgroundPosition: "center",
         backgroundSize: "cover",
@@ -24,15 +23,7 @@ const Dado = (props) => {
         backgroundImage: `url(${pulsante})`,
       }}
       onClick={clickFunc}
-    >
-      {/* <img
-      src=''
-        style={{
-          filter: "drop-shadow(.25rem .25rem 0.15rem #222)",
-        }}
-        size= {isMobile ? 72 : 112}
-      /> */}
-    </motion.div>
+    ></motion.div>
   );
 };
 

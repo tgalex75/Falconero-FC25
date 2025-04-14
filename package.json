@@ -9,7 +9,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "framer-motion": "^12.7.0",
+    "framer-motion": "^12.7.2",
     "lodash.capitalize": "^4.2.1",
     "pick-random": "^4.0.0",
     "pick-random-weighted": "^2.0.0",
