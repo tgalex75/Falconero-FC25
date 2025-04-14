@@ -66,18 +66,17 @@ const IngaggiMercatoRinnovi = (props) => {
             <h2
               style={{
                 fontFamily: "'Anton', sans-serif",
-                filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
               className={
                 isImpr
-                  ? "text-5xl font-extrabold uppercase md:text-7xl"
+                  ? "text-7xl font-extrabold uppercase xl:text-5xl"
                   : "hidden"
               }
             >
               imprevisto!
             </h2>
             <h3
-              className="text-4xl font-extrabold uppercase md:text-6xl"
+              className="text-7xl font-extrabold uppercase xl:text-6xl"
             >
               {isImpr ? msgIsImpr : msgNoImpr}
             </h3>
@@ -85,7 +84,7 @@ const IngaggiMercatoRinnovi = (props) => {
               style={{
                 filter: "drop-shadow(.05rem .05rem 0.1rem #000)",
               }}
-              className="andika-regular mt-4 px-4 text-2xl md:w-3/5 md:text-4xl"
+              className="andika-regular mt-4 px-4 text-5xl w-4/5 xl:w-3/5 xl:text-4xl"
             >
               {isImpr ? descrIsImpr : descrNoImpr}
             </p>

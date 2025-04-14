@@ -21,19 +21,18 @@ const RiepilogoImprevisti = () => {
   const datiPrepartitaGlobali = [...datiPrepartita, ...datiMenoFrequenti]
 
   return (
-    <section className="flex h-full w-full flex-col items-center justify-center gap-12 p-4 font-bold">
+    <section className="flex h-full w-full flex-col items-center justify-center gap-4 p-4 font-bold">
       <h1>Riepilogo Imprevisti</h1>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.7, duration: 0.7 }}
-        className="h-full w-full items-center gap-2 overflow-hidden rounded-lg bg-black/50 p-2 text-gray-300 md:flex"
+        className="h-full w-full items-center gap-2 overflow-y-auto rounded-lg bg-black/50 p-2 text-gray-300 flex flex-col"
       >
-        <div className="flex h-full w-full flex-col gap-2">
           <h3 className="text-center uppercase text-[--clr-ter]">
             Imprevisti Prepartita
           </h3>
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
+          <ul className="flex h-fit w-full flex-col gap-1 px-2 pb-2">
             {datiPrepartitaGlobali.map(
               (el) =>
                 el.title.toUpperCase() !== "NESSUN IMPREVISTO" && (
@@ -50,7 +49,7 @@ const RiepilogoImprevisti = () => {
           <h3 className="text-center uppercase text-[--clr-ter]">
             Imprevisti Settimana
           </h3>
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
+          <ul className="flex h-fit w-full flex-col gap-1 px-2 pb-2">
             {datiSettimana.map(
               (el) =>
                 el.title.toUpperCase() !== "NESSUN IMPREVISTO" && (
@@ -64,15 +63,13 @@ const RiepilogoImprevisti = () => {
                 ),
             )}
           </ul>
-        </div>
-        <div className="relative flex h-full w-full flex-col gap-2">
           <h3 className="text-center uppercase text-[--clr-ter]">
             Imprevisti della Community
           </h3>
           <strong className="absolute right-1 top-0 font-semibold">
             # {vociRegistro.length}
           </strong>
-          <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
+          <ul className="flex h-fit w-full flex-col gap-1 px-2 pb-2">
             {vociRegistro.map((el) => (
               <li
                 key={el.id}
@@ -87,7 +84,6 @@ const RiepilogoImprevisti = () => {
               </li>
             ))}
           </ul>
-        </div>
       </motion.div>
     </section>
   );
