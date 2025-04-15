@@ -34,7 +34,7 @@ const SalvaPerDopo = () => {
           <ul className="flex h-full w-full flex-col gap-1 overflow-y-auto px-2 pb-2">
             {vociRegistro.map((el) => (
               <li
-                  key={el.id}
+                key={el.id}
                 className="flex items-center justify-between bg-gray-700/20 even:bg-gray-500/20 py-1 ps-2 text-left text-sm font-semibold uppercase"
               >
                 <span className="w-1/6">{el.titolo}</span>
